@@ -1,0 +1,123 @@
+<div class="flex justify-center">
+<!-- Campo de Catálogo -->
+  <div class="w-96 p-4 m-4 border rounded-lg flex items-center cursor-pointer shadow-lg">
+    <!-- Icono Naranja -->
+    <div class="flex items-center justify-center w-10 h-10 rounded-full bg-orange-500">
+      <mat-icon class="text-white text-4">view_list</mat-icon>
+    </div>
+
+    <div class="mt-3">
+      <p class="text-sm font-semibold pl-6 mt-4">Catálogo</p>
+    </div>
+
+  </div>
+
+<!-- Campo de Movimientos -->
+  <div class="w-96 p-4 m-4 border rounded-lg flex items-center cursor-pointer shadow-lg">
+    <!-- Icono Verde -->
+    <div class="flex items-center justify-center w-10 h-10 rounded-full bg-green-500">
+      <mat-icon class="text-white text-4">book</mat-icon>
+    </div>
+
+    <div class="mt-3">
+      <p class="text-sm font-semibold pl-6 mt-4">Movimientos</p>
+    </div>
+
+  </div>
+
+</div>
+
+<!-- Tarjeta 1 -->
+<div class="w-full  p-4 m-4 border rounded-lg">
+  <!-- Boton Entrada -->
+  <div class="flex items-center justify-between">
+
+  <button class="flex items-center border border-teal-400 text-teal-400 group hover:bg-teal-400 px-4 py-2 rounded">
+    <mat-icon class="text-teal-400 group-hover:text-white">shopping_cart</mat-icon>
+    <span class="ml-2 group-hover:text-white">Entrada</span>
+  </button>
+
+</div>
+
+
+
+
+
+
+
+
+
+<!-- Tarjeta 2 -->
+  <mat-tab-group mat-stretch-tabs="false" mat-align-tabs="start">
+
+    <mat-tab label="ALMACEN GENERAL/ACTIVOS">
+
+      <div class="mt-4">
+        <div class="flex">
+            <!-- Botón de exportar a Excel -->
+          <button mat-button color="primary" class="flex items-center mb-4">
+            <mat-icon>download</mat-icon>
+            <span class="ml-2">Exportar a Excel</span>
+          </button>
+
+          <mat-form-field class="example-full-width">
+            <mat-label>Favorite food</mat-label>
+            <input matInput placeholder="Ex. Pizza" value="Sushi">
+          </mat-form-field>
+        </div>
+
+        <!-- Tabla -->
+        <div class="overflow-x-auto">
+          <table class="table-auto border-collapse w-full">
+            <thead>
+              <tr>
+                <!-- Cabeceras de las columnas -->
+                <th class="border px-4 py-2">Columna 1</th>
+                <th class="border px-4 py-2">Columna 2</th>
+                <th class="border px-4 py-2">Columna 3</th>
+                <th class="border px-4 py-2">Columna 4</th>
+                <th class="border px-4 py-2">Columna 5</th>
+                <th class="border px-4 py-2">Columna 6</th>
+                <th class="border px-4 py-2">Columna 7</th>
+                <th class="border px-4 py-2">Columna 8</th>
+                <th class="border px-4 py-2">Columna 9</th>
+                <th class="border px-4 py-2">Columna 10</th>
+                <th class="border px-4 py-2">Columna 11</th>
+                <th class="border px-4 py-2">Columna 12</th>
+              </tr>
+            </thead>
+            <tbody>
+              <!-- Contenido de la tabla -->
+              <tr>
+                <!-- Datos de la tabla -->
+                <td class="border px-4 py-2">Dato 1</td>
+                <td class="border px-4 py-2">Dato 2</td>
+                <td class="border px-4 py-2">Dato 3</td>
+                <td class="border px-4 py-2">Dato 4</td>
+                <td class="border px-4 py-2">Dato 5</td>
+                <td class="border px-4 py-2">Dato 6</td>
+                <td class="border px-4 py-2">Dato 7</td>
+                <td class="border px-4 py-2">Dato 8</td>
+                <td class="border px-4 py-2">Dato 9</td>
+                <td class="border px-4 py-2">Dato 10</td>
+                <td class="border px-4 py-2">Dato 11</td>
+                <td class="border px-4 py-2">Dato 12</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+      </div>
+
+    </mat-tab>
+
+    <mat-tab label="Second">Content 2</mat-tab>
+    <mat-tab label="Third">Content 3</mat-tab>
+
+  </mat-tab-group>
+
+</div>
+
+<!-- Tarjeta 2 -->
+<div class="w-full bg-purple-200 p-4 m-4 border rounded-lg">
+</div>

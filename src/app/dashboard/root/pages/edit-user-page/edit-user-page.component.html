@@ -1,13 +1,102 @@
-<mat-card class="example-card">
-  <mat-card-header>
-    <mat-card-title>Shiba Inu</mat-card-title>
-    <mat-card-subtitle>Dog Breed</mat-card-subtitle>
+<!-- Angular Material -->
+<mat-card class="w-full">
+
+  <mat-card-header class="flex justify-center">
+    <mat-card-title>Editar Usuario</mat-card-title>
   </mat-card-header>
-  <mat-card-content>
-    <p>This card indeterminates progress bar.</p>
-  </mat-card-content>
-  <mat-card-actions>
-    <button mat-button>LIKE</button>
-    <button mat-button>SHARE</button>
-  </mat-card-actions>
+
+  <mat-divider></mat-divider>
+
+  <div class="grid grid-cols-3 gap-4 p-4">
+    <!-- Campo #1 Nombre -->
+    <div>
+      <mat-form-field class="w-full">
+        <mat-label>Nombre</mat-label>
+        <input matInput placeholder="Administrador">
+      </mat-form-field>
+    </div>
+    <!-- Campo #2 Username -->
+    <div>
+      <mat-form-field class="w-full">
+        <mat-label>Username</mat-label>
+        <input matInput placeholder="miusuario123">
+      </mat-form-field>
+    </div>
+    <!-- Campo #3 Tipo -->
+    <div>
+      <mat-form-field class="w-full">
+        <mat-label>Tipo</mat-label>
+        <mat-select>
+          <mat-option value="1">Opcion 1</mat-option>
+          <mat-option value="2">Opcion 2</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+    <!-- Campo #4 Permiso autorizar -->
+    <div>
+      <mat-form-field class="w-full">
+        <mat-label>Permiso autorizar</mat-label>
+        <mat-select>
+          <mat-option value="1">Opcion 1</mat-option>
+          <mat-option value="2">Opcion 2</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+    <!-- Campo #5 Jefe Área -->
+    <div>
+      <mat-form-field class="w-full">
+        <mat-label>Jefe Área</mat-label>
+        <mat-select>
+          <mat-option value="1">Opcion 1</mat-option>
+          <mat-option value="2">Opcion 2</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+    <!-- Campo #6 Perfil personal -->
+    <div>
+      <mat-form-field class="w-full">
+        <mat-label>Perfil personal</mat-label>
+        <mat-select>
+          <mat-option value="1">Opcion 1</mat-option>
+          <mat-option value="2">Opcion 2</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+
+  </div>
+
+  <mat-divider></mat-divider>
+
+  <div class="grid grid-cols-2 gap-4 p-4">
+
+    <ng-container *ngFor="let item of [1,2,3,4,5,6,7,8]">
+      <!-- Campo #1 Modulo -->
+      <div>
+        <mat-form-field class="w-full">
+          <mat-label>Modulo</mat-label>
+          <input  matInput
+                  placeholder="Administrador"
+                  [disabled]="true">
+        </mat-form-field>
+      </div>
+      <!-- Campo #2 Permiso -->
+      <div>
+        <mat-form-field class="w-full">
+          <mat-label>Permiso</mat-label>
+          <mat-select>
+            <mat-option value="1">Opcion 1</mat-option>
+            <mat-option value="2">Opcion 2</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+
+    </ng-container>
+
+  </div>
+
 </mat-card>
+
+
+
+
+
