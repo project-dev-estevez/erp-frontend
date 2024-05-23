@@ -4,6 +4,8 @@ import { MaterialModule } from '../material/material.module';
 import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.component';
 import { RouterModule } from '@angular/router';
 import { HeaderComponent } from './components/header/header.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 
 
 
@@ -15,10 +17,14 @@ import { HeaderComponent } from './components/header/header.component';
   imports: [
     CommonModule,
     RouterModule,
-    MaterialModule
+    HttpClientModule,
+    MaterialModule,
+    ReactiveFormsModule
   ],
   exports: [
-    MaterialModule
+    HttpClientModule,
+    MaterialModule,
+    ReactiveFormsModule
   ]
 })
 export class SharedModule { }
