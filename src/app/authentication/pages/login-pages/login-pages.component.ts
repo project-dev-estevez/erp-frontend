@@ -10,7 +10,7 @@ import { AuthenticationService } from '../../services/authentication.service';
 export class LoginPagesComponent 
 {
   public loginForm: FormGroup = this.fb.group({
-    username: ['', [Validators.required]],
+    email: ['', [Validators.required]],
     password: ['', [Validators.required, Validators.minLength(8)]]
   });
 

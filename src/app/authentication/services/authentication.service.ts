@@ -15,16 +15,17 @@ export class AuthenticationService
 
   login(loginDataDto: LoginDataDto) {
 
+    console.log(loginDataDto);
+
     const httpOptions = {
       headers: new HttpHeaders({
-        'Content-Type': 'application/json',
-        'X-API-KEY': 'example123'
+        'Content-Type': 'application/json'
       })
     };
 
     console.log(httpOptions);
 
-    return this.http.post<any>(`${environment.apiUrl}/auth/login`, loginDataDto, httpOptions);
+    return this.http.post(`${environment.apiUrl}/auth/login`, loginDataDto, httpOptions);
   }
 
 }
