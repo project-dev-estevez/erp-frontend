@@ -30,6 +30,7 @@ spinnerActive: boolean = true;
   login(){
     this.authService.login( this.loginForm.value ).subscribe(
       response => {
+        console.log("Respuesta OK");
         console.log(response);
       },
       error => {

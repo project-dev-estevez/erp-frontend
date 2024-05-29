@@ -6,13 +6,15 @@ import { RouterModule } from '@angular/router';
 import { HeaderComponent } from './components/header/header.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { ReusableTableComponent } from './components/reusable-table/reusable-table.component';
 
 
 
 @NgModule({
   declarations: [
     AdminLayoutComponent,
-    HeaderComponent
+    HeaderComponent,
+    ReusableTableComponent
   ],
   imports: [
     CommonModule,
@@ -24,7 +26,8 @@ import { HttpClientModule } from '@angular/common/http';
   exports: [
     HttpClientModule,
     MaterialModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    ReusableTableComponent
   ]
 })
 export class SharedModule { }

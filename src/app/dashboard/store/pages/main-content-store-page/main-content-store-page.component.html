@@ -1,123 +1,189 @@
-<div class="flex justify-center">
-<!-- Campo de Catálogo -->
-  <div class="w-96 p-4 m-4 border rounded-lg flex items-center cursor-pointer shadow-lg">
-    <!-- Icono Naranja -->
-    <div class="flex items-center justify-center w-10 h-10 rounded-full bg-orange-500">
-      <mat-icon class="text-white text-4">view_list</mat-icon>
-    </div>
+<!-- Contenedor principal con fondo azul claro -->
+<div class="bg-blue-50 min-h-screen w  p-10">
 
-    <div class="mt-3">
-      <p class="text-sm font-semibold pl-6 mt-4">Catálogo</p>
-    </div>
-
-  </div>
-
-<!-- Campo de Movimientos -->
-  <div class="w-96 p-4 m-4 border rounded-lg flex items-center cursor-pointer shadow-lg">
-    <!-- Icono Verde -->
-    <div class="flex items-center justify-center w-10 h-10 rounded-full bg-green-500">
-      <mat-icon class="text-white text-4">book</mat-icon>
-    </div>
-
-    <div class="mt-3">
-      <p class="text-sm font-semibold pl-6 mt-4">Movimientos</p>
-    </div>
-
-  </div>
-
-</div>
-
-<!-- Tarjeta 1 -->
-<div class="w-full  p-4 m-4 border rounded-lg">
-  <!-- Boton Entrada -->
-  <div class="flex items-center justify-between">
-
-  <button class="flex items-center border border-teal-400 text-teal-400 group hover:bg-teal-400 px-4 py-2 rounded">
-    <mat-icon class="text-teal-400 group-hover:text-white">shopping_cart</mat-icon>
-    <span class="ml-2 group-hover:text-white">Entrada</span>
-  </button>
-
-</div>
-
-
-
-
-
-
-
-
-
-<!-- Tarjeta 2 -->
-  <mat-tab-group mat-stretch-tabs="false" mat-align-tabs="start">
-
-    <mat-tab label="ALMACEN GENERAL/ACTIVOS">
-
-      <div class="mt-4">
-        <div class="flex">
-            <!-- Botón de exportar a Excel -->
-          <button mat-button color="primary" class="flex items-center mb-4">
-            <mat-icon>download</mat-icon>
-            <span class="ml-2">Exportar a Excel</span>
-          </button>
-
-          <mat-form-field class="example-full-width">
-            <mat-label>Favorite food</mat-label>
-            <input matInput placeholder="Ex. Pizza" value="Sushi">
-          </mat-form-field>
-        </div>
-
-        <!-- Tabla -->
-        <div class="overflow-x-auto">
-          <table class="table-auto border-collapse w-full">
-            <thead>
-              <tr>
-                <!-- Cabeceras de las columnas -->
-                <th class="border px-4 py-2">Columna 1</th>
-                <th class="border px-4 py-2">Columna 2</th>
-                <th class="border px-4 py-2">Columna 3</th>
-                <th class="border px-4 py-2">Columna 4</th>
-                <th class="border px-4 py-2">Columna 5</th>
-                <th class="border px-4 py-2">Columna 6</th>
-                <th class="border px-4 py-2">Columna 7</th>
-                <th class="border px-4 py-2">Columna 8</th>
-                <th class="border px-4 py-2">Columna 9</th>
-                <th class="border px-4 py-2">Columna 10</th>
-                <th class="border px-4 py-2">Columna 11</th>
-                <th class="border px-4 py-2">Columna 12</th>
-              </tr>
-            </thead>
-            <tbody>
-              <!-- Contenido de la tabla -->
-              <tr>
-                <!-- Datos de la tabla -->
-                <td class="border px-4 py-2">Dato 1</td>
-                <td class="border px-4 py-2">Dato 2</td>
-                <td class="border px-4 py-2">Dato 3</td>
-                <td class="border px-4 py-2">Dato 4</td>
-                <td class="border px-4 py-2">Dato 5</td>
-                <td class="border px-4 py-2">Dato 6</td>
-                <td class="border px-4 py-2">Dato 7</td>
-                <td class="border px-4 py-2">Dato 8</td>
-                <td class="border px-4 py-2">Dato 9</td>
-                <td class="border px-4 py-2">Dato 10</td>
-                <td class="border px-4 py-2">Dato 11</td>
-                <td class="border px-4 py-2">Dato 12</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-
+  <div class="flex justify-center">
+    <!-- Campo de Catálogo -->
+    <div class="w-96 p-4 m-4 border rounded-lg flex items-center cursor-pointer shadow-lg bg-white">
+      <!-- Icono Naranja -->
+      <div class="flex items-center justify-center w-10 h-10 rounded-full bg-orange-500">
+        <mat-icon class="text-white text-4">view_list</mat-icon>
       </div>
 
-    </mat-tab>
+      <div class="mt-3">
+        <p class="text-sm font-semibold pl-6 mt-4">Catálogo</p>
+      </div>
 
-    <mat-tab label="Second">Content 2</mat-tab>
-    <mat-tab label="Third">Content 3</mat-tab>
+    </div>
 
-  </mat-tab-group>
+    <!-- Campo de Movimientos -->
+    <div class="w-96 p-4 m-4 border rounded-lg flex items-center cursor-pointer shadow-lg bg-white">
+      <!-- Icono Verde -->
+      <div class="flex items-center justify-center w-10 h-10 rounded-full bg-green-500">
+        <mat-icon class="text-white text-4">book</mat-icon>
+      </div>
 
-</div>
+      <div class="mt-3">
+        <p class="text-sm font-semibold pl-6 mt-4">Movimientos</p>
+      </div>
 
-<!-- Tarjeta 2 -->
-<div class="w-full bg-purple-200 p-4 m-4 border rounded-lg">
+    </div>
+
+  </div>
+
+  <!-- Tarjeta 1 -->
+  <div class="w-full bg-white p-4 m-4 border rounded-lg">
+    <!-- Boton Entrada -->
+    <div class="flex items-center justify-between">
+
+      <button class="flex items-center border border-teal-400 text-teal-400 group hover:bg-teal-400 px-4 py-2 rounded">
+        <mat-icon class="text-teal-400 group-hover:text-white">shopping_cart</mat-icon>
+        <span class="ml-2 group-hover:text-white">Entrada</span>
+      </button>
+
+    </div>
+
+    <!-- Tarjeta 2 -->
+    <mat-tab-group mat-stretch-tabs="false" mat-align-tabs="start" class="my-14">
+
+      <mat-tab>
+        <!-- Productos Almacen General -->
+        <ng-template mat-tab-label>
+          <span class="text-teal-400">Productos Almacen General</span>
+        </ng-template>
+
+        <!-- Entradas Almacen General -->
+        <mat-tab>
+          <ng-template mat-tab-label>
+            <span class="text-teal-400">Entradas Almacen General</span>
+          </ng-template>
+          Content 2
+        </mat-tab>
+
+        <!-- Salidas Almacen General -->
+        <mat-tab>
+          <ng-template mat-tab-label>
+            <span class="text-teal-400">Salidas Almacen General</span>
+          </ng-template>
+          Content 2
+        </mat-tab>
+
+        <!-- Devoluciones -->
+        <mat-tab>
+          <ng-template mat-tab-label>
+            <span class="text-teal-400">Devoluciones</span>
+          </ng-template>
+          Content 2
+        </mat-tab>
+
+        <mat-divider></mat-divider>
+
+        <!-- Tabla exportar a Excel -->
+        <div class="my-14">
+          <h1><strong>ALMACEN GENÉRAL / Activos</strong></h1>
+          <div class="mt-4 ">
+            <div class="flex">
+              <div class="flex justify-end w-full">
+
+                <!-- Botón de exportar a Excel -->
+                <div class="md:w-auto">
+                  <button
+                    class="flex items-center mb-4 bg-teal-400 hover:bg-teal-500 hover:shadow-md text-white whitespace-nowrap text-lg px-4 py-2 rounded mr-4">
+                    <mat-icon class="mr-2">description</mat-icon>
+                    <span>Exportar a Excel</span>
+                  </button>
+                </div>
+
+                <!-- Botón de Buscar -->
+                <div class="flex justify-end w-full">
+                  <div class="md:w-auto">
+                    <mat-form-field class="example-full-width">
+                      <mat-label>Buscar</mat-label>
+                      <input matInput placeholder="Buscar">
+                    </mat-form-field>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+
+          </div>
+
+          <!-- Tabla -->
+          <div class="overflow-x-auto">
+            <table class="table-auto border-collapse w-full">
+              <thead>
+                <tr>
+                  <!-- Cabeceras de las columnas -->
+                  <th class="border px-4 py-2">Código</th>
+                  <th class="border px-4 py-2">Marca</th>
+                  <th class="border px-4 py-2">Modelo</th>
+                  <th class="border px-4 py-2">Descripción</th>
+                  <th class="border px-4 py-2">Unidad</th>
+                  <th class="border px-4 py-2">Categoría</th>
+                  <th class="border px-4 py-2">Existencias</th>
+                  <th class="border px-4 py-2">Serie</th>
+                  <th class="border px-4 py-2"> N° Interno</th>
+                  <th class="border px-4 py-2">Estatus</th>
+                  <th class="border px-4 py-2">Precio Unitario</th>
+                  <th class="border px-4 py-2">Total</th>
+                  <th class="border px-4 py-2">Acciones</th>
+                </tr>
+              </thead>
+              <tbody>
+
+                <!-- Contenido de la tabla -->
+                <tr>
+                  <!-- Datos de la tabla -->
+                  <td class="border px-4 py-2">HR-BAT-HIL-001</td>
+                  <td class="border px-4 py-2"> HILTI</td>
+                  <td class="border px-4 py-2">B22/5.2</td>
+                  <td class="border px-4 py-2"> BATERIA B 22/5.2 LI-ION (HILTI)</td>
+                  <td class="border px-4 py-2">PZA</td>
+                  <td class="border px-4 py-2"> ACTIVO FIJO</td>
+                  <td class="border px-4 py-2">1.00</td>
+                  <td class="border px-4 py-2"> 713430303</td>
+                  <td class="border px-4 py-2"> 56</td>
+                  <td class="border px-4 py-2">asignado</td>
+                  <td class="border px-4 py-2">$0</td>
+                  <td class="border px-4 py-2">$0</td>
+
+                  <!-- Botones de las Acciones -->
+                  <td class="border px-4 py-2 flex items-center justify-around">
+                    <!-- Icono de información -->
+                    <button mat-icon-button class="hover:text-teal-400">
+                      <mat-icon>info</mat-icon>
+                    </button>
+
+                    <!-- Icono de edición -->
+                    <button mat-icon-button class="hover:text-teal-400">
+                      <mat-icon>edit</mat-icon>
+                    </button>
+
+                  </td>
+
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+        </div>
+
+      </mat-tab>
+
+    </mat-tab-group>
+
+    <!-- Paginador -->
+    <div class="flex justify-center">
+      <mat-paginator class="text-teal-400" aria-label="Select page">
+        <!-- Contenido del paginador -->
+      </mat-paginator>
+    </div>
+
+  </div>
+
+  <!-- Tarjeta 2 -->
+  <div class="w-full bg-purple-200 p-4 m-4 border rounded-lg">
+    <h1><strong>ALMACEN GENÉRAL / Herramientas</strong></h1>
+  </div>
+
 </div>
