@@ -2,7 +2,7 @@
 
   <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
 
-    <!-- Position Column1 -->
+    <!-- Listado de columnas -->
     <ng-container *ngFor="let column of tableColumns" [matColumnDef]="column.def">
       <th mat-header-cell *matHeaderCellDef> {{ column.label }} </th>
       <td mat-cell *matCellDef=""> dataa </td>
@@ -10,7 +10,6 @@
 
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
     <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-
 
   </table>
 

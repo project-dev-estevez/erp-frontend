@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { TableColumn } from '../../../shared/interfaces/table-column';
 
 const CUSTOMERS_DATA_MOCK = [
@@ -33,17 +33,19 @@ const CUSTOMERS_DATA_MOCK = [
   templateUrl: './main-content-page.component.html',
   styleUrl: './main-content-page.component.scss'
 })
-export class MainContentPageComponent {
+export class MainContentPageComponent implements OnInit {
   customersList = CUSTOMERS_DATA_MOCK;
   tableColumns: TableColumn[] = []
+
+  ngOnInit(): void {
+    this.setTableColumns();
+  }
 
 
   setTableColumns() {
     this.tableColumns = [
       {label: 'Name', def: 'name', datakey: 'name' },
-      {label: 'Name', def: 'name', datakey: 'name' },
-      {label: 'Name', def: 'name', datakey: 'name' },
-      {label: 'Name', def: 'name', datakey: 'name' },
+      {label: 'Podooo', def: 'lastName', datakey: 'lastName'}
     ];
   };
 
