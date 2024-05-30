@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthenticationService } from '../../services/authentication.service';
-import { SpinnerHandlerService } from '../../services/spinner-handler.service';
+import { SpinnerHandlerService } from '../../../shared/components/loading-spinner/spinner-handler.service';
 
 @Component({
   selector: 'app-login-pages',

@@ -6,7 +6,7 @@ import { AppComponent } from './app.component';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { SharedModule } from './shared/shared.module';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
-import { SpinnerInterceptorService } from './authentication/services/spinner-interceptor.service';
+import { SpinnerInterceptorService } from './shared/components/loading-spinner/spinner-interceptor.service';
 
 @NgModule({
   declarations: [
