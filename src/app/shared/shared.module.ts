@@ -7,6 +7,7 @@ import { HeaderComponent } from './components/header/header.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { ReusableTableComponent } from './components/reusable-table/reusable-table.component';
+import { PieChartComponent } from './components/charts/pie-chart/pie-chart.component';
 
 
 
@@ -14,7 +15,8 @@ import { ReusableTableComponent } from './components/reusable-table/reusable-tab
   declarations: [
     AdminLayoutComponent,
     HeaderComponent,
-    ReusableTableComponent
+    ReusableTableComponent,
+    PieChartComponent
   ],
   imports: [
     CommonModule,
