@@ -8,6 +8,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { ReusableTableComponent } from './components/reusable-table/reusable-table.component';
 import { PieChartComponent } from './components/charts/pie-chart/pie-chart.component';
+import { BaseChartDirective } from 'ng2-charts';
 
 
 
@@ -23,7 +24,8 @@ import { PieChartComponent } from './components/charts/pie-chart/pie-chart.compo
     RouterModule,
     HttpClientModule,
     MaterialModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    BaseChartDirective
   ],
   exports: [
     HttpClientModule,
