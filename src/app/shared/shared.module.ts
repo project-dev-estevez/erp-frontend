@@ -9,6 +9,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { ReusableTableComponent } from './components/reusable-table/reusable-table.component';
 import { PieChartComponent } from './components/charts/pie-chart/pie-chart.component';
 import { BaseChartDirective } from 'ng2-charts';
+import { ColumnValuePipe } from './pipes/column-value.pipe';
 
 
 
@@ -17,7 +18,8 @@ import { BaseChartDirective } from 'ng2-charts';
     AdminLayoutComponent,
     HeaderComponent,
     ReusableTableComponent,
-    PieChartComponent
+    PieChartComponent,
+    ColumnValuePipe
   ],
   imports: [
     CommonModule,
