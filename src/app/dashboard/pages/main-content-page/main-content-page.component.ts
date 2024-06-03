@@ -33,8 +33,7 @@ const CUSTOMERS_DATA_MOCK = [
   templateUrl: './main-content-page.component.html',
   styleUrl: './main-content-page.component.scss'
 })
-export class MainContentPageComponent implements OnInit
-{
+export class MainContentPageComponent implements OnInit {
   customersList = CUSTOMERS_DATA_MOCK;
   tableColumns: TableColumn[] = []
 
@@ -42,18 +41,13 @@ export class MainContentPageComponent implements OnInit
     this.setTableColumns();
   }
 
+
   setTableColumns() {
     this.tableColumns = [
-      { label: 'Name', def: 'name', dataKey: 'name' },
-      { label: 'Last Name', def: 'lastName', dataKey: 'lastName' },
-      {
-        label: 'Birthdate',
-        def: 'birthdate',
-        dataKey: 'birthdate',
-        dataType: 'date',
-        formatt:  'dd MMM  yyy',
-      },
-      { label: 'Country', def: 'country', dataKey: 'country' },
+      {label: 'Name', def: 'name', dataKey: 'name' },
+      {label: 'Name', def: 'name', dataKey: 'name' },
+      {label: 'Name', def: 'name', dataKey: 'name' },
+      {label: 'Name', def: 'name', dataKey: 'name' },
     ];
   };
 

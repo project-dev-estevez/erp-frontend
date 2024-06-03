@@ -7,6 +7,8 @@ import { HeaderComponent } from './components/header/header.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { ReusableTableComponent } from './components/reusable-table/reusable-table.component';
+import { PieChartComponent } from './components/charts/pie-chart/pie-chart.component';
+import { BaseChartDirective } from 'ng2-charts';
 import { ColumnValuePipe } from './pipes/column-value.pipe';
 
 
@@ -16,6 +18,7 @@ import { ColumnValuePipe } from './pipes/column-value.pipe';
     AdminLayoutComponent,
     HeaderComponent,
     ReusableTableComponent,
+    PieChartComponent,
     ColumnValuePipe
   ],
   imports: [
@@ -23,7 +26,8 @@ import { ColumnValuePipe } from './pipes/column-value.pipe';
     RouterModule,
     HttpClientModule,
     MaterialModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    BaseChartDirective
   ],
   exports: [
     HttpClientModule,

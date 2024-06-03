@@ -1,3 +1,6 @@
+<div class="spinner-container" *ngIf="spinnerActive">
+  <mat-spinner></mat-spinner>
+</div>
 <div class="min-h-screen flex items-center justify-center bg-gray-200 p-4">
   <div class="bg-white shadow-lg rounded-lg flex flex-col md:flex-row max-w-4xl w-full h-auto">
     <!-- Card 1: Mensaje de bienvenida -->
@@ -12,7 +15,7 @@
       <form class="w-full" [formGroup]="loginForm">
         <div class="mb-4">
           <label for="username" class="block text-base md:text-lg font-medium text-gray-700">Nombre de Usuario</label>
-          <input type="text" formControlName="email"
+          <input type="text" formControlName="username"
             class="mt-1 block w-full p-3 border border-gray-300 rounded-md shadow-sm focus:ring-green-500 focus:border-green-500 sm:text-base"
             placeholder="Tu nombre de usuario">
         </div>

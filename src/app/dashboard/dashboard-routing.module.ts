@@ -1,12 +1,17 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { MainContentPageComponent } from './pages/main-content-page/main-content-page.component';
+import { PieChartComponent } from '../shared/components/charts/pie-chart/pie-chart.component';
 
 const routes: Routes = [
   {
     // /dashboard
     path: '',
     component: MainContentPageComponent
+  },
+  {
+    path: 'grafica',
+    component: PieChartComponent
   },
   {
     path: 'root',
