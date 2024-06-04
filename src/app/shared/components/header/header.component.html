@@ -3,11 +3,11 @@
     <!-- Aquí puedes agregar otros elementos del toolbar si es necesario -->
   </div>
   <div class="flex items-center">
-    <button mat-icon-button aria-label="Cerrar sesión" class="mr-4">
+    <a routerLink="/dashboard/verPerfil" mat-icon-button aria-label="Ver Perfil" class="mr-4" title="Ver Perfil">
       <mat-icon class="w-8 h-8">person</mat-icon>
-    </button>
-    <h1>Cerrar Sesión</h1>
-    <mat-icon class="ml-6">logout</mat-icon>
+    </a>
+    <a routerLink="/dashboard/logout" routerLinkActive="active" title="Cerrar Sesión">Cerrar Sesión</a>
+    <a routerLink="/dashboard/logout" routerLinkActive="active" title="Cerrar Sesión"><mat-icon class="ml-6" style="margin-left:8px;margin-top:8px;">logout</mat-icon></a>
 
   </div>
 </mat-toolbar>

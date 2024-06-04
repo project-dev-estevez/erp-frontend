@@ -44,12 +44,18 @@ export class MainContentPageComponent implements OnInit {
 
   setTableColumns() {
     this.tableColumns = [
-      {label: 'Name', def: 'name', dataKey: 'name' },
-      {label: 'Name', def: 'name', dataKey: 'name' },
-      {label: 'Name', def: 'name', dataKey: 'name' },
-      {label: 'Name', def: 'name', dataKey: 'name' },
+      { label: 'Name', def: 'name', dataKey: 'name' },
+      { label: 'Last Name', def: 'lastName', dataKey: 'lastName' },
+      {
+        label: 'Birthdate',
+        def: 'birthdate',
+        dataKey: 'birthdate',
+        dataType: 'date',
+        formatt: 'dd MMM yyyy',
+      },
+      { label: 'Country', def: 'country', dataKey: 'country' },
     ];
-  };
+  }
 
 
 }
