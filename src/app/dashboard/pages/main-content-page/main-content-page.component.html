@@ -1,5 +1,6 @@
 <app-reusable-table [data]="customersList"
                     [columns]="tableColumns"
                     [config]="tableConfig"
-                    (select)="onSelect($event)">
+                    (select)="onSelect($event)"
+                    (action)="onTableAction($event)">
 </app-reusable-table>

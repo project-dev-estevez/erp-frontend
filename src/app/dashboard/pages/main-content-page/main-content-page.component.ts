@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { TableColumn } from '../../../shared/interfaces/table-column';
 import { TableConfig } from '../../../shared/interfaces/table-config';
+import { TableAction } from '../../../shared/interfaces/table-action';
+import { TABLE_ACTION } from '../../../shared/enums/table-action.enum';
 
 const CUSTOMERS_DATA_MOCK = [
   {
@@ -148,7 +150,8 @@ export class MainContentPageComponent implements OnInit {
   tableColumns: TableColumn[] = []
   tableConfig: TableConfig = {
     isSelectable: true,
-    isPaginable: true
+    isPaginable: true,
+    showActions: true
   }
 
   ngOnInit(): void {
@@ -177,6 +180,28 @@ export class MainContentPageComponent implements OnInit {
 
   onSelect(data: any) {
     console.log(data) // muestra la información de la tabla seleciónando con el checkbox
+  }
+
+  onTableAction(tableAction: TableAction) {
+    switch (tableAction.action) {
+      case TABLE_ACTION.EDIT:
+        this.onEdit(tableAction.row);
+        break;
+
+      case TABLE_ACTION.DELETE:
+        this.onDelete(tableAction.row);
+        break;
+
+      default:
+        break;
+    }
+  }
+
+  onEdit(customer: any) {
+    console.log('Edit', customer);
+  }
+  onDelete(customer: any) {
+    console.log('Delete', customer);
   }
 
 }

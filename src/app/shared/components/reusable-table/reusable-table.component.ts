@@ -4,6 +4,8 @@ import { SelectionModel } from '@angular/cdk/collections';
 import { TableConfig } from '../../interfaces/table-config';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
+import { TableAction } from '../../interfaces/table-action';
+import { TABLE_ACTION } from '../../enums/table-action.enum';
 
 @Component({
   selector: 'app-reusable-table',
@@ -35,6 +37,7 @@ export class ReusableTableComponent implements AfterViewInit {
   }
 
   @Output() select: EventEmitter<any> = new EventEmitter();
+  @Output() action: EventEmitter<TableAction> = new EventEmitter();
 
 
   constructor() {}
@@ -53,6 +56,10 @@ export class ReusableTableComponent implements AfterViewInit {
 
     if(this.tableConfig.isSelectable) {
       this.displayedColumns.unshift('select');
+    }
+
+    if(this.tableConfig.showActions){
+      this.displayedColumns.push('actions');
     }
   }
 
@@ -83,6 +90,14 @@ export class ReusableTableComponent implements AfterViewInit {
     return `${this.selection.isSelected(row) ? 'deselect' : 'select'} row ${
       row.position + 1
     }`;
+  }
+
+  onEdit(row: any) {
+    this.action.emit({ action: TABLE_ACTION.EDIT, row });
+  }
+
+  onDelete(row: any) {
+    this.action.emit({ action: TABLE_ACTION.DELETE, row });
   }
 
 }
