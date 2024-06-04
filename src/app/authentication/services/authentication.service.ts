@@ -15,15 +15,11 @@ export class AuthenticationService
 
   login(loginDataDto: LoginDataDto) {
 
-    console.log(loginDataDto);
-
     const httpOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json'
       })
     };
-
-    console.log(httpOptions);
 
     return this.http.post(`${environment.apiUrl}/auth/login`, loginDataDto, httpOptions);
   }

@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { BehaviorSubject } from 'rxjs';
+import { SpinnerService } from './shared/services/spinner.service';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +8,14 @@ import { Component } from '@angular/core';
   styleUrl: './app.component.scss'
 })
 export class AppComponent {
-  title = 'estevez-jor';
+
+  constructor(
+    private spinnerService: SpinnerService
+  )
+  {}
+
+  get isActive(): BehaviorSubject<boolean>{
+    return this.spinnerService.isLoading;
+  }
+
 }
