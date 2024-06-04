@@ -1,23 +1,28 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { AfterViewInit, Component, EventEmitter, Input, Output, ViewChild } from '@angular/core';
 import { TableColumn } from '../../interfaces/table-column';
 import { SelectionModel } from '@angular/cdk/collections';
 import { TableConfig } from '../../interfaces/table-config';
+import { MatTableDataSource } from '@angular/material/table';
+import { MatPaginator } from '@angular/material/paginator';
 
 @Component({
   selector: 'app-reusable-table',
   templateUrl: './reusable-table.component.html',
   styleUrl: './reusable-table.component.scss'
 })
-export class ReusableTableComponent {
+export class ReusableTableComponent implements AfterViewInit {
 
-  dataSource = [];
+  dataSource: MatTableDataSource<Array<any>> = new MatTableDataSource();
   displayedColumns: string[] = [];
   tableColumns: TableColumn[] = []
   selection = new SelectionModel<any>(true, []);
   tableConfig: TableConfig | undefined
 
-  @Input() set data(data: any) {
-    this.dataSource = data;
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
+
+  @Input() set data(data: Array<any>) {
+    this.dataSource = new MatTableDataSource(data);
+    this.dataSource.paginator = this.paginator;
   }
 
   @Input() set columns( columns: TableColumn[] ) {
@@ -30,6 +35,14 @@ export class ReusableTableComponent {
   }
 
   @Output() select: EventEmitter<any> = new EventEmitter();
+
+
+  constructor() {}
+
+
+  ngAfterViewInit() {
+    this.dataSource.paginator = this.paginator;
+  }
 
   onSelect() {
     this.select.emit(this.selection.selected);
@@ -46,7 +59,7 @@ export class ReusableTableComponent {
   /** Whether the number of selected elements matches the total number of rows. */
   isAllSelected() {
     const numSelected = this.selection.selected.length;
-    const numRows = this.dataSource.length;
+    const numRows = this.dataSource.data.length;
     return numSelected === numRows;
   }
 
@@ -58,7 +71,7 @@ export class ReusableTableComponent {
       return;
     }
 
-    this.selection.select(...this.dataSource);
+    this.selection.select(...this.dataSource.data);
     this.onSelect();
   }
 
