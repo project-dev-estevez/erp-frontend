@@ -8,6 +8,7 @@ import { SharedModule } from './shared/shared.module';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { provideCharts, withDefaultRegisterables } from 'ng2-charts';
 import { SpinnerInterceptor } from './shared/interceptors/spinner.interceptor';
+import { AuthInterceptor } from './authentication/interceptors/auth.interceptor';
 
 @NgModule({
   declarations: [
@@ -20,6 +21,7 @@ import { SpinnerInterceptor } from './shared/interceptors/spinner.interceptor';
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: SpinnerInterceptor, multi: true },
+    //{ provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
     provideAnimationsAsync(),
     provideCharts(withDefaultRegisterables())
   ],

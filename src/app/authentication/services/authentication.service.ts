@@ -25,4 +25,18 @@ export class AuthenticationService
     return this.http.post<LoginResponse>(`${environment.apiUrl}/auth/login`, loginDataDto, httpOptions);
   }
 
+  checkToken(){
+    // TODO: Verificar la presencia del token para redirigir al /dashboard
+  }
+
+  setToken( token: string )
+  {
+    localStorage.setItem('X-API-KEY', token);
+  }
+
+  getToken(): string
+  {
+    return localStorage.getItem('X-API-KEY') || '';
+  }
+
 }

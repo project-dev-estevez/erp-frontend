@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthenticationService } from '../../services/authentication.service';
 import { Router } from '@angular/router';
@@ -9,7 +9,7 @@ import { SweetAlertService } from '../../../shared/services/sweet-alert.service'
   templateUrl: './login-pages.component.html',
   styleUrl: './login-pages.component.scss'
 })
-export class LoginPagesComponent
+export class LoginPagesComponent implements OnInit
 {
   public loginForm: FormGroup = this.fb.group({
     username: ['', [Validators.required]],
@@ -24,15 +24,19 @@ export class LoginPagesComponent
   )
   {}
 
+  ngOnInit(): void {
+    //this.checkToken();
+  }
 
   login(){
     this.authService.login( this.loginForm.value ).subscribe(
       response => {
-        localStorage.setItem('X-API-KEY', response.token );
+        this.authService.setToken( response.token );
         this.router.navigate(['/dashboard']);
       },
       errorResponse => {
-        const errorDetail = errorResponse.error.message || 'Error';
+        console.log(errorResponse)
+        const errorDetail = errorResponse.error?.message || 'Error';
         this.sweetAlert.presentError( errorDetail );
       }
     );
