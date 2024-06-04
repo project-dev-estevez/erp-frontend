@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthenticationService } from '../../services/authentication.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login-pages',
@@ -16,6 +17,7 @@ export class LoginPagesComponent
 
   constructor(
     private fb: FormBuilder,
+    private router: Router,
     private authService: AuthenticationService
   )
   {}
@@ -24,8 +26,8 @@ export class LoginPagesComponent
   login(){
     this.authService.login( this.loginForm.value ).subscribe(
       response => {
-        console.log("Respuesta OK");
-        console.log(response);
+        localStorage.setItem('X-API-KEY', response.token );
+        this.router.navigate(['/dashboard']);
       },
       error => {
         console.log("mmaaaallll");
@@ -33,9 +35,5 @@ export class LoginPagesComponent
       }
     );
   }
-
-  //showSpinner = (state: boolean): void => {
-  //  this.spinnerActive = state;
-  //};
 
 }
