@@ -16,9 +16,10 @@ export class ReusableTableComponent implements AfterViewInit {
 
   dataSource: MatTableDataSource<Array<any>> = new MatTableDataSource();
   displayedColumns: string[] = [];
-  tableColumns: TableColumn[] = []
+  tableColumns: TableColumn[] = [];
   selection = new SelectionModel<any>(true, []);
-  tableConfig: TableConfig | undefined
+  tableConfig: TableConfig | undefined;
+  currentFilterValue: string = '';
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
@@ -98,6 +99,12 @@ export class ReusableTableComponent implements AfterViewInit {
 
   onDelete(row: any) {
     this.action.emit({ action: TABLE_ACTION.DELETE, row });
+  }
+
+  applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.dataSource.filter = filterValue.trim().toLowerCase();
+    this.currentFilterValue = filterValue;
   }
 
 }

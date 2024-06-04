@@ -151,7 +151,8 @@ export class MainContentPageComponent implements OnInit {
   tableConfig: TableConfig = {
     isSelectable: true,
     isPaginable: true,
-    showActions: true
+    showActions: true,
+    showFilter: true
   }
 
   ngOnInit(): void {

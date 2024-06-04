@@ -1,64 +1,76 @@
 <div class="m-8 mat-elevation-z8">
 
+  <!--Filter-->
+  <mat-form-field *ngIf="tableConfig?.showFilter" class="w-full">
+    <mat-label>Filter</mat-label>
+    <input matInput (keyup)="applyFilter($event)" placeholder="Buscar..." #input />
+  </mat-form-field>
+
   <table mat-table [dataSource]="dataSource">
 
     <!-- Checkbox Column -->
-  <ng-container matColumnDef="select">
+    <ng-container matColumnDef="select">
 
-    <th mat-header-cell *matHeaderCellDef>
+      <th mat-header-cell *matHeaderCellDef>
 
-      <mat-checkbox
-        (change)="$event ? toggleAllRows() : null"
-        [checked]="selection.hasValue() && isAllSelected()"
-        [indeterminate]="selection.hasValue() && !isAllSelected()"
-        [aria-label]="checkboxLabel()">
-      </mat-checkbox>
+        <mat-checkbox
+          (change)="$event ? toggleAllRows() : null"
+          [checked]="selection.hasValue() && isAllSelected()"
+          [indeterminate]="selection.hasValue() && !isAllSelected()"
+          [aria-label]="checkboxLabel()">
+        </mat-checkbox>
 
-    </th>
+      </th>
 
-    <td mat-cell *matCellDef="let row">
+      <td mat-cell *matCellDef="let row">
 
-      <mat-checkbox
-        (click)="$event.stopPropagation()"
-        (change)="$event ? selection.toggle(row) : null; onSelect()"
-        [checked]="selection.isSelected(row)"
-        [aria-label]="checkboxLabel(row)">
-      </mat-checkbox>
+        <mat-checkbox
+          (click)="$event.stopPropagation()"
+          (change)="$event ? selection.toggle(row) : null; onSelect()"
+          [checked]="selection.isSelected(row)"
+          [aria-label]="checkboxLabel(row)">
+        </mat-checkbox>
 
-    </td>
+      </td>
 
-  </ng-container>
+    </ng-container>
 
-  <!-- Actions Column -->
-  <ng-container matColumnDef="actions">
-    <th mat-header-cell *matHeaderCellDef>Actions</th>
-    <td mat-cell *matCellDef="let row">
-      <button mat-icon-button matTooltip="Basic" (click)="onEdit(row)">
-        <mat-icon>favorite</mat-icon>
-      </button>
-      <button mat-icon-button matTooltip="Basic" (click)="onDelete(row)">
-        <mat-icon>person</mat-icon>
-      </button>
-    </td>
-  </ng-container>
+    <!-- Actions Column -->
+    <ng-container matColumnDef="actions">
+      <th mat-header-cell *matHeaderCellDef>Actions</th>
+      <td mat-cell *matCellDef="let row">
+        <button mat-icon-button matTooltip="Basic" (click)="onEdit(row)">
+          <mat-icon>favorite</mat-icon>
+        </button>
+        <button mat-icon-button matTooltip="Basic" (click)="onDelete(row)">
+          <mat-icon>person</mat-icon>
+        </button>
+      </td>
+    </ng-container>
 
-  <!-- Listado de columnas -->
-  <ng-container *ngFor="let column of tableColumns" [matColumnDef]="column.def">
-    <th mat-header-cell *matHeaderCellDef> {{ column.label }} </th>
-    <td mat-cell *matCellDef="let row"> {{row | columnValue: column}} </td>
-  </ng-container>
+    <!-- Listado de columnas -->
+    <ng-container *ngFor="let column of tableColumns" [matColumnDef]="column.def">
+      <th mat-header-cell *matHeaderCellDef> {{ column.label }} </th>
+      <td mat-cell *matCellDef="let row"> {{row | columnValue: column}} </td>
+    </ng-container>
 
-  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+    <!-- Row shown when there is no matching data. -->
+    <tr class="mat-row" *matNoDataRow>
+      <td class="mat-cell" [colSpan]="displayedColumns.length">
+        No data matching the filter "{{ currentFilterValue }}"
+      </td>
+    </tr>
 
   </table>
 
   <ng-container *ngIf="tableConfig?.isPaginable">
-  <!-- Columnas-paginator -->
+    <!-- Columnas-paginator -->
     <mat-paginator [pageSizeOptions]="[10, 20, 30]"
                   showFirstLastButtons>
     </mat-paginator>
-
   </ng-container>
 
 </div>
