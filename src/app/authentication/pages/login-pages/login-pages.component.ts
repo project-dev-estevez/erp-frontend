@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthenticationService } from '../../services/authentication.service';
 import { Router } from '@angular/router';
+import { SweetAlertService } from '../../../shared/services/sweet-alert.service';
 
 @Component({
   selector: 'app-login-pages',
@@ -18,6 +19,7 @@ export class LoginPagesComponent
   constructor(
     private fb: FormBuilder,
     private router: Router,
+    private sweetAlert: SweetAlertService,
     private authService: AuthenticationService
   )
   {}
@@ -29,9 +31,9 @@ export class LoginPagesComponent
         localStorage.setItem('X-API-KEY', response.token );
         this.router.navigate(['/dashboard']);
       },
-      error => {
-        console.log("mmaaaallll");
-        console.log(error);
+      errorResponse => {
+        const errorDetail = errorResponse.error.message || 'Error';
+        this.sweetAlert.presentError( errorDetail );
       }
     );
   }
