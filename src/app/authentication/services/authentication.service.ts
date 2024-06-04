@@ -1,8 +1,8 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from '../../../environments/environment';
-import { LoginDataDto, LoginResponse } from '../interfaces/authentication.interfaces';
-import { Observable } from 'rxjs';
+import { CheckTokenData, LoginDataDto, LoginResponse } from '../interfaces/authentication.interfaces';
+import { Observable, map, of } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -26,7 +26,22 @@ export class AuthenticationService
   }
 
   checkToken(){
-    // TODO: Verificar la presencia del token para redirigir al /dashboard
+    const token = this.getToken();
+    if(!token){
+      return of(false);
+    }
+
+
+    return this.http.get(`${environment.apiUrl}/auth/check-token/${token}`).pipe(
+      map( auth => {
+        if( auth )
+        {
+          return true;
+        }
+
+        return false;
+      })
+    );
   }
 
   setToken( token: string )
