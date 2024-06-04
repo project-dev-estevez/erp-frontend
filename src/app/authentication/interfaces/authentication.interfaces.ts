@@ -15,4 +15,10 @@ export interface User {
     id: string;
     nombre: string;
     username: string;
-  }
+}
+
+export interface CheckTokenData{
+    status: boolean;
+    message: string;
+    token: string;
+}
