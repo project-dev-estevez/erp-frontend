@@ -2,7 +2,7 @@
 
   <!--Filter-->
   <mat-form-field *ngIf="tableConfig?.showFilter" class="w-full">
-    <mat-label>Filter</mat-label>
+    <mat-label>Buscar</mat-label>
     <input matInput (keyup)="applyFilter($event)" placeholder="Buscar..." #input />
   </mat-form-field>
 
@@ -10,29 +10,23 @@
 
     <!-- Checkbox Column -->
     <ng-container matColumnDef="select">
-
       <th mat-header-cell *matHeaderCellDef>
-
         <mat-checkbox
           (change)="$event ? toggleAllRows() : null"
           [checked]="selection.hasValue() && isAllSelected()"
           [indeterminate]="selection.hasValue() && !isAllSelected()"
           [aria-label]="checkboxLabel()">
         </mat-checkbox>
-
       </th>
 
       <td mat-cell *matCellDef="let row">
-
         <mat-checkbox
           (click)="$event.stopPropagation()"
           (change)="$event ? selection.toggle(row) : null; onSelect()"
           [checked]="selection.isSelected(row)"
           [aria-label]="checkboxLabel(row)">
         </mat-checkbox>
-
       </td>
-
     </ng-container>
 
     <!-- Actions Column -->
@@ -57,17 +51,17 @@
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
     <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
 
-    <!-- Row shown when there is no matching data. -->
+    <!-- No coincide busqueda -->
     <tr class="mat-row" *matNoDataRow>
-      <td class="mat-cell" [colSpan]="displayedColumns.length">
-        No data matching the filter "{{ currentFilterValue }}"
+      <td class="mat-cell pl-4 pt-2" [colSpan]="displayedColumns.length">
+        No se encontró información con: "{{ currentFilterValue }}"
       </td>
     </tr>
 
   </table>
 
-  <ng-container *ngIf="tableConfig?.isPaginable">
-    <!-- Columnas-paginator -->
+  <!-- Paginador -->
+  <ng-container *ngIf="tableConfig?.isPaginable">    
     <mat-paginator [pageSizeOptions]="[10, 20, 30]"
                   showFirstLastButtons>
     </mat-paginator>
