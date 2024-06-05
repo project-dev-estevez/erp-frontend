@@ -14,6 +14,8 @@ import { TABLE_ACTION } from '../../enums/table-action.enum';
 })
 export class ReusableTableComponent implements AfterViewInit {
 
+  TABLE_ACTION = TABLE_ACTION;
+
   dataSource: MatTableDataSource<Array<any>> = new MatTableDataSource();
   displayedColumns: string[] = [];
   tableColumns: TableColumn[] = [];
@@ -40,9 +42,7 @@ export class ReusableTableComponent implements AfterViewInit {
   @Output() select: EventEmitter<any> = new EventEmitter();
   @Output() action: EventEmitter<TableAction> = new EventEmitter();
 
-
   constructor() {}
-
 
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;
@@ -91,6 +91,23 @@ export class ReusableTableComponent implements AfterViewInit {
     return `${this.selection.isSelected(row) ? 'deselect' : 'select'} row ${
       row.position + 1
     }`;
+  }
+
+  isActionAllowed(action: TABLE_ACTION): boolean {
+
+    if(
+      this.tableConfig && 
+      this.tableConfig.actions && 
+      this.tableConfig.actions.includes(action)
+    ){
+      return true;
+    }
+
+    return false;
+  }
+
+  onShow(row: any) {
+    this.action.emit({ action: TABLE_ACTION.SHOW, row });
   }
 
   onEdit(row: any) {

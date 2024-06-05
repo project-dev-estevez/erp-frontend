@@ -1,4 +1,4 @@
-<div class="bg-blue-50 min-h-screen w-full p-4">
+<div class="bg-white min-h-screen w-full p-4">
 
     <!-- Top Icons -->
     <div class="flex justify-center">
@@ -40,96 +40,9 @@
                 <ng-template  mat-tab-label>
                     <span class="text-teal-400">Productos Almacén General</span>
                 </ng-template>
-                <!-- Tabla exportar a Excel -->
-                <div class="my-14">
-                    <h1><strong>ALMACEN GENÉRAL / Activos</strong></h1>
-                    <div class="mt-4 ">
-                        <div class="flex">
-                            <div class="flex justify-end w-full">
 
-                                <!-- Botón de exportar a Excel -->
-                                <div class="md:w-auto">
-                                    <button
-                                        class="flex items-center mb-4 bg-teal-400 hover:bg-teal-500 hover:shadow-md text-white whitespace-nowrap text-lg px-4 py-2 rounded mr-4">
-                                        <mat-icon class="mr-2">description</mat-icon>
-                                        <span>Exportar a Excel</span>
-                                    </button>
-                                </div>
+                <app-warehouse-general-products></app-warehouse-general-products>
 
-                                <!-- Botón de Buscar -->
-                                <div class="flex justify-end w-full">
-                                    <div class="md:w-auto">
-                                        <mat-form-field class="example-full-width">
-                                            <mat-label>Buscar</mat-label>
-                                            <input matInput placeholder="Buscar">
-                                        </mat-form-field>
-                                    </div>
-                                </div>
-
-                            </div>
-                        </div>
-
-                    </div>
-
-                    <!-- Tabla -->
-                    <div class="overflow-x-auto">
-                        <table class="table-auto border-collapse w-full">
-                            <thead>
-                                <tr>
-                                    <!-- Cabeceras de las columnas -->
-                                    <th class="border px-4 py-2">Código</th>
-                                    <th class="border px-4 py-2">Marca</th>
-                                    <th class="border px-4 py-2">Modelo</th>
-                                    <th class="border px-4 py-2">Descripción</th>
-                                    <th class="border px-4 py-2">Unidad</th>
-                                    <th class="border px-4 py-2">Categoría</th>
-                                    <th class="border px-4 py-2">Existencias</th>
-                                    <th class="border px-4 py-2">Serie</th>
-                                    <th class="border px-4 py-2"> N° Interno</th>
-                                    <th class="border px-4 py-2">Estatus</th>
-                                    <th class="border px-4 py-2">Precio Unitario</th>
-                                    <th class="border px-4 py-2">Total</th>
-                                    <th class="border px-4 py-2">Acciones</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-
-                                <!-- Contenido de la tabla -->
-                                <tr>
-                                    <!-- Datos de la tabla -->
-                                    <td class="border px-4 py-2">HR-BAT-HIL-001</td>
-                                    <td class="border px-4 py-2"> HILTI</td>
-                                    <td class="border px-4 py-2">B22/5.2</td>
-                                    <td class="border px-4 py-2"> BATERIA B 22/5.2 LI-ION (HILTI)</td>
-                                    <td class="border px-4 py-2">PZA</td>
-                                    <td class="border px-4 py-2"> ACTIVO FIJO</td>
-                                    <td class="border px-4 py-2">1.00</td>
-                                    <td class="border px-4 py-2"> 713430303</td>
-                                    <td class="border px-4 py-2"> 56</td>
-                                    <td class="border px-4 py-2">asignado</td>
-                                    <td class="border px-4 py-2">$0</td>
-                                    <td class="border px-4 py-2">$0</td>
-
-                                    <!-- Botones de las Acciones -->
-                                    <td class="border px-4 py-2 flex items-center justify-around">
-                                        <!-- Icono de información -->
-                                        <button mat-icon-button class="hover:text-teal-400">
-                                            <mat-icon>info</mat-icon>
-                                        </button>
-
-                                        <!-- Icono de edición -->
-                                        <button mat-icon-button class="hover:text-teal-400">
-                                            <mat-icon>edit</mat-icon>
-                                        </button>
-
-                                    </td>
-
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-
-                </div>
             </mat-tab>
 
             <!-- Entradas Almacen General -->
