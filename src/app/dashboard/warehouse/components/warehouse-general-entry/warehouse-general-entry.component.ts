@@ -15,9 +15,10 @@ export class WarehouseGeneralEntryComponent implements OnInit{
   tableColumns: TableColumn[] = [];
   tableConfig: TableConfig = {
     isPaginable: true,
-    showActions: true,
+    showActions: true,    
+    actions: [TABLE_ACTION.SHOW],
     showFilter: true,
-    actions: [TABLE_ACTION.SHOW]
+    showExcelButton: true
   }
 
   ngOnInit(): void {

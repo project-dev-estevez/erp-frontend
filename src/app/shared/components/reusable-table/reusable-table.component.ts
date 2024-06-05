@@ -42,9 +42,7 @@ export class ReusableTableComponent implements AfterViewInit {
   @Output() select: EventEmitter<any> = new EventEmitter();
   @Output() action: EventEmitter<TableAction> = new EventEmitter();
 
-
   constructor() {}
-
 
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;

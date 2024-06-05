@@ -1,10 +1,25 @@
 <div class="m-8 mat-elevation-z8">
 
-  <!--Filter-->
-  <mat-form-field *ngIf="tableConfig?.showFilter" class="w-full">
-    <mat-label>Buscar</mat-label>
-    <input matInput (keyup)="applyFilter($event)" placeholder="Buscar..." #input />
-  </mat-form-field>
+  <!--Excel Button && Filter-->
+  <div *ngIf="tableConfig?.showFilter || tableConfig?.showExcelButton" 
+       class="flex justify-between items-center pt-2">
+
+    <button *ngIf="tableConfig?.showExcelButton" 
+            mat-stroked-button
+            class="mx-4">
+      <mat-icon svgIcon="excel" class="mr-2"></mat-icon>
+      Exportar a Excel
+    </button>
+
+    <mat-form-field *ngIf="tableConfig?.showFilter" 
+                    [ngClass]="{'w-full': !tableConfig?.showExcelButton, 'flex-1': tableConfig?.showExcelButton}"
+                    class="mr-2">
+      <mat-label>Buscar</mat-label>
+      <input matInput (keyup)="applyFilter($event)" placeholder="Buscar..." #input />
+    </mat-form-field>
+  </div>  
+
+  <mat-divider></mat-divider>
 
   <table mat-table [dataSource]="dataSource">
 
