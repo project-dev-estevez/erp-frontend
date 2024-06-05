@@ -31,12 +31,22 @@
 
     <!-- Actions Column -->
     <ng-container matColumnDef="actions">
-      <th mat-header-cell *matHeaderCellDef>Actions</th>
+      <th mat-header-cell *matHeaderCellDef>Acciones</th>
       <td mat-cell *matCellDef="let row">
-        <button mat-icon-button matTooltip="Basic" (click)="onEdit(row)">
+        <button mat-icon-button
+                color="primary"
+                *ngIf="isActionAllowed(TABLE_ACTION.SHOW)" 
+                (click)="onShow(row) ">
+          <mat-icon>remove_red_eye</mat-icon>
+        </button>
+        <button mat-icon-button matTooltip="Basic" 
+                *ngIf="isActionAllowed(TABLE_ACTION.EDIT)" 
+                (click)="onEdit(row) ">
           <mat-icon>favorite</mat-icon>
         </button>
-        <button mat-icon-button matTooltip="Basic" (click)="onDelete(row)">
+        <button mat-icon-button matTooltip="Basic"
+                *ngIf="isActionAllowed(TABLE_ACTION.DELETE)"
+                (click)="onDelete(row)">
           <mat-icon>person</mat-icon>
         </button>
       </td>
@@ -62,7 +72,7 @@
 
   <!-- Paginador -->
   <ng-container *ngIf="tableConfig?.isPaginable">    
-    <mat-paginator [pageSizeOptions]="[10, 20, 30]"
+    <mat-paginator [pageSizeOptions]="[10]"
                   showFirstLastButtons>
     </mat-paginator>
   </ng-container>
