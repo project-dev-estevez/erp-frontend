@@ -1,0 +1,113 @@
+<div class="my-4">
+
+    <button (click)="accordion.openAll()"
+            mat-stroked-button
+            class="mx-4">
+      <mat-icon>expand</mat-icon>
+      Expandir Todo
+    </button>
+
+    <button (click)="accordion.closeAll()"
+            mat-stroked-button
+            color="warn"
+            class="mx-4">
+      <mat-icon>close_fullscreen</mat-icon>
+      Colapsar Todo
+    </button>
+
+</div>
+
+<mat-accordion class="example-headers-align" multi>
+    <mat-expansion-panel>
+        <mat-expansion-panel-header>
+            <mat-panel-title>
+                <mat-icon class="ml-2">local_convenience_store</mat-icon>
+                Activos
+            </mat-panel-title>
+            <mat-panel-description>
+                Lorem ipsum dolor, sit amet consectetur adipisicing elit. Sit consectetur vel, et quisquam cupiditate minus! Error 
+            </mat-panel-description>
+        </mat-expansion-panel-header>
+
+        <mat-form-field>
+        <mat-label>First name</mat-label>
+        <input matInput>
+        </mat-form-field>
+
+        <mat-form-field>
+        <mat-label>Age</mat-label>
+        <input matInput type="number" min="1">
+        </mat-form-field>
+
+    </mat-expansion-panel>
+
+    <mat-expansion-panel>
+        <mat-expansion-panel-header>
+            <mat-panel-title>
+                <mat-icon class="ml-2">build</mat-icon>
+                Herramientas
+            </mat-panel-title>
+            <mat-panel-description>
+                Lorem, ipsum dolor sit amet consectetur adipisicing elit. Veniam ab placeat dolorem accusamus culpa architecto.
+            </mat-panel-description>
+        </mat-expansion-panel-header>
+
+        <mat-form-field>
+        <mat-label>First name</mat-label>
+        <input matInput>
+        </mat-form-field>
+
+        <mat-form-field>
+        <mat-label>Age</mat-label>
+        <input matInput type="number" min="1">
+        </mat-form-field>
+
+    </mat-expansion-panel>
+
+    <mat-expansion-panel>
+        <mat-expansion-panel-header>
+            <mat-panel-title>
+                <mat-icon class="ml-2">oil_barrel</mat-icon>
+                Combustibles
+            </mat-panel-title>
+            <mat-panel-description>
+                Lorem ipsum, dolor sit amet consectetur adipisicing elit. Deleniti pariatur.
+            </mat-panel-description>
+        </mat-expansion-panel-header>
+
+        <mat-form-field>
+        <mat-label>First name</mat-label>
+        <input matInput>
+        </mat-form-field>
+
+        <mat-form-field>
+        <mat-label>Age</mat-label>
+        <input matInput type="number" min="1">
+        </mat-form-field>
+
+    </mat-expansion-panel>
+
+    <mat-expansion-panel>
+        <mat-expansion-panel-header>
+            <mat-panel-title>
+                <mat-icon class="ml-2">lock_person</mat-icon>
+                Seguridad & Higiene                
+            </mat-panel-title>
+            <mat-panel-description>
+                Productos para la seguridad e higiene
+            </mat-panel-description>
+        </mat-expansion-panel-header>
+
+        <mat-form-field>
+        <mat-label>First name</mat-label>
+        <input matInput>
+        </mat-form-field>
+
+        <mat-form-field>
+        <mat-label>Age</mat-label>
+        <input matInput type="number" min="1">
+        </mat-form-field>
+
+    </mat-expansion-panel>
+</mat-accordion>
+  

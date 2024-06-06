@@ -1,47 +1,45 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthenticationService } from '../../services/authentication.service';
-import { SpinnerHandlerService } from '../../../shared/components/loading-spinner/spinner-handler.service';
+import { Router } from '@angular/router';
+import { SweetAlertService } from '../../../shared/services/sweet-alert.service';
 
 @Component({
   selector: 'app-login-pages',
   templateUrl: './login-pages.component.html',
   styleUrl: './login-pages.component.scss'
 })
-export class LoginPagesComponent
+export class LoginPagesComponent implements OnInit
 {
   public loginForm: FormGroup = this.fb.group({
     username: ['', [Validators.required]],
     password: ['', [Validators.required, Validators.minLength(8)]]
   });
 
-spinnerActive: boolean = true;
-
   constructor(
     private fb: FormBuilder,
-    private authService: AuthenticationService,
-    public spinnerHandler: SpinnerHandlerService
+    private router: Router,
+    private sweetAlert: SweetAlertService,
+    private authService: AuthenticationService
   )
-  {
-    this.spinnerHandler.showSpinner.subscribe(this.showSpinner.bind(this));
-  }
+  {}
 
+  ngOnInit(): void {
+    //this.checkToken();
+  }
 
   login(){
     this.authService.login( this.loginForm.value ).subscribe(
       response => {
-        console.log("Respuesta OK");
-        console.log(response);
+        this.authService.setToken( response.token );
+        this.router.navigate(['/dashboard']);
       },
-      error => {
-        console.log("mmaaaallll");
-        console.log(error);
+      errorResponse => {
+        console.log(errorResponse)
+        const errorDetail = errorResponse.error?.message || 'Error';
+        this.sweetAlert.presentError( errorDetail );
       }
     );
   }
-
-  showSpinner = (state: boolean): void => {
-    this.spinnerActive = state;
-  };
 
 }

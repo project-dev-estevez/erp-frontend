@@ -9,6 +9,10 @@ import { HttpClientModule } from '@angular/common/http';
 import { ReusableTableComponent } from './components/reusable-table/reusable-table.component';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
 
+import { PieChartComponent } from './components/charts/pie-chart/pie-chart.component';
+import { BaseChartDirective } from 'ng2-charts';
+import { ColumnValuePipe } from './pipes/column-value.pipe';
+import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 
 
 @NgModule({
@@ -16,14 +20,18 @@ import { SidebarComponent } from './components/sidebar/sidebar.component';
     AdminLayoutComponent,
     HeaderComponent,
     ReusableTableComponent,
-    SidebarComponent
+    SidebarComponent,
+    PieChartComponent,
+    ColumnValuePipe
   ],
   imports: [
     CommonModule,
     RouterModule,
+    SweetAlert2Module.forRoot(),
     HttpClientModule,
     MaterialModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    BaseChartDirective
   ],
   exports: [
     HttpClientModule,

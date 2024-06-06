@@ -1,5 +1,7 @@
 export interface TableColumn {
   label: string;
   def: string;
-  datakey: string;
+  dataKey: string;
+  formatt?: string;
+  dataType?: 'date'
 }
