@@ -7,6 +7,7 @@ import { HeaderComponent } from './components/header/header.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { ReusableTableComponent } from './components/reusable-table/reusable-table.component';
+import { SidebarComponent } from './components/sidebar/sidebar.component';
 
 
 
@@ -14,7 +15,8 @@ import { ReusableTableComponent } from './components/reusable-table/reusable-tab
   declarations: [
     AdminLayoutComponent,
     HeaderComponent,
-    ReusableTableComponent
+    ReusableTableComponent,
+    SidebarComponent
   ],
   imports: [
     CommonModule,
@@ -27,7 +29,8 @@ import { ReusableTableComponent } from './components/reusable-table/reusable-tab
     HttpClientModule,
     MaterialModule,
     ReactiveFormsModule,
-    ReusableTableComponent
+    ReusableTableComponent,
+    SidebarComponent
   ]
 })
 export class SharedModule { }
