@@ -75,7 +75,8 @@
     <!-- Items List -->
     <ul class="pt-2">
         <ng-container *ngFor="let item of menuItems">
-            <li class="text-gray-300 text-sm flex-items-center gap-x-4 cursor-pointer p-2 mt-2 hover:bg-light-white rounded-md">
+            <li [routerLink]="item.route ? item.route : null"
+                class="text-gray-300 text-sm flex-items-center gap-x-4 cursor-pointer p-2 mt-2 hover:bg-light-white rounded-md">
                 <span class="text-2xl block float-left">
                     <mat-icon>{{ item.icon }}</mat-icon>
                 </span>

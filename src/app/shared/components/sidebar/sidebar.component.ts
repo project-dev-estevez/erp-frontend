@@ -10,10 +10,10 @@ export class SidebarComponent {
   public open: boolean = true;
 
   public menuItems = [
-    { title: "Home", icon: "home" },
+    { title: "Home", icon: "home", route: '/dashboard' },
     { title: "Personal", icon: "person" },
     { title: "Contratistas", icon: "people" },
-    { title: "Almacén", icon: "store" },
+    { title: "Almacén", icon: "store", route: '/dashboard/warehouse' },
     { title: "Reportes Almacén", icon: "assessment" },
     { title: "Solicitud Compra", icon: "shopping_cart" },
     { title: "Solicitud Almacén", icon: "inventory" },
