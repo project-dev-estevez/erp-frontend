@@ -10,7 +10,8 @@ const routes: Routes = [
   },
   {
     path: 'product-detail/:id',
-    component: ProductDetailPageComponent
+    component: ProductDetailPageComponent,
+    data: { breadcrumb: 'product-detail' }
   }
 ];
 

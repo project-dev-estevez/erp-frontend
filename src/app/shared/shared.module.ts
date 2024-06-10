@@ -13,6 +13,7 @@ import { PieChartComponent } from './components/charts/pie-chart/pie-chart.compo
 import { BaseChartDirective } from 'ng2-charts';
 import { ColumnValuePipe } from './pipes/column-value.pipe';
 import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
+import { BreadcrumbComponent } from './components/breadcrumb/breadcrumb.component';
 
 
 @NgModule({
@@ -22,7 +23,8 @@ import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
     ReusableTableComponent,
     SidebarComponent,
     PieChartComponent,
-    ColumnValuePipe
+    ColumnValuePipe,
+    BreadcrumbComponent
   ],
   imports: [
     CommonModule,
@@ -38,7 +40,8 @@ import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
     MaterialModule,
     ReactiveFormsModule,
     ReusableTableComponent,
-    SidebarComponent
+    SidebarComponent,
+    BreadcrumbComponent
   ]
 })
 export class SharedModule { }
