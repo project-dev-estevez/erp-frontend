@@ -14,6 +14,7 @@ import { BaseChartDirective } from 'ng2-charts';
 import { ColumnValuePipe } from './pipes/column-value.pipe';
 import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 import { BreadcrumbComponent } from './components/breadcrumb/breadcrumb.component';
+import { TopToolbarComponent } from './components/top-toolbar/top-toolbar.component';
 
 
 @NgModule({
@@ -24,7 +25,8 @@ import { BreadcrumbComponent } from './components/breadcrumb/breadcrumb.componen
     SidebarComponent,
     PieChartComponent,
     ColumnValuePipe,
-    BreadcrumbComponent
+    BreadcrumbComponent,
+    TopToolbarComponent
   ],
   imports: [
     CommonModule,
@@ -41,7 +43,8 @@ import { BreadcrumbComponent } from './components/breadcrumb/breadcrumb.componen
     ReactiveFormsModule,
     ReusableTableComponent,
     SidebarComponent,
-    BreadcrumbComponent
+    BreadcrumbComponent,
+    TopToolbarComponent
   ]
 })
 export class SharedModule { }
