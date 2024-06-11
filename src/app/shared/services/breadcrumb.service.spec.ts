@@ -2,7 +2,7 @@ import { TestBed } from '@angular/core/testing';
 
 import { BreadcrumbService } from './breadcrumb.service';
 
-describe('SpinnerService', () => {
+describe('BreadcrumbService', () => {
   let service: BreadcrumbService;
 
   beforeEach(() => {

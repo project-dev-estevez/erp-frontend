@@ -19,11 +19,11 @@ const routes: Routes = [
     //canLoad: [ DashboardGuard ],
     //canActivate: [ DashboardGuard ],
     component: AdminLayoutComponent,
+    data: { breadcrumb: 'Dashboard' },
     children: [
       {
         path: '',
-        loadChildren: () => import('./dashboard/dashboard.module').then( m => m.DashboardModule ),
-        data: { breadcrumb: 'Dashboard' },
+        loadChildren: () => import('./dashboard/dashboard.module').then( m => m.DashboardModule )
       }
     ]
   },

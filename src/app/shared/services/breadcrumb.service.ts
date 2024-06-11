@@ -26,11 +26,13 @@ export class BreadcrumbService {
 
     for (const child of children) {
       const routeURL: string = child.snapshot.url.map(segment => segment.path).join('/');
+      
       if (routeURL !== '') {
         url += `/${routeURL}`;
+        breadcrumbs.push({ label: child.snapshot.data['breadcrumb'], url: url });
       }
-
-      breadcrumbs.push({ label: child.snapshot.data['breadcrumb'], url: url });
+      
+      
       return this.createBreadcrumbs(child, url, breadcrumbs);
     }
 
