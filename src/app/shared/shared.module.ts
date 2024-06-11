@@ -15,6 +15,7 @@ import { ColumnValuePipe } from './pipes/column-value.pipe';
 import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 import { BreadcrumbComponent } from './components/breadcrumb/breadcrumb.component';
 import { TopToolbarComponent } from './components/top-toolbar/top-toolbar.component';
+import { ProgressBarComponent } from './components/progressbar/progressbar.component';
 
 
 @NgModule({
@@ -26,7 +27,8 @@ import { TopToolbarComponent } from './components/top-toolbar/top-toolbar.compon
     PieChartComponent,
     ColumnValuePipe,
     BreadcrumbComponent,
-    TopToolbarComponent
+    TopToolbarComponent,
+    ProgressBarComponent
   ],
   imports: [
     CommonModule,
@@ -45,7 +47,8 @@ import { TopToolbarComponent } from './components/top-toolbar/top-toolbar.compon
     SidebarComponent,
     BreadcrumbComponent,
     TopToolbarComponent,
-    PieChartComponent
+    PieChartComponent,
+    ProgressBarComponent
   ]
 })
 export class SharedModule { }
