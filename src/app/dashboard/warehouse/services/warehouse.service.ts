@@ -1,7 +1,7 @@
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment.development';
-import { ResponseGetAllEntries, WarehouseGeneralEntry } from '../interfaces/warehouse.interfaces';
+import { ResponseGetAllEntries } from '../interfaces/warehouse.interfaces';
 import { AuthenticationService } from 'src/app/authentication/services/authentication.service';
 
 @Injectable({
