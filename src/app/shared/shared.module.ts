@@ -41,7 +41,8 @@ import { TopToolbarComponent } from './components/top-toolbar/top-toolbar.compon
     ReactiveFormsModule,
     ReusableTableComponent,
     SidebarComponent,
-    TopToolbarComponent
+    TopToolbarComponent,
+    PieChartComponent
   ]
 })
 export class SharedModule { }

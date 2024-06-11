@@ -6,7 +6,11 @@
     <a routerLink="/dashboard/verPerfil" mat-icon-button aria-label="Ver Perfil" class="mr-4 text-white" title="Ver Perfil">
       <mat-icon class="w-8 h-8 text-white">person</mat-icon>
     </a>
-    <a routerLink="/auth" routerLinkActive="active" class="text-white" title="Cerrar Sesión">Cerrar Sesión</a>
-    <a routerLink="/auth" routerLinkActive="active" class="text-white" title="Cerrar Sesión"><mat-icon class="ml-6 text-white" style="margin-left:8px;margin-top:8px;">logout</mat-icon></a>
+    <a (click)="logout()" class="text-white cursor-pointer" title="Cerrar Sesión">
+      Cerrar Sesión
+    </a>
+    <a (click)="logout()" class="text-white cursor-pointer" title="Cerrar Sesión">
+      <mat-icon class="ml-6 text-white" style="margin-left:8px;margin-top:8px;">logout</mat-icon>
+    </a>
   </div>
 </mat-toolbar>
