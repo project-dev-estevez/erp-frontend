@@ -11,6 +11,8 @@ import { SweetAlertService } from '../../../shared/services/sweet-alert.service'
 })
 export class LoginPagesComponent implements OnInit
 {
+  public canShowPassword: boolean = false;
+
   public loginForm: FormGroup = this.fb.group({
     username: ['', [Validators.required]],
     password: ['', [Validators.required, Validators.minLength(8)]]
@@ -25,7 +27,7 @@ export class LoginPagesComponent implements OnInit
   {}
 
   ngOnInit(): void {
-    //this.checkToken();
+    this.checkToken();
   }
 
   login(){
@@ -35,9 +37,21 @@ export class LoginPagesComponent implements OnInit
         this.router.navigate(['/dashboard']);
       },
       errorResponse => {
-        console.log(errorResponse)
         const errorDetail = errorResponse.error?.message || 'Error';
         this.sweetAlert.presentError( errorDetail );
+      }
+    );
+  }
+
+  checkToken(){
+    if( !this.authService.getToken() ) return;
+
+    this.authService.checkToken().subscribe(
+      response => {
+        this.router.navigate(['/dashboard']);
+      },
+      errorResponse => {
+        localStorage.clear();
       }
     );
   }

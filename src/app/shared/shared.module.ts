@@ -47,6 +47,7 @@ import { ProgressBarComponent } from './components/progressbar/progressbar.compo
     SidebarComponent,
     BreadcrumbComponent,
     TopToolbarComponent,
+    PieChartComponent,
     ProgressBarComponent
   ]
 })
