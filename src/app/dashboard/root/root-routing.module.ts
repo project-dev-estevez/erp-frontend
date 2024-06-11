@@ -5,7 +5,8 @@ import { EditUserPageComponent } from './pages/edit-user-page/edit-user-page.com
 const routes: Routes = [
   {
     path: 'edit-user',
-    component: EditUserPageComponent
+    component: EditUserPageComponent,
+    data: { breadcrumb: 'edit-user' }
   }
 ];
 

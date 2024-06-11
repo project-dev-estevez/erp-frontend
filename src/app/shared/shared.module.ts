@@ -13,6 +13,7 @@ import { PieChartComponent } from './components/charts/pie-chart/pie-chart.compo
 import { BaseChartDirective } from 'ng2-charts';
 import { ColumnValuePipe } from './pipes/column-value.pipe';
 import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
+import { BreadcrumbComponent } from './components/breadcrumb/breadcrumb.component';
 import { TopToolbarComponent } from './components/top-toolbar/top-toolbar.component';
 
 
@@ -24,6 +25,7 @@ import { TopToolbarComponent } from './components/top-toolbar/top-toolbar.compon
     SidebarComponent,
     PieChartComponent,
     ColumnValuePipe,
+    BreadcrumbComponent,
     TopToolbarComponent
   ],
   imports: [
@@ -41,6 +43,7 @@ import { TopToolbarComponent } from './components/top-toolbar/top-toolbar.compon
     ReactiveFormsModule,
     ReusableTableComponent,
     SidebarComponent,
+    BreadcrumbComponent,
     TopToolbarComponent,
     PieChartComponent
   ]

@@ -19,6 +19,7 @@ const routes: Routes = [
     //canLoad: [ DashboardGuard ],
     //canActivate: [ DashboardGuard ],
     component: AdminLayoutComponent,
+    data: { breadcrumb: 'Dashboard' },
     children: [
       {
         path: '',
