@@ -1,13 +1,12 @@
-<mat-toolbar color="primary" class="flex justify-between items-center" style="background-color: #353a41;">
+<mat-toolbar class="flex justify-between items-center bg-toolbar border-l border-gray-300 border-opacity-5">
   <div>
     <!-- Aquí puedes agregar otros elementos del toolbar si es necesario -->
   </div>
   <div class="flex items-center">
-    <a routerLink="/dashboard/root/edit-profile" mat-icon-button aria-label="Ver Perfil" class="mr-4" title="Ver Perfil">
-      <mat-icon class="w-8 h-8">person</mat-icon>
+    <a routerLink="/dashboard/root/edit-profile" mat-icon-button aria-label="Ver Perfil" class="mr-4 text-white" title="Ver Perfil">
+      <mat-icon class="w-8 h-8 text-white">person</mat-icon>
     </a>
-    <a routerLink="/dashboard/logout" routerLinkActive="active" title="Cerrar Sesión">Cerrar Sesión</a>
-    <a routerLink="/dashboard/logout" routerLinkActive="active" title="Cerrar Sesión"><mat-icon class="ml-6" style="margin-left:8px;margin-top:8px;">logout</mat-icon></a>
-
+    <a routerLink="/auth" routerLinkActive="active" class="text-white" title="Cerrar Sesión">Cerrar Sesión</a>
+    <a routerLink="/auth" routerLinkActive="active" class="text-white" title="Cerrar Sesión"><mat-icon class="ml-6 text-white" style="margin-left:8px;margin-top:8px;">logout</mat-icon></a>
   </div>
 </mat-toolbar>

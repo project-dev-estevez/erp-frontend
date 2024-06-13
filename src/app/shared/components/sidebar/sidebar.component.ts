@@ -10,19 +10,23 @@ export class SidebarComponent {
   public open: boolean = true;
 
   public menuItems = [
-    { title: "Dashboard" },
-    { title: "Pages" },
-    { title: "Media", spacing: true },
-    {
-      title: "Projects",
-      submenu: true,
-      submenuItems: [{ title: "Submenu 1" }, { title: "Submenu 2" }, { title: "Submenu 3" }],
-    },
-    { title: "Analytics" },
-    { title: "Profile", spacing: true },
-    { title: "Setting" },
-    { title: "Logout" },
+    { title: "Home", icon: "home", route: '/dashboard' },
+    { title: "Personal", icon: "person" },
+    { title: "Contratistas", icon: "people" },
+    { title: "Almacén", icon: "store", route: '/dashboard/warehouse' },
+    { title: "Reportes Almacén", icon: "assessment" },
+    { title: "Solicitud Compra", icon: "shopping_cart" },
+    { title: "Solicitud Almacén", icon: "inventory" },
+    { title: "Pedidos", icon: "shopping_bag" },
+    { title: "Solicitudes", icon: "assignment" },
+    { title: "Devoluciones", icon: "undo" },
+    { title: "Solicitud Caja Chica", icon: "attach_money" },
+    { title: "Explosión Insumos", icon: "science" },
+    { title: "Justificación RH", icon: "work" },
+    { title: "Soporte", icon: "support" },
   ];
+  
+  
 
 
   setOpen(){

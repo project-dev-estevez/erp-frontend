@@ -7,6 +7,10 @@ import { MainContentWarehousePageComponent } from './pages/main-content-warehous
 import { WarehouseGeneralEntryComponent } from './components/warehouse-general-entry/warehouse-general-entry.component';
 import { WarehouseGeneralProductsComponent } from './components/warehouse-general-products/warehouse-general-products.component';
 import { ProductDetailPageComponent } from './pages/product-detail-page/product-detail-page.component';
+import { AssetsProductsComponent } from './components/warehouse-general-products/assets-products/assets-products.component';
+import { ToolsProductsComponent } from './components/warehouse-general-products/tools-products/tools-products.component';
+import { FuelProductsComponent } from './components/warehouse-general-products/fuel-products/fuel-products.component';
+import { SafetyHygieneProductsComponent } from './components/warehouse-general-products/safety-hygiene-products/safety-hygiene-products.component';
 
 
 @NgModule({
@@ -15,7 +19,11 @@ import { ProductDetailPageComponent } from './pages/product-detail-page/product-
     MainContentWarehousePageComponent,
        WarehouseGeneralEntryComponent,
        WarehouseGeneralProductsComponent,
-       ProductDetailPageComponent
+       ProductDetailPageComponent,
+       AssetsProductsComponent,
+       ToolsProductsComponent,
+       FuelProductsComponent,
+       SafetyHygieneProductsComponent
   ],
   imports: [
     CommonModule,
