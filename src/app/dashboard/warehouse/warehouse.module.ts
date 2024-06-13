@@ -11,6 +11,7 @@ import { AssetsProductsComponent } from './components/warehouse-general-products
 import { ToolsProductsComponent } from './components/warehouse-general-products/tools-products/tools-products.component';
 import { FuelProductsComponent } from './components/warehouse-general-products/fuel-products/fuel-products.component';
 import { SafetyHygieneProductsComponent } from './components/warehouse-general-products/safety-hygiene-products/safety-hygiene-products.component';
+import { WarehouseGeneralExitComponent } from './components/warehouse-general-exit/warehouse-general-exit.component';
 
 
 @NgModule({
@@ -23,7 +24,8 @@ import { SafetyHygieneProductsComponent } from './components/warehouse-general-p
        AssetsProductsComponent,
        ToolsProductsComponent,
        FuelProductsComponent,
-       SafetyHygieneProductsComponent
+       SafetyHygieneProductsComponent,
+       WarehouseGeneralExitComponent
   ],
   imports: [
     CommonModule,
