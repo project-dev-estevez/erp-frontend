@@ -6,7 +6,8 @@ import { EditProfileComponent } from './pages/edit-profile/edit-profile.componen
 const routes: Routes = [
   {
     path: 'edit-user',
-    component: EditUserPageComponent
+    component: EditUserPageComponent,
+    data: { breadcrumb: 'edit-user' }
   },
   {
     path: 'edit-profile',

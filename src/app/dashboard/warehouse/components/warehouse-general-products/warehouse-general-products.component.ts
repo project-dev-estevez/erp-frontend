@@ -1,5 +1,4 @@
-import { Component, ViewChild } from '@angular/core';
-import { MatAccordion } from '@angular/material/expansion';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-warehouse-general-products',
@@ -7,7 +6,5 @@ import { MatAccordion } from '@angular/material/expansion';
   styleUrl: './warehouse-general-products.component.scss'
 })
 export class WarehouseGeneralProductsComponent {
-  
-  @ViewChild(MatAccordion) accordion!: MatAccordion;
 
 }

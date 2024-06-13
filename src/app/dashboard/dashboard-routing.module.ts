@@ -11,15 +11,18 @@ const routes: Routes = [
   },
   {
     path: 'grafica',
-    component: PieChartComponent
+    component: PieChartComponent,
+    data: { breadcrumb: 'grafica' }
   },
   {
     path: 'root',
-    loadChildren: () => import('./root/root.module').then( m => m.RootModule )
+    loadChildren: () => import('./root/root.module').then( m => m.RootModule ),
+    data: { breadcrumb: 'root' }
   },
   {
     path: 'warehouse',
-    loadChildren: () => import('./warehouse/warehouse.module').then( m => m.WarehouseModule )
+    loadChildren: () => import('./warehouse/warehouse.module').then( m => m.WarehouseModule ),
+    data: { breadcrumb: 'warehouse' }
   }
 ];
 
