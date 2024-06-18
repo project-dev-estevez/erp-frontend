@@ -14,7 +14,7 @@ export class LoginPagesComponent implements OnInit
   public canShowPassword: boolean = false;
 
   public loginForm: FormGroup = this.fb.group({
-    username: ['', [Validators.required]],
+    email: ['', [Validators.required]],
     password: ['', [Validators.required, Validators.minLength(8)]]
   });
 
@@ -33,10 +33,12 @@ export class LoginPagesComponent implements OnInit
   login(){
     this.authService.login( this.loginForm.value ).subscribe(
       response => {
-        this.authService.setToken( response.token );
+        console.log(response);
+        this.authService.setToken( response.token );        
         this.router.navigate(['/dashboard']);
       },
       errorResponse => {
+        console.log(errorResponse)
         const errorDetail = errorResponse.error?.message || 'Error';
         this.sweetAlert.presentError( errorDetail );
       }
