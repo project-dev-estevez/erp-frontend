@@ -1,7 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from '../../../environments/environment';
-import { LoginDataDto, LoginResponse } from '../interfaces/authentication.interfaces';
+import { LoginDataDto, LoginResponse, RegisterDataDto, RegisterResponse } from '../interfaces/authentication.interfaces';
 import { Observable, map, of } from 'rxjs';
 
 @Injectable({
@@ -16,17 +16,11 @@ export class AuthenticationService
 
   login(loginDataDto: LoginDataDto): Observable<LoginResponse> {
 
-    const httpOptions = {
-      headers: new HttpHeaders({
-        'Content-Type': 'application/json'
-      })
-    };
-
-    return this.http.post<LoginResponse>(`${environment.apiUrl}/auth/login`, loginDataDto, httpOptions);
+    return this.http.post<LoginResponse>(`${environment.apiUrl}/auth/login`, loginDataDto);
   }
 
-  register(registerDataDto: any){
-    return this.http.post('http://localhost:3000/api/v1/auth/register', registerDataDto);
+  register(registerDataDto: RegisterDataDto){
+    return this.http.post<RegisterResponse>(`${environment.apiUrl}/auth/register`, registerDataDto);
   }
 
   logout() {

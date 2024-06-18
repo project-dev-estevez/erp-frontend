@@ -22,3 +22,20 @@ export interface CheckTokenData{
     message: string;
     token: string;
 }
+
+export interface RegisterDataDto{
+    email: string;
+    password: string;
+    fullName: string;
+}
+
+export interface RegisterResponse{
+    email: string;
+    fullName: string;
+    id: string;
+    isActive: boolean;
+    roles: string[];
+    token: string;
+    createdAt: Date;
+    updatedAt: Date;
+}
