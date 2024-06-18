@@ -25,6 +25,10 @@ export class AuthenticationService
     return this.http.post<LoginResponse>(`${environment.apiUrl}/auth/login`, loginDataDto, httpOptions);
   }
 
+  register(registerDataDto: any){
+    return this.http.post('http://localhost:3000/api/v1/auth/register', registerDataDto);
+  }
+
   logout() {
     const httpOptions = {
       headers: new HttpHeaders({
