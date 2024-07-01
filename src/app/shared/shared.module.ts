@@ -16,6 +16,7 @@ import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 import { BreadcrumbComponent } from './components/breadcrumb/breadcrumb.component';
 import { TopToolbarComponent } from './components/top-toolbar/top-toolbar.component';
 import { ProgressBarComponent } from './components/progressbar/progressbar.component';
+import { SuperAdminLayoutComponent } from './layouts/super-admin-layout/super-admin-layout.component';
 
 
 @NgModule({
@@ -28,7 +29,8 @@ import { ProgressBarComponent } from './components/progressbar/progressbar.compo
     ColumnValuePipe,
     BreadcrumbComponent,
     TopToolbarComponent,
-    ProgressBarComponent
+    ProgressBarComponent,
+    SuperAdminLayoutComponent
   ],
   imports: [
     CommonModule,

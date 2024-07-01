@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthenticationService } from '../../services/authentication.service';
 import { Router } from '@angular/router';
 import { SweetAlertService } from '../../../shared/services/sweet-alert.service';
+import { CheckTokenResponse, LoginResponse } from '../../interfaces/authentication.interfaces';
 
 @Component({
   selector: 'app-login-pages',
@@ -30,15 +31,31 @@ export class LoginPagesComponent implements OnInit
     this.checkToken();
   }
 
+  private checkDashboardToRedirect( data: LoginResponse | CheckTokenResponse ){
+    
+    this.authService.setToken( data.token );
+    const { roles = [] } = data;
+    const isSuperAdmin = roles.includes('ceo') || roles.includes('generalDirector') || roles.includes('director');
+
+    if( isSuperAdmin )
+      return this.router.navigate(['/super-dashboard']);
+
+    return this.router.navigate(['/dashboard']);
+  }
+
+  private refreshToken( checkTokenResponse: CheckTokenResponse ) {
+    const { token = '' } = checkTokenResponse;
+    if(!token) return;
+
+    this.authService.setToken( token );
+  }
+
   login(){
     this.authService.login( this.loginForm.value ).subscribe(
       response => {
-        console.log(response);
-        this.authService.setToken( response.token );        
-        this.router.navigate(['/dashboard']);
+        this.checkDashboardToRedirect( response );
       },
       errorResponse => {
-        console.log(errorResponse)
         const errorDetail = errorResponse.error?.message || 'Error';
         this.sweetAlert.presentError( errorDetail );
       }
@@ -46,13 +63,14 @@ export class LoginPagesComponent implements OnInit
   }
 
   checkToken(){
-    if( !this.authService.getToken() ) return;
+    if( !this.authService.getToken() ) return; 
 
     this.authService.checkToken().subscribe(
       response => {
-        this.router.navigate(['/dashboard']);
+        this.refreshToken( response );
+        this.checkDashboardToRedirect( response );
       },
-      errorResponse => {
+      () => {
         localStorage.clear();
       }
     );
