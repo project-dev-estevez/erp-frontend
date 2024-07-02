@@ -4,9 +4,9 @@ export interface LoginDataDto{
 }
 
 export interface LoginResponse{
-    status: boolean;
-    message: string;
-    data: User;
+    id: string;
+    email: string;
+    roles: string[];
     token: string;
 }
 
@@ -38,4 +38,16 @@ export interface RegisterResponse{
     token: string;
     createdAt: Date;
     updatedAt: Date;
+}
+
+export interface CheckTokenResponse {
+    id:        string;
+    email:     string;
+    password:  string;
+    fullName:  string;
+    isActive:  boolean;
+    roles:     string[];
+    createdAt: Date;
+    updatedAt: Date;
+    token:     string;
 }

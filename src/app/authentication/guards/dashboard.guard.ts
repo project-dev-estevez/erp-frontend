@@ -20,14 +20,15 @@ export class DashboardGuard implements CanActivate, CanLoad
     state: RouterStateSnapshot
   ): Observable<boolean> | Promise<boolean> | boolean
   {
-    return this.authService.checkToken().pipe(
-      tap( isAuth => {
-        if(!isAuth)
-        {
-          this.router.navigate(['/auth']);
-        }
-      })
-    );
+    return true;
+    // return this.authService.checkToken().pipe(
+    //   tap( isAuth => {
+    //     if(!isAuth)
+    //     {
+    //       this.router.navigate(['/auth']);
+    //     }
+    //   })
+    // );
   }
 
   canLoad(
@@ -35,13 +36,14 @@ export class DashboardGuard implements CanActivate, CanLoad
     segments: UrlSegment[]
   ): Observable<boolean> | Promise<boolean> | boolean
   {
-    return this.authService.checkToken().pipe(
-      tap( isAuth => {
-        if(!isAuth)
-        {
-          this.router.navigate(['/auth']);
-        }
-      })
-    );
+    return true;
+    // return this.authService.checkToken().pipe(
+    //   tap( isAuth => {
+    //     if(!isAuth)
+    //     {
+    //       this.router.navigate(['/auth']);
+    //     }
+    //   })
+    // );
   }
 }

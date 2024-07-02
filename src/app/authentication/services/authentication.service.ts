@@ -1,7 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from '../../../environments/environment';
-import { LoginDataDto, LoginResponse, RegisterDataDto, RegisterResponse } from '../interfaces/authentication.interfaces';
+import { CheckTokenResponse, LoginDataDto, LoginResponse, RegisterDataDto, RegisterResponse } from '../interfaces/authentication.interfaces';
 import { Observable, map, of } from 'rxjs';
 
 @Injectable({
@@ -15,7 +15,6 @@ export class AuthenticationService
   ) { }
 
   login(loginDataDto: LoginDataDto): Observable<LoginResponse> {
-
     return this.http.post<LoginResponse>(`${environment.apiUrl}/auth/login`, loginDataDto);
   }
 
@@ -36,27 +35,15 @@ export class AuthenticationService
 
   checkToken(){
     const token = this.getToken();
-    if(!token){
-      return of(false);
-    }
 
     const httpOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
-        'X-API-KEY': this.getToken()
+        'Authorization': `Bearer ${token}`
       })
     };
 
-    return this.http.get(`${environment.apiUrl}/auth/check-token/${token}`, httpOptions).pipe(
-      map( auth => {
-        if( auth )
-        {
-          return true;
-        }
-
-        return false;
-      })
-    );
+    return this.http.get<CheckTokenResponse>(`${environment.apiUrl}/auth/check-token`, httpOptions);
   }
 
   setToken( token: string )
