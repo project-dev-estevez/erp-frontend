@@ -10,7 +10,6 @@ export class SweetAlertService {
 
   presentSuccess(message: string) {
     Swal.fire({
-      position: 'top-end',
       icon: 'success',
       title: message,
       showConfirmButton: false,

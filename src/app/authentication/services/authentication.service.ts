@@ -1,7 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from '../../../environments/environment';
-import { CheckTokenResponse, LoginDataDto, LoginResponse, RegisterDataDto, RegisterResponse } from '../interfaces/authentication.interfaces';
+import { CheckTokenResponse, LoginDataDto, LoginResponse, RegisterDataDto, RegisterResponse, ForgotDataDto, ForgotResponse } from '../interfaces/authentication.interfaces';
 import { Observable, map, of } from 'rxjs';
 
 @Injectable({
@@ -20,6 +20,10 @@ export class AuthenticationService
 
   register(registerDataDto: RegisterDataDto){
     return this.http.post<RegisterResponse>(`${environment.apiUrl}/auth/register`, registerDataDto);
+  }
+
+  forgot(forgotDataDto: ForgotDataDto){
+    return this.http.post<ForgotResponse>(`${environment.apiUrl}/auth/forgot-password`, forgotDataDto);
   }
 
   logout() {

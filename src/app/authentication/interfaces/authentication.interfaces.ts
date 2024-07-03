@@ -40,6 +40,16 @@ export interface RegisterResponse{
     updatedAt: Date;
 }
 
+export interface ForgotDataDto{
+    email: string;
+}
+
+export interface ForgotResponse{
+    email: string;
+    id: string;
+    token: string;
+}
+
 export interface CheckTokenResponse {
     id:        string;
     email:     string;
