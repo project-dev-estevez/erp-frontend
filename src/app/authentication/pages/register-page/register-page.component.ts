@@ -10,15 +10,47 @@ import { SweetAlertService } from '@shared/services/sweet-alert.service';
 })
 export class RegisterPageComponent {
 
-  public registerForm : FormGroup = this.fb.group({
-    fullName: ['', [Validators.required]],
-    email: ['', [Validators.required]],
-    password: ['', [Validators.required]],
-    confirmPassword: ['', [Validators.required]]    
+  public canShowPassword: boolean = false;
+  public canShowPasswordConfirm: boolean = false;
+
+  isvalidField(field:string): boolean | null{
+    return this.registerForm.controls[field].errors 
+    && this.registerForm.controls[field].touched
+  }
+
+  getFieldError(field:string): string | null {
+    if (!this.registerForm.controls[field] ) return null
+    
+    const errors = this.registerForm.controls[field].errors || {}
+
+    for (const key of Object.keys(errors)) {
+      switch(key){
+        case 'required':
+          return 'Este campo es obligatorio'
+        case 'minlength':
+          return "Este campo debe tener mínimo 8 caracteres"
+        case 'maxlength':
+          return "El campo excede los 150 caracteres"
+        case 'email':
+          return "Introduce un correo válido"
+        case 'pattern':
+          return "La contraseña debe tener una letra mayúscula y un número"
+        default:
+          return null
+      }
+    }
+    return null
+  }
+
+  public registerForm: FormGroup = this.fb.group({
+    fullName: ['', [Validators.required, Validators.minLength(8), Validators.maxLength(150)]],
+    email: ['', [Validators.required, Validators.email, Validators.minLength(8)]],
+    password: ['', [Validators.required, Validators.minLength(8), Validators.maxLength(150)]],
+    confirmPassword: ['', [Validators.required, Validators.minLength(8), Validators.maxLength(150)]]    
   });
 
   constructor (
-    private fb : FormBuilder,
+    private fb: FormBuilder,
     private authService: AuthenticationService,
     private sweetAlert: SweetAlertService
   )
@@ -26,6 +58,10 @@ export class RegisterPageComponent {
 
   register()
   {    
+    if (this.registerForm.invalid) {
+      this.registerForm.markAllAsTouched()
+      return
+    }
     const registerData = this.registerForm.value;
     if( registerData.password !== registerData.confirmPassword )
     {
