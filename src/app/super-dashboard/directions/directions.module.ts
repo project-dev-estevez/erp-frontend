@@ -2,12 +2,14 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { DirectionsRoutingModule } from './directions-routing.module';
-import { CreateOrEditDirectionComponent } from './pages/create-or-edit-direction/create-or-edit-direction.component';
+import { CreateOrEditDirectionPageComponent } from './pages/create-or-edit-direction-page/create-or-edit-direction-page.component';
+import { ListDirectionsPageComponent } from './pages/list-directions-page/list-directions-page.component';
 
 
 @NgModule({
   declarations: [
-    CreateOrEditDirectionComponent
+    CreateOrEditDirectionPageComponent,
+    ListDirectionsPageComponent
   ],
   imports: [
     CommonModule,
