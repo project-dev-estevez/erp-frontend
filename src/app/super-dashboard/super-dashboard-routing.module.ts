@@ -6,6 +6,10 @@ const routes: Routes = [
   {
     path: '',
     component: SuperMainContentPageComponent
+  },
+  {
+    path: 'directions',
+    loadChildren: () => import('./directions/directions.module').then(m => m.DirectionsModule)
   }
 ];
 
