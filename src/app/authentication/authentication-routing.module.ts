@@ -7,15 +7,12 @@ import { ForgotPasswordPageComponent } from './pages/forgot-password-page/forgot
 const routes: Routes = [
   {
     path: '',
-    component: LoginPagesComponent
-  },
-  {
-    path: 'register',
-    component: RegisterPageComponent
-  },
-  {
-    path: 'forgot-password',
-    component: ForgotPasswordPageComponent
+    children: [
+      { path: 'login', component: LoginPagesComponent },
+      { path: 'register', component: RegisterPageComponent },
+      { path: 'forgot-password', component: ForgotPasswordPageComponent },
+      { path: '', redirectTo: 'login', pathMatch: 'full'}
+    ]
   }
 ];
 
