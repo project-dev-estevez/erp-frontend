@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { DirectionsRoutingModule } from './directions-routing.module';
 import { CreateOrEditDirectionPageComponent } from './pages/create-or-edit-direction-page/create-or-edit-direction-page.component';
 import { ListDirectionsPageComponent } from './pages/list-directions-page/list-directions-page.component';
+import { SharedModule } from '@shared/shared.module';
 
 
 @NgModule({
@@ -13,7 +14,8 @@ import { ListDirectionsPageComponent } from './pages/list-directions-page/list-d
   ],
   imports: [
     CommonModule,
-    DirectionsRoutingModule
+    DirectionsRoutingModule,
+    SharedModule
   ]
 })
 export class DirectionsModule { }
