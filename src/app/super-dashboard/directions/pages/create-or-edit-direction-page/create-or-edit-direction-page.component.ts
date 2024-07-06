@@ -45,7 +45,7 @@ export class CreateOrEditDirectionPageComponent implements OnInit {
     this.getAllDirectors();
   }
 
-  get currentData() {
+  get currentDataWithoutId () {
     const currentData = this.directionForm.value;
     delete currentData.id;
     return currentData;
@@ -86,7 +86,7 @@ export class CreateOrEditDirectionPageComponent implements OnInit {
 
   private createDirection(): void {
 
-    const createDirectionDto: CreateDirectionDto = this.currentData;
+    const createDirectionDto: CreateDirectionDto = this.currentDataWithoutId;
     this.directionsService.createDirection( createDirectionDto ).subscribe(
       response => {
         this.router.navigate(['super-dashboard/directions']);
@@ -98,7 +98,7 @@ export class CreateOrEditDirectionPageComponent implements OnInit {
 
   private updateDirection( id: string ): void {
 
-    const updateDirectionDto: UpdateDirectionDto = this.currentData;
+    const updateDirectionDto: UpdateDirectionDto = this.currentDataWithoutId;
     this.directionsService.updateDirectionById( id, updateDirectionDto ).subscribe(
       response => {
         this.router.navigate(['super-dashboard/directions']);
@@ -108,7 +108,7 @@ export class CreateOrEditDirectionPageComponent implements OnInit {
     );
   }
 
-  onSubmit(): void {
+  public onSubmit(): void {
 
     const formData = this.directionForm.value;
     const { id } = formData;
