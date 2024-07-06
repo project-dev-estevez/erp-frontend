@@ -1,9 +1,12 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Direction } from '../interfaces/direction.interface';
 import { environment } from 'src/environments/environment.development';
-import { Observable } from 'rxjs';
-import { ResponseCreateDirection } from '../interfaces/request-response.interfaces';
+import { catchError, map, Observable, of } from 'rxjs';
+import { 
+  CreateDirectionDto, CreateDirectionResponseDto,  
+  GetAllDirectionsResponseDto, QueryGetAllDirectionsDto,
+  Direction, UpdateDirectionDto, UpdateDirectionResponseDto  
+} from '../interfaces';
 
 @Injectable({
   providedIn: 'root'
@@ -14,23 +17,27 @@ export class DirectionsService {
     private http: HttpClient
   ) { }
 
-  createDirection( direction: Direction ): Observable<ResponseCreateDirection> {
-    return this.http.post<ResponseCreateDirection>(`${environment.apiUrl}/directions`, direction);
+  createDirection( createDirectionDto: CreateDirectionDto ): Observable<CreateDirectionResponseDto> {
+    return this.http.post<CreateDirectionResponseDto>( `${environment.apiUrl}/directions`, createDirectionDto );
   }
 
-  getAllDirections() {
-    return this.http.get(`${environment.apiUrl}/directions`);
+  getAllDirections( queyGetAllDirectionsDto: QueryGetAllDirectionsDto ): Observable<GetAllDirectionsResponseDto> {
+    return this.http.get<GetAllDirectionsResponseDto>(`${environment.apiUrl}/directions`);
   }
 
   getDirectionById( id: string ): Observable<Direction> {
     return this.http.get<Direction>(`${environment.apiUrl}/directions/${id}`);
   }
 
-  updateDirectionById( id: string, direction: Direction ) {
-    return this.http.put(`${environment.apiUrl}/directions/${id}`, direction);
+  updateDirectionById( id: string, updateDirectionDto: UpdateDirectionDto ): Observable<UpdateDirectionResponseDto> {
+    return this.http.patch<UpdateDirectionResponseDto>( `${environment.apiUrl}/directions/${id}`, updateDirectionDto );
   }
 
-  deleteDirectionById( id: string ) {
-    return this.http.delete(`${environment.apiUrl}/directions/${id}`);
+  deleteDirectionById( id: string ): Observable<boolean> {
+    return this.http.delete(`${environment.apiUrl}/directions/${id}`)
+    .pipe(
+      catchError( error => of(false)),
+      map( () => true )
+    );
   }
 }

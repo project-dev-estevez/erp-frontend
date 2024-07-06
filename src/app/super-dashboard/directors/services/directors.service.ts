@@ -1,7 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { GetAllDirectorsResponse } from '../interfaces/request-response.interfaces';
+import { GetAllDirectorsResponseDto, QueryGetAllDirectorsDto } from '../interfaces';
+import { environment } from 'src/environments/environment.development';
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +13,7 @@ export class DirectorsService {
     private http: HttpClient
   ) { }
 
-  getAllDirectors(): Observable<GetAllDirectorsResponse> {
-    return this.http.get<GetAllDirectorsResponse>('http://localhost:3000/directors');
+  getAllDirectors( queryGetAllDirectorsDto?: QueryGetAllDirectorsDto ): Observable<GetAllDirectorsResponseDto> {
+    return this.http.get<GetAllDirectorsResponseDto>(`${environment.apiUrl}/directors`);
   }
 }

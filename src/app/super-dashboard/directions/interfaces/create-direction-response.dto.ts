@@ -1,12 +1,4 @@
-export interface Enterprise {
-    id: string;
-}
-
-export interface Director {
-    id: string;
-}
-
-export interface ResponseCreateDirection {
+export interface CreateDirectionResponseDto {
     id: string;
     state: boolean;
     name: string;
@@ -15,4 +7,12 @@ export interface ResponseCreateDirection {
     director: Director;
     createdAt: Date;
     updatedAt: Date;
+}
+
+interface Enterprise {
+    id: string;
+}
+
+interface Director {
+    id: string;
 }

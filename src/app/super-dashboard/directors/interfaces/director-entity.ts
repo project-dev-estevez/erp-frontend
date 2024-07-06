@@ -1,8 +1,3 @@
-export interface GetAllDirectorsResponse {
-    results: Director[];
-    total:   number;
-}
-
 export interface Director {
     id:        string;
     email:     string;

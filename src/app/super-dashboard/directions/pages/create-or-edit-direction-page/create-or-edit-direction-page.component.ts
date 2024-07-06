@@ -2,9 +2,14 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 
-import { Direction } from '../../interfaces/direction.interface';
 import { DirectionsService } from '../../services/directions.service';
 import { switchMap } from 'rxjs';
+import { Enterprise } from 'src/app/super-dashboard/enterprises/interfaces';
+import { EnterprisesService } from 'src/app/super-dashboard/enterprises/services/enterprises.service';
+import { SweetAlertService } from '@shared/services/sweet-alert.service';
+import { DirectorsService } from 'src/app/super-dashboard/directors/services/directors.service';
+import { Director } from 'src/app/super-dashboard/directors/interfaces';
+import { CreateDirectionDto, UpdateDirectionDto } from '../../interfaces';
 
 @Component({
   selector: 'app-create-or-edit-direction-page',
@@ -14,75 +19,108 @@ import { switchMap } from 'rxjs';
 export class CreateOrEditDirectionPageComponent implements OnInit {
 
   public directionForm: FormGroup = this.fb.group({
+    id:                 [''],
     name:               [ '',     [ Validators.required ] ],
     isGeneralDirection: [ false,  [ Validators.required ] ],
     enterpriseId:       [ '',     [ Validators.required ] ],
     directorId:         [ '',     [ Validators.required ] ]
   });
 
-  enterprises = [
-    { value: 'ent-1', viewValue: 'Empresa 1' },
-    { value: 'ent-2', viewValue: 'Empresa 2' },
-    { value: 'ent-3', viewValue: 'Empresa 3' }
-  ];
-
-  directors = [
-    { value: 'dir-1', viewValue: 'Director 1' },
-    { value: 'dir-2', viewValue: 'Director 2' },
-    { value: 'dir-3', viewValue: 'Director 3' }
-  ];
+  public enterprises: Enterprise[] = [];
+  public directors: Director[] = [];
 
   constructor(
     private directionsService: DirectionsService,
+    private enterprisesService: EnterprisesService,
+    private directorsService: DirectorsService,
     private fb: FormBuilder,
+    private sweetAlert: SweetAlertService, 
     private activatedRoute: ActivatedRoute,
     private router: Router
   ) {}
 
   ngOnInit(): void {
     this.checkIsUpdate();
+    this.getAllEnterprises();
+    this.getAllDirectors();
   }
 
-  get currentDirection(): Direction {
-    return this.directionForm.value;
+  get currentData() {
+    const currentData = this.directionForm.value;
+    delete currentData.id;
+    return currentData;
   }
 
-  checkIsUpdate() {
+  private getAllEnterprises(): void {
+    this.enterprisesService.getAllEnterprises().subscribe(
+      response => this.enterprises = response.results,
+      errorResponse => this.sweetAlert.presentError('Obteniendo Listado de Empresas!')
+    );
+  }
+
+  private getAllDirectors(): void {
+    this.directorsService.getAllDirectors().subscribe(
+      response => this.directors = response.results,
+      errorResponse => this.sweetAlert.presentError('Obteniendo Listado de Directores!')
+    );
+  }
+
+  private checkIsUpdate() {
     if( !this.router.url.includes('edit') ) return;
 
     this.activatedRoute.params.pipe(
       switchMap( ({ id }) => this.directionsService.getDirectionById( id ) )
     ).subscribe(
-      direction => {
+      response => {
 
-        if( !direction ) return this.router.navigateByUrl('/');
+        if( !response ) return this.router.navigateByUrl('/');
 
-        this.directionForm.reset( direction );
+        const directorId = response.director.id;
+        const enterpriseId = response.enterprise.id;
+        this.directionForm.reset({ ...response, directorId, enterpriseId });
         return;
       },
-      errorResponse => {
-        console.error('Error getting direction:', errorResponse);
-      }
+      errorResponse => this.sweetAlert.presentError('Obteniendo Dirección!')
+    );
+  }
+
+  private createDirection(): void {
+
+    const createDirectionDto: CreateDirectionDto = this.currentData;
+    this.directionsService.createDirection( createDirectionDto ).subscribe(
+      response => {
+        this.router.navigate(['super-dashboard/directions']);
+        this.sweetAlert.presentSuccess(`Dirección ${response.name} Creada!`);
+      },
+      errorResponse => this.sweetAlert.presentError('Creando Dirección!')
+    );
+  }
+
+  private updateDirection( id: string ): void {
+
+    const updateDirectionDto: UpdateDirectionDto = this.currentData;
+    this.directionsService.updateDirectionById( id, updateDirectionDto ).subscribe(
+      response => {
+        this.router.navigate(['super-dashboard/directions']);
+        this.sweetAlert.presentSuccess(`Dirección ${response.name} Actualizada!`);
+      },
+      errorResponse => this.sweetAlert.presentError('Actualizando Dirección!')
     );
   }
 
   onSubmit(): void {
 
-    if( this.currentDirection.id ) {
-      // Update direction
+    const formData = this.directionForm.value;
+    const { id } = formData;
 
+    if( id ) {
+      // Update direction
+      this.updateDirection( id );      
       return;
     }
 
-    this.directionsService.createDirection( this.currentDirection ).subscribe(
-      response => {
-        console.log('Direction created:', response);
-      },
-      errorResponse => {
-        console.error('Error creating direction:', errorResponse);
-      }
-    );
-
+    // Create direction    
+    this.createDirection();
   }
 
 }

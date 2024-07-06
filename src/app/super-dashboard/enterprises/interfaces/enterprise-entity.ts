@@ -1,8 +1,3 @@
-export interface GetAllEnterprisesResponse {
-    results: Enterprise[];
-    total:   number;
-}
-
 export interface Enterprise {
     id:        string;
     name:      string;
@@ -12,7 +7,7 @@ export interface Enterprise {
     ceo:       Ceo;
 }
 
-export interface Ceo {
+interface Ceo {
     id:        string;
     email:     string;
     password:  string;

@@ -13,8 +13,8 @@
             <mat-form-field appearance="fill">
                 <mat-label>Empresa</mat-label>
                 <mat-select formControlName="enterpriseId">
-                <mat-option *ngFor="let enterprise of enterprises" [value]="enterprise.value">
-                    {{ enterprise.viewValue }}
+                <mat-option *ngFor="let enterprise of enterprises" [value]="enterprise.id">
+                    {{ enterprise.name }}
                 </mat-option>
                 </mat-select>
             </mat-form-field>
@@ -22,8 +22,8 @@
             <mat-form-field appearance="fill">
                 <mat-label>Director</mat-label>
                 <mat-select formControlName="directorId">
-                <mat-option *ngFor="let director of directors" [value]="director.value">
-                    {{ director.viewValue }}
+                <mat-option *ngFor="let director of directors" [value]="director.id">
+                    {{ director.fullName }}
                 </mat-option>
                 </mat-select>
             </mat-form-field>

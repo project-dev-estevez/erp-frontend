@@ -1,29 +1,35 @@
 import { Injectable } from '@angular/core';
-import { HttpInterceptor, HttpRequest, HttpHandler, HttpEvent, HttpErrorResponse } from '@angular/common/http';
-import { Observable, throwError } from 'rxjs';
-import { Router } from '@angular/router';
-import { catchError, switchMap, tap } from 'rxjs/operators';
-import { AuthenticationService } from '../services/authentication.service';
+import {
+  HttpInterceptor,
+  HttpHandler,
+  HttpRequest,
+  HttpEvent,
+} from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { AuthenticationService } from 'src/app/authentication/services/authentication.service';
 
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
-
   constructor(
-    private router: Router,
     private authService: AuthenticationService
   ) {}
 
-  intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    const authToken = this.authService.getToken();
+  intercept(
+    req: HttpRequest<any>,
+    next: HttpHandler
+  ): Observable<HttpEvent<any>> {
+    // Get the token from localStorage
+    const token = this.authService.getToken();
 
-    const clonedRequest = req.clone({
-      setHeaders: {
-        'X-API-KEY': authToken,
-        'Content-Type': 'application/json'
-      }
-    });
+    // Clone the request and add the token to the headers if it exists
+    if (token) {
+      const authReq = req.clone({
+        setHeaders: { Authorization: `Bearer ${token}` },
+      });
+      return next.handle(authReq);
+    }
 
-    console.log("token: ", authToken);
-    return next.handle(clonedRequest);
+    // If there's no token, just pass the original request
+    return next.handle(req);
   }
 }
