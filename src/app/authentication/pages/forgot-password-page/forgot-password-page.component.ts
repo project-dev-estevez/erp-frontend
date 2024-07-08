@@ -10,7 +10,7 @@ import { SweetAlertService } from '@shared/services/sweet-alert.service';
 })
 export class ForgotPasswordPageComponent {
 
-  public forgotForm : FormGroup = this.fb.group({
+  public forgotPasswordForm : FormGroup = this.fb.group({
     email: ['', [Validators.required]], 
   });
 
@@ -21,11 +21,15 @@ export class ForgotPasswordPageComponent {
   )
   {}
 
-  forgot()
+  forgotPassword()
   {    
-    const forgotData = this.forgotForm.value;
+    if (this.forgotPasswordForm.invalid) {
+      this.forgotPasswordForm.markAllAsTouched()
+      return
+    }
+    const forgotPasswordData = this.forgotPasswordForm.value;
 
-    this.authService.forgot(forgotData).subscribe(
+    this.authService.forgotPassword(forgotPasswordData).subscribe(
       response => {
         this.sweetAlert.presentSuccess('Se envio el correo correctamente');
       },

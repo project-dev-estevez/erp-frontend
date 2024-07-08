@@ -63,13 +63,14 @@ export class RegisterPageComponent {
       return
     }
     const registerData = this.registerForm.value;
+    const { confirmPassword, ...userData } = registerData;
     if( registerData.password !== registerData.confirmPassword )
     {
       this.sweetAlert.presentError('Las contraseñas no coinciden');
       return;
     }
 
-    this.authService.register(registerData).subscribe(
+    this.authService.register(userData).subscribe(
       response => {
         this.sweetAlert.presentSuccess('Usuario registrado correctamente');
       },

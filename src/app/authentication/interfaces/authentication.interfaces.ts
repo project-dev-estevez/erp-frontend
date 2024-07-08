@@ -40,12 +40,22 @@ export interface RegisterResponse{
     updatedAt: Date;
 }
 
-export interface ForgotDataDto{
+export interface ForgotPasswordDataDto{
     email: string;
 }
 
-export interface ForgotResponse{
+export interface ForgotPasswordResponse{
     email: string;
+    id: string;
+    token: string;
+}
+
+export interface ResetPasswordDataDto{
+
+    newPassword: string;
+}
+
+export interface ResetPasswordResponse{
     id: string;
     token: string;
 }
