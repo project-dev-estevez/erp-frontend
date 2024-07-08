@@ -21,6 +21,7 @@ import { AuthInterceptor } from './authentication/interceptors/auth.interceptor'
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: SpinnerInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
     //{ provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
     provideAnimationsAsync(),
     provideCharts(withDefaultRegisterables())

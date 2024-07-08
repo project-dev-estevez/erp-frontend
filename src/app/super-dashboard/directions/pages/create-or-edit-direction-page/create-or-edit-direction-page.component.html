@@ -1,0 +1,39 @@
+<div class="container mx-auto w-full m-5">
+    <form [formGroup]="directionForm" (ngSubmit)="onSubmit()">
+        <div class="flex flex-col p-4">
+            <mat-form-field appearance="fill">
+                <mat-label>Nombre</mat-label>
+                <input type="text" matInput formControlName="name">
+            </mat-form-field>
+    
+            <mat-checkbox formControlName="isGeneralDirection">
+                Es Dirección General
+            </mat-checkbox>
+    
+            <mat-form-field appearance="fill">
+                <mat-label>Empresa</mat-label>
+                <mat-select formControlName="enterpriseId">
+                <mat-option *ngFor="let enterprise of enterprises" [value]="enterprise.id">
+                    {{ enterprise.name }}
+                </mat-option>
+                </mat-select>
+            </mat-form-field>
+    
+            <mat-form-field appearance="fill">
+                <mat-label>Director</mat-label>
+                <mat-select formControlName="directorId">
+                <mat-option *ngFor="let director of directors" [value]="director.id">
+                    {{ director.fullName }}
+                </mat-option>
+                </mat-select>
+            </mat-form-field>
+    
+            <button mat-raised-button 
+                    color="primary" 
+                    type="submit"
+                    [disabled]="directionForm.invalid">
+                Guardar
+            </button>
+        </div>
+    </form>
+</div>

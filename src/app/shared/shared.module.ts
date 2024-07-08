@@ -17,6 +17,7 @@ import { BreadcrumbComponent } from './components/breadcrumb/breadcrumb.componen
 import { TopToolbarComponent } from './components/top-toolbar/top-toolbar.component';
 import { ProgressBarComponent } from './components/progressbar/progressbar.component';
 import { SuperAdminLayoutComponent } from './layouts/super-admin-layout/super-admin-layout.component';
+import { Error404PageComponent } from './pages/error404-page/error404-page.component';
 
 
 @NgModule({
@@ -30,7 +31,8 @@ import { SuperAdminLayoutComponent } from './layouts/super-admin-layout/super-ad
     BreadcrumbComponent,
     TopToolbarComponent,
     ProgressBarComponent,
-    SuperAdminLayoutComponent
+    SuperAdminLayoutComponent,
+    Error404PageComponent
   ],
   imports: [
     CommonModule,
@@ -50,7 +52,8 @@ import { SuperAdminLayoutComponent } from './layouts/super-admin-layout/super-ad
     BreadcrumbComponent,
     TopToolbarComponent,
     PieChartComponent,
-    ProgressBarComponent
+    ProgressBarComponent,
+    Error404PageComponent
   ]
 })
 export class SharedModule { }
