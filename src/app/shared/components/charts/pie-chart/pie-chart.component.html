@@ -1,9 +1,14 @@
-<!-- my-chart.component.html -->
-<div style="position: relative; height:40vh; width:80vw">
-<canvas baseChart
-        [data]="PieChartData"
-        [type]="'pie'"
-        width="50"
-        height="50">
-</canvas>
+<div class="flex">
+        <div class="flex-none w-64">
+                <mat-card appearance="outlined">
+                        <mat-card-content>
+                                <canvas baseChart
+                                        [data]="PieChartData"
+                                        [type]="'pie'"
+                                        width="50"
+                                        height="50">
+                                </canvas>
+                        </mat-card-content>
+                </mat-card>
+        </div>
 </div>
