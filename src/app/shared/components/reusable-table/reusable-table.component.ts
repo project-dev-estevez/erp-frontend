@@ -6,8 +6,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
 import { TableAction } from '../../interfaces/table-action';
 import { TABLE_ACTION } from '../../enums/table-action.enum';
-import { MatSort, Sort } from '@angular/material/sort';
-import { LiveAnnouncer } from '@angular/cdk/a11y';
+import { MatSort } from '@angular/material/sort';
 
 @Component({
   selector: 'app-reusable-table',
@@ -46,7 +45,7 @@ export class ReusableTableComponent implements AfterViewInit {
   @Output() select: EventEmitter<any> = new EventEmitter();
   @Output() action: EventEmitter<TableAction> = new EventEmitter();
 
-  constructor(private _liveAnnouncer: LiveAnnouncer) {}
+  constructor() {}
 
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;
@@ -96,12 +95,6 @@ export class ReusableTableComponent implements AfterViewInit {
     return `${this.selection.isSelected(row) ? 'deselect' : 'select'} row ${
       row.position + 1
     }`;
-  }
-
-  announceSortChange(sortState: Sort) {
-    if (sortState.direction) {
-      this._liveAnnouncer.announce(`Sorted ${sortState.direction}ending`);
-    } 
   }
 
   isActionAllowed(action: TABLE_ACTION): boolean {
