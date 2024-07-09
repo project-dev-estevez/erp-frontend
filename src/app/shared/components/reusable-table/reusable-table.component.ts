@@ -101,9 +101,7 @@ export class ReusableTableComponent implements AfterViewInit {
   announceSortChange(sortState: Sort) {
     if (sortState.direction) {
       this._liveAnnouncer.announce(`Sorted ${sortState.direction}ending`);
-    } else {
-      this._liveAnnouncer.announce('Sorting cleared');
-    }
+    } 
   }
 
   isActionAllowed(action: TABLE_ACTION): boolean {
