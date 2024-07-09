@@ -21,7 +21,7 @@
 
   <mat-divider></mat-divider>
 
-  <table mat-table [dataSource]="dataSource">
+  <table mat-table [dataSource]="dataSource" matSort (matSortChange)="announceSortChange($event)" class="mat-elevation-z8">
 
     <!-- Checkbox Column -->
     <ng-container matColumnDef="select">
@@ -69,7 +69,9 @@
 
     <!-- Listado de columnas -->
     <ng-container *ngFor="let column of tableColumns" [matColumnDef]="column.def">
-      <th mat-header-cell *matHeaderCellDef> {{ column.label }} </th>
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> 
+        {{ column.label }} 
+      </th>
       <td mat-cell *matCellDef="let row"> {{row | columnValue: column}} </td>
     </ng-container>
 
