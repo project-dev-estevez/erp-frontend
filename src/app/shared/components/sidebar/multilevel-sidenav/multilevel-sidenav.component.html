@@ -1,0 +1,7 @@
+<ul class="submenu" *ngIf="submenuItems.length > 0">
+    <ng-container *ngFor="let item of submenuItems">
+        <li [routerLink]="item.route ? item.route : null" class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">
+            <a>{{ item.title }}</a>
+        </li>
+    </ng-container>
+</ul>
