@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthenticationService } from '../../services/authentication.service';
 import { SweetAlertService } from '@shared/services/sweet-alert.service';
+import { repeatPasswordValidator } from './repeat-password.validator';
 
 @Component({
   selector: 'app-register-page',
@@ -47,7 +48,8 @@ export class RegisterPageComponent {
     email: ['', [Validators.required, Validators.email, Validators.minLength(8)]],
     password: ['', [Validators.required, Validators.minLength(8), Validators.maxLength(150)]],
     confirmPassword: ['', [Validators.required, Validators.minLength(8), Validators.maxLength(150)]]    
-  });
+  }, { validators: [repeatPasswordValidator]}   
+);
 
   constructor (
     private fb: FormBuilder,
@@ -64,11 +66,11 @@ export class RegisterPageComponent {
     }
     const registerData = this.registerForm.value;
     const { confirmPassword, ...userData } = registerData;
-    if( registerData.password !== registerData.confirmPassword )
+    /* if( registerData.password !== registerData.confirmPassword )
     {
       this.sweetAlert.presentError('Las contraseñas no coinciden');
       return;
-    }
+    } */
 
     this.authService.register(userData).subscribe(
       response => {

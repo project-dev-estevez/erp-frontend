@@ -45,6 +45,9 @@
                         <span *ngIf="isvalidField('password')" class="form-text text-red-500">
                             {{getFieldError('password')}}
                         </span>
+                        <div class="form-text text-red-500" *ngIf="registerForm.errors?.['PasswordNoMatch']">
+                            Las contraseñas no coinciden.
+                        </div>
                     </div>
                     <div class="mt-5">
                         <label for="confirm-password" class="block mb-1 text-sm font-medium text-gray-900 dark:text-dark">Confirmar Contraseña</label>
