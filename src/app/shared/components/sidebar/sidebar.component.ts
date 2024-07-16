@@ -15,19 +15,7 @@ export class SidebarComponent {
     { title: "Home", icon: "home", route: '/super-dashboard' },
     { title: "Subs", icon: "store", submenus: [ { title: 'submenu1', route: '/ruta' }, { title: 'submmenu2', route: '/ruta2' }, { title: 'submmenu2', route: '/ruta2' }, { title: 'submmenu2', route: '/ruta2' }, { title: 'submmenu2', route: '/ruta2' } ] },
     { title: "Direcciones", icon: "layers", route: '/super-dashboard/directions' },
-    // { title: "Contratistas", icon: "people" },
-    { title: "Almacén", icon: "store", route: '/dashboard/warehouse'},
-    { title: "Multi", icon: "store", submenus: [ { title: 'submenu1', route: '/ruta' }, { title: 'submmenu2', route: '/ruta2' } ] }
-    // { title: "Reportes Almacén", icon: "assessment" },
-    // { title: "Solicitud Compra", icon: "shopping_cart" },
-    // { title: "Solicitud Almacén", icon: "inventory" },
-    // { title: "Pedidos", icon: "shopping_bag" },
-    // { title: "Solicitudes", icon: "assignment" },
-    // { title: "Devoluciones", icon: "undo" },
-    // { title: "Solicitud Caja Chica", icon: "attach_money" },
-    // { title: "Explosión Insumos", icon: "science" },
-    // { title: "Justificación RH", icon: "work" },
-    // { title: "Soporte", icon: "support" },
+    { title: "Departamentos", icon: "layers", route: '/super-dashboard/departments' },
   ];
 
   setOpen(){

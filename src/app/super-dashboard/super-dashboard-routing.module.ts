@@ -10,6 +10,7 @@ const routes: Routes = [
     children: [
       { path: '', component: SuperMainContentPageComponent },
       { path: 'directions', loadChildren: () => import('./directions/directions.module').then(m => m.DirectionsModule) },
+      { path: 'departments', loadChildren: () => import('./departments/departments.module').then(m => m.DepartmentsModule) },
       { path: '**', redirectTo: ''}
     ]
   }

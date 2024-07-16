@@ -21,7 +21,7 @@ export class DirectionsService {
     return this.http.post<CreateDirectionResponseDto>( `${environment.apiUrl}/directions`, createDirectionDto );
   }
 
-  getAllDirections( queyGetAllDirectionsDto: QueryGetAllDirectionsDto ): Observable<GetAllDirectionsResponseDto> {
+  getAllDirections( queyGetAllDirectionsDto?: QueryGetAllDirectionsDto ): Observable<GetAllDirectionsResponseDto> {
     return this.http.get<GetAllDirectionsResponseDto>(`${environment.apiUrl}/directions`);
   }
 
