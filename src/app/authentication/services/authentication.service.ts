@@ -1,7 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from '../../../environments/environment';
-import { CheckTokenResponse, LoginDataDto, LoginResponse, RegisterDataDto, RegisterResponse, ForgotDataDto, ForgotResponse } from '../interfaces/authentication.interfaces';
+import { CheckTokenResponse, LoginDataDto, LoginResponse, RegisterDataDto, RegisterResponse, ForgotPasswordDataDto, ForgotPasswordResponse, ResetPasswordDataDto, ResetPasswordResponse } from '../interfaces/authentication.interfaces';
 import { Observable, map, of } from 'rxjs';
 
 @Injectable({
@@ -22,8 +22,12 @@ export class AuthenticationService
     return this.http.post<RegisterResponse>(`${environment.apiUrl}/auth/register`, registerDataDto);
   }
 
-  forgot(forgotDataDto: ForgotDataDto){
-    return this.http.post<ForgotResponse>(`${environment.apiUrl}/auth/forgot-password`, forgotDataDto);
+  forgotPassword(forgotDataDto: ForgotPasswordDataDto){
+    return this.http.post<ForgotPasswordResponse>(`${environment.apiUrl}/auth/forgot-password`, forgotDataDto);
+  }
+
+  resetPassword(resetPasswordDataDto: ResetPasswordDataDto){
+    return this.http.put<ResetPasswordResponse>(`${environment.apiUrl}/auth/reset-password`, resetPasswordDataDto);
   }
 
   logout() {

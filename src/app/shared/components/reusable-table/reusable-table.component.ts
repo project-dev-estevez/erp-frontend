@@ -6,6 +6,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
 import { TableAction } from '../../interfaces/table-action';
 import { TABLE_ACTION } from '../../enums/table-action.enum';
+import { MatSort } from '@angular/material/sort';
 
 @Component({
   selector: 'app-reusable-table',
@@ -24,6 +25,8 @@ export class ReusableTableComponent implements AfterViewInit {
   currentFilterValue: string = '';
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
+
+  @ViewChild(MatSort) sort!: MatSort;
 
   @Input() set data(data: Array<any>) {
     this.dataSource = new MatTableDataSource(data);
@@ -46,6 +49,7 @@ export class ReusableTableComponent implements AfterViewInit {
 
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;
+    this.dataSource.sort = this.sort;
   }
 
   onSelect() {

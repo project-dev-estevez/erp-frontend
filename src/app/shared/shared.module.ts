@@ -18,6 +18,7 @@ import { TopToolbarComponent } from './components/top-toolbar/top-toolbar.compon
 import { ProgressBarComponent } from './components/progressbar/progressbar.component';
 import { SuperAdminLayoutComponent } from './layouts/super-admin-layout/super-admin-layout.component';
 import { Error404PageComponent } from './pages/error404-page/error404-page.component';
+import { MultilevelSidenavComponent } from './components/sidebar/multilevel-sidenav/multilevel-sidenav.component';
 
 
 @NgModule({
@@ -32,7 +33,8 @@ import { Error404PageComponent } from './pages/error404-page/error404-page.compo
     TopToolbarComponent,
     ProgressBarComponent,
     SuperAdminLayoutComponent,
-    Error404PageComponent
+    Error404PageComponent,
+    MultilevelSidenavComponent
   ],
   imports: [
     CommonModule,

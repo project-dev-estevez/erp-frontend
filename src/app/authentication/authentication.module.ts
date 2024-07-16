@@ -6,6 +6,7 @@ import { LoginPagesComponent } from './pages/login-pages/login-pages.component';
 import { SharedModule } from '../shared/shared.module';
 import { RegisterPageComponent } from './pages/register-page/register-page.component';
 import { ForgotPasswordPageComponent } from './pages/forgot-password-page/forgot-password-page.component';
+import { ResetPasswordPageComponent } from './pages/reset-password-page/reset-password-page.component';
 
 
 
@@ -13,7 +14,8 @@ import { ForgotPasswordPageComponent } from './pages/forgot-password-page/forgot
   declarations: [
     LoginPagesComponent,
     RegisterPageComponent,
-    ForgotPasswordPageComponent
+    ForgotPasswordPageComponent,
+    ResetPasswordPageComponent
   ],
   imports: [
     CommonModule,

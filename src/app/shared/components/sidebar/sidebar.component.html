@@ -72,17 +72,22 @@
     <!-- Items List -->
     <ul class="pt-2">
         <ng-container *ngFor="let item of menuItems">
-            <li [routerLink]="item.route ? item.route : null"
-                class="text-gray-300 text-sm flex-items-center gap-x-4 cursor-pointer p-2 mt-2 hover:bg-light-white rounded-md">
-                <span class="text-2xl block float-left">
-                    <mat-icon>{{ item.icon }}</mat-icon>
-                </span>
-                <span [ngClass]="!open ? 'hidden' : ''"
-                    class="text-base font-medium flex-1 ml-2 duration 200">
-                    {{ item.title }}
-                </span>
-            </li>
+            <li [routerLink]="item.route ? item.route : null">
+                <button (click)="toggleSubmenu(item)" type="button" class="flex items-center w-full p-2 text-base text-gray-900 transition duration-75 rounded-lg group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700" aria-controls="dropdown-example" data-collapse-toggle="dropdown-example">
+                      <mat-icon>{{ item.icon }}</mat-icon>
+                      <span [ngClass]="!open ? 'hidden' : ''" class="flex-1 ms-3 text-left rtl:text-right whitespace-nowrap">{{ item.title }}</span>
+                      <svg [ngClass]="!open ? 'hidden' : ''" *ngIf="item.submenus && item.submenus.length > 0" class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6" [style.transform]="showSubmenu[item.title] ? 'rotate(180deg)' : 'rotate(0deg)'">
+                         <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 4 4 4-4"/>
+                      </svg>
+                </button>
+                <ng-container *ngIf="item.submenus">
+                    <app-multilevel-sidenav [ngClass]="!open ? 'hidden' : ''" *ngIf="showSubmenu[item.title]" [submenuItems]="item.submenus"></app-multilevel-sidenav>
+                </ng-container>
+             </li>
+        
         </ng-container>
+        
+
     </ul>
 
 </div>
