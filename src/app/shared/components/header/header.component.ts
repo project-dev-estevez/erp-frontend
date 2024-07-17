@@ -29,12 +29,12 @@ export class HeaderComponent {
       }
     );
 
-    // this.authService.logout().pipe(
-    //   finalize(() => {
-    //     this.router.navigate(['/auth']);
-    //     localStorage.clear();
-    //   })
-    // ).subscribe();
+     this.authService.logout().pipe(
+       finalize(() => {
+         this.router.navigate(['/auth']);
+         localStorage.clear();
+       })
+     ).subscribe();
   }
 
 }
