@@ -4,6 +4,7 @@ import { SweetAlertService } from '@shared/services/sweet-alert.service';
 import { Direction } from 'src/app/super-dashboard/directions/interfaces';
 import { DirectionsService } from 'src/app/super-dashboard/directions/services/directions.service';
 import { DepartmentsService } from '../../services/departments.service';
+import { CreateDepartmentDto } from '../../interfaces/create-department.dto';
 
 @Component({
   selector: 'app-create-or-edit-department-page',
@@ -17,7 +18,7 @@ export class CreateOrEditDepartmentPageComponent implements OnInit {
   public deparmentForm: FormGroup = this.fb.group({
     name:         ['', [ Validators.required, Validators.minLength(3), Validators.maxLength(150) ]],
     directionId:  ['', [ Validators.required ]],
-    managerId:    ['']
+    // managerId:    ['']
   });
 
   constructor(
@@ -43,13 +44,15 @@ export class CreateOrEditDepartmentPageComponent implements OnInit {
   }
 
   onSubmit() {
-    // console.log( this.deparmentForm.value );
-    this.departmentsService.createDeparment().subscribe(
+
+    const createDepartmentDto: CreateDepartmentDto = this.deparmentForm.value;
+
+    this.departmentsService.createDeparment( createDepartmentDto ).subscribe(
       response => {
-        this.sweetAlert.presentSuccess('Departamento creado');
+        const name = response.name;
+        this.sweetAlert.presentSuccess(`Departamento ${name} Creado con éxito`);
       },
       errorResponse => {
-        console.log(errorResponse);
         this.sweetAlert.presentError('Creando el departamento');
       }
     );
