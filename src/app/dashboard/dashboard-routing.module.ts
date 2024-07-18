@@ -10,9 +10,9 @@ const routes: Routes = [
     component: AdminLayoutComponent,
     children: [
       { path: '', component: MainContentPageComponent },
-      { path: 'grafica', component: PieChartComponent },
-      { path: 'root', loadChildren: () => import('./root/root.module').then( m => m.RootModule) },
-      { path: 'warehouse', loadChildren: () => import('./warehouse/warehouse.module').then( m => m.WarehouseModule)},
+      { path: 'grafica', component: PieChartComponent, data: { breadcrumb: 'Grafica' } },
+      { path: 'root', loadChildren: () => import('./root/root.module').then( m => m.RootModule), data: { breadcrumb: 'Super usuario' } },
+      { path: 'warehouse', loadChildren: () => import('./warehouse/warehouse.module').then( m => m.WarehouseModule), data: { breadcrumb: 'Almacén' }},
       { path: '**', redirectTo: '' }
     ]
   },

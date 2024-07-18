@@ -10,13 +10,13 @@ const routes: Routes = [
   // Super Admin Dashboard
   {
     path: 'super-dashboard',
-    data: { breadcrumb: 'Super Dashboard' },
+    data: { breadcrumb: 'Inicio' },
     loadChildren: () => import('./super-dashboard/super-dashboard.module').then( m => m.SuperDashboardModule )
   },
   // Admin Dashboard
   {
     path: 'dashboard',
-    data: { breadcrumb: 'Dashboard' },
+    data: { breadcrumb: 'Inicio' },
     loadChildren: () => import('./dashboard/dashboard.module').then( m => m.DashboardModule )
   },
   {

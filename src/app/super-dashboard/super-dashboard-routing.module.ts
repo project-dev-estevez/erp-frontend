@@ -9,8 +9,8 @@ const routes: Routes = [
     component: SuperAdminLayoutComponent,
     children: [
       { path: '', component: SuperMainContentPageComponent },
-      { path: 'directions', loadChildren: () => import('./directions/directions.module').then(m => m.DirectionsModule) },
-      { path: 'departments', loadChildren: () => import('./departments/departments.module').then(m => m.DepartmentsModule) },
+      { path: 'directions', loadChildren: () => import('./directions/directions.module').then(m => m.DirectionsModule), data: { breadcrumb: 'Direcciones' } },
+      { path: 'departments', loadChildren: () => import('./departments/departments.module').then(m => m.DepartmentsModule), data: { breadcrumb: 'Departamentos' } },
       { path: '**', redirectTo: ''}
     ]
   }
