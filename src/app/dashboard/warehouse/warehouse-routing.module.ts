@@ -6,7 +6,8 @@ import { ProductDetailPageComponent } from './pages/product-detail-page/product-
 const routes: Routes = [
   {
     path: '',
-    component: MainContentWarehousePageComponent
+    component: MainContentWarehousePageComponent,
+    data: { breadcrumb: 'product-detail' }
   },
   {
     path: 'product-detail/:id',

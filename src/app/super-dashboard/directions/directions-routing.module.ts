@@ -4,7 +4,10 @@ import { CreateOrEditDirectionPageComponent } from './pages/create-or-edit-direc
 import { ListDirectionsPageComponent } from './pages/list-directions-page/list-directions-page.component';
 
 const routes: Routes = [
-  { path: '', component: ListDirectionsPageComponent },
+  { path: '',
+    component: ListDirectionsPageComponent,
+    data: { breadcrumb: 'Direcciones' }
+  },
   { path: 'new-direction', component: CreateOrEditDirectionPageComponent },
   { path: 'edit/:id', component: CreateOrEditDirectionPageComponent },
   { path: '**', redirectTo: '' }
