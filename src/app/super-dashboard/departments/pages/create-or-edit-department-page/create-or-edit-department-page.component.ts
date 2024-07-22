@@ -5,6 +5,9 @@ import { Direction } from 'src/app/super-dashboard/directions/interfaces';
 import { DirectionsService } from 'src/app/super-dashboard/directions/services/directions.service';
 import { DepartmentsService } from '../../services/departments.service';
 import { CreateDepartmentDto } from '../../interfaces/create-department.dto';
+import { ActivatedRoute, Router } from '@angular/router';
+import { switchMap } from 'rxjs';
+import { UpdateDepartmentDto } from '../../interfaces/update-department.dto';
 
 @Component({
   selector: 'app-create-or-edit-department-page',
@@ -12,6 +15,8 @@ import { CreateDepartmentDto } from '../../interfaces/create-department.dto';
   styleUrl: './create-or-edit-department-page.component.scss'
 })
 export class CreateOrEditDepartmentPageComponent implements OnInit {
+
+  private deparmentId: string = '';
 
   public directions: Direction[] = [];
 
@@ -25,11 +30,42 @@ export class CreateOrEditDepartmentPageComponent implements OnInit {
     private directionsService: DirectionsService,
     private departmentsService: DepartmentsService,
     private sweetAlert: SweetAlertService,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private router: Router,
+    private activatedRoute: ActivatedRoute
   ) { }
 
   ngOnInit(): void {
     this.getAllDirections();
+    this.checkIsUpdate();
+  }
+
+  private createDepartment() {
+
+    const createDepartmentDto: CreateDepartmentDto = this.deparmentForm.value;
+
+    this.departmentsService.createDeparment( createDepartmentDto ).subscribe(
+      response => {
+        const name = response.name;
+        this.sweetAlert.presentSuccess(`Departamento ${name} Creado con éxito`);
+      },
+      errorResponse => {
+        this.sweetAlert.presentError('Creando el departamento');
+      }
+    );
+  }
+
+  private updateDepartment() {
+    const updateDepartmentDto: UpdateDepartmentDto = this.deparmentForm.value;
+
+    this.departmentsService.updateDepartmentById( this.deparmentId, updateDepartmentDto ).subscribe(
+      response => {
+        this.sweetAlert.presentSuccess(`Departamento ${response.name} Actualizado con éxito`);
+      },
+      errorResponse => {
+        this.sweetAlert.presentError('Actualizando el departamento');
+      }
+    );
   }
 
   private getAllDirections() {
@@ -43,19 +79,45 @@ export class CreateOrEditDepartmentPageComponent implements OnInit {
     );
   }
 
-  onSubmit() {
+  private checkIsUpdate() {
 
-    const createDepartmentDto: CreateDepartmentDto = this.deparmentForm.value;
+    const route = this.router.url;
+    if( !route.includes('edit') ) return;
 
-    this.departmentsService.createDeparment( createDepartmentDto ).subscribe(
+    this.activatedRoute.params.pipe(
+      switchMap( ({ id }) => { 
+        this.deparmentId = id;
+        return this.departmentsService.getDepartmentById( id );
+      })
+    ).subscribe(
       response => {
-        const name = response.name;
-        this.sweetAlert.presentSuccess(`Departamento ${name} Creado con éxito`);
+
+        if( !response ) return this.router.navigateByUrl('/');
+        
+        this.deparmentForm.reset({
+          name: response.name,
+          directionId: response.direction.id
+        });
+
+        return;
       },
       errorResponse => {
-        this.sweetAlert.presentError('Creando el departamento');
+        this.sweetAlert.presentError('Obteniendo el departamento por ID');
+        return this.router.navigateByUrl('/');
       }
-    );
+    )
+  }
+
+  onSubmit() {
+
+    if( this.deparmentId ) {
+      this.updateDepartment();
+      return;
+    }
+
+    // Crear
+    this.createDepartment();
+    
   }
 
 }
