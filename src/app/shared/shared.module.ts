@@ -19,6 +19,8 @@ import { ProgressBarComponent } from './components/progressbar/progressbar.compo
 import { SuperAdminLayoutComponent } from './layouts/super-admin-layout/super-admin-layout.component';
 import { Error404PageComponent } from './pages/error404-page/error404-page.component';
 import { MultilevelSidenavComponent } from './components/sidebar/multilevel-sidenav/multilevel-sidenav.component';
+import { ReusableTableBackendComponent } from './components/reusable-table-backend/reusable-table-backend.component';
+import { SearchWithCreateComponent } from './components/search-with-create/search-with-create.component';
 
 
 @NgModule({
@@ -34,7 +36,9 @@ import { MultilevelSidenavComponent } from './components/sidebar/multilevel-side
     ProgressBarComponent,
     SuperAdminLayoutComponent,
     Error404PageComponent,
-    MultilevelSidenavComponent
+    MultilevelSidenavComponent,
+    ReusableTableBackendComponent,
+    SearchWithCreateComponent
   ],
   imports: [
     CommonModule,
@@ -55,7 +59,9 @@ import { MultilevelSidenavComponent } from './components/sidebar/multilevel-side
     TopToolbarComponent,
     PieChartComponent,
     ProgressBarComponent,
-    Error404PageComponent
+    Error404PageComponent,
+    ReusableTableBackendComponent,
+    SearchWithCreateComponent
   ]
 })
 export class SharedModule { }

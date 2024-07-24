@@ -8,6 +8,7 @@ import { CreateDepartmentDto } from '../../interfaces/create-department.dto';
 import { ActivatedRoute, Router } from '@angular/router';
 import { switchMap } from 'rxjs';
 import { UpdateDepartmentDto } from '../../interfaces/update-department.dto';
+import { AuthenticationService } from 'src/app/authentication/services/authentication.service';
 
 @Component({
   selector: 'app-create-or-edit-department-page',

@@ -7,4 +7,5 @@ export interface TableConfig {
   showActions?:     boolean;
   actions?:         TABLE_ACTION[];
   showExcelButton?: boolean;
+  totalItemsPagination?: number;
 }

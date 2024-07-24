@@ -1,3 +1,7 @@
 <div class="container p-5">
-    <h1>List All Directions</h1>
+    <app-reusable-table-backend [showSearchWithCreate]="true"
+                                [buttonText]="'Nueva Dirección'"
+                                [data]="dataList"
+                                [columns]="tableColumns"
+                                [config]="tableConfig"/>
 </div>

@@ -42,16 +42,7 @@ export class AuthenticationService
   }
 
   checkToken(){
-    const token = this.getToken();
-
-    const httpOptions = {
-      headers: new HttpHeaders({
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${token}`
-      })
-    };
-
-    return this.http.get<CheckTokenResponse>(`${environment.apiUrl}/auth/check-token`, httpOptions);
+    return this.http.get<CheckTokenResponse>(`${environment.apiUrl}/auth/check-token`);
   }
 
   setToken( token: string )
