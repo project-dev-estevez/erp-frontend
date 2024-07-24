@@ -1,5 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { MenuItem } from '../../interfaces/menu-item';
+import { Subscription } from 'rxjs';
+import { ActivatedRoute, Router } from '@angular/router';
+import { AuthenticationService } from 'src/app/authentication/services/authentication.service';
 
 
 @Component({
@@ -7,7 +10,24 @@ import { MenuItem } from '../../interfaces/menu-item';
   templateUrl: './sidebar.component.html',
   styleUrl: './sidebar.component.scss'
 })
-export class SidebarComponent {
+export class SidebarComponent implements OnInit{
+
+  isLoggedIn = false;
+  emitterService: any;
+  fullName: any;
+
+  constructor(
+    private route: ActivatedRoute,
+    private router: Router,
+    private authenticationService: AuthenticationService) {}
+  
+  ngOnInit(): void {
+    this.authenticationService.checkToken()
+        .subscribe((userFullName) => {
+            console.log(userFullName['fullName']);
+            this.fullName =  userFullName['fullName'];
+        });
+  }
 
   public open: boolean = true;
 
