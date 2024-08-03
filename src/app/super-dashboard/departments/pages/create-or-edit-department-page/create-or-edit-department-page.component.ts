@@ -49,6 +49,7 @@ export class CreateOrEditDepartmentPageComponent implements OnInit {
       response => {
         const name = response.name;
         this.sweetAlert.presentSuccess(`Departamento ${name} Creado con éxito`);
+        this.redirectToList(); 
       },
       errorResponse => {
         this.sweetAlert.presentError('Creando el departamento');
@@ -62,6 +63,7 @@ export class CreateOrEditDepartmentPageComponent implements OnInit {
     this.departmentsService.updateDepartmentById( this.deparmentId, updateDepartmentDto ).subscribe(
       response => {
         this.sweetAlert.presentSuccess(`Departamento ${response.name} Actualizado con éxito`);
+        this.redirectToList();
       },
       errorResponse => {
         this.sweetAlert.presentError('Actualizando el departamento');
@@ -117,8 +119,11 @@ export class CreateOrEditDepartmentPageComponent implements OnInit {
     }
 
     // Crear
-    this.createDepartment();
-    
+    this.createDepartment();       
+  }
+
+  redirectToList() {
+    this.router.navigateByUrl('/super-dashboard/departments');
   }
 
 }

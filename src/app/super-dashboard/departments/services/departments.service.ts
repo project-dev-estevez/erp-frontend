@@ -5,6 +5,7 @@ import { CreateDepartmentDto, CreateDepartmentResponseDto, Department } from '..
 import { environment } from 'src/environments/environment.development';
 import { ResponseGetDeparmentByIdDto } from '../interfaces';
 import { UpdateDepartmentDto } from '../interfaces/update-department.dto';
+import { GetAllDepartmentsResponseDto } from '../interfaces/get-all-departments-response.dto';
 
 @Injectable({
   providedIn: 'root'
@@ -15,9 +16,12 @@ export class DepartmentsService {
     private http: HttpClient
   ) { }
 
+  getAllDepartments(): Observable<GetAllDepartmentsResponseDto> {
+    return this.http.get<GetAllDepartmentsResponseDto>(`${environment.apiUrl}/departments`);
+  }
 
   createDeparment( createDepartmentDto: CreateDepartmentDto ): Observable<CreateDepartmentResponseDto> {
-    return this.http.post<CreateDepartmentResponseDto>('http://localhost:3000/api/v1/departments', createDepartmentDto);
+    return this.http.post<CreateDepartmentResponseDto>(`${environment.apiUrl}/departments`, createDepartmentDto);
   }
 
   updateDepartmentById( id: string, updateDepartmentDto: UpdateDepartmentDto ): Observable<Department> {
