@@ -6,6 +6,7 @@ import { Router } from '@angular/router';
 import { DepartmentsService } from '../../services/departments.service';
 import { TableAction } from '@shared/interfaces/table-action';
 import { TABLE_ACTION } from '@shared/enums/table-action.enum';
+import { SweetAlertService } from '@shared/services/sweet-alert.service';
 
 @Component({
   selector: 'app-list-departments-page',
@@ -27,6 +28,7 @@ export class ListDepartmentsPageComponent implements OnInit {
 
   constructor(
     private departmentsService: DepartmentsService,
+    private sweetAlert: SweetAlertService,
     private router: Router
   ) { }
 
@@ -59,10 +61,33 @@ export class ListDepartmentsPageComponent implements OnInit {
         this.router.navigate([`/super-dashboard/departments/edit/${id}`]);
       break;
 
+      case TABLE_ACTION.SHOW:
+        this.router.navigate([`/super-dashboard/departments/show/${id}`]);
+      break;
+
+      case TABLE_ACTION.DELETE:
+        this.deleteDepartment( id );
+      break;
+
       default:
       break;
     }
+  }
 
+  async deleteDepartment( id: string ) {
+
+    const { isConfirmed } = await this.sweetAlert.presentDelete('El Departamento');
+    if( !isConfirmed ) return;
+
+    this.departmentsService.deleteDepartmentById( id ).subscribe(
+      response => {
+        this.sweetAlert.presentSuccess('Departamento eliminado!');
+        this.loadDataList();
+      },
+      errorResponse => {
+        console.log(errorResponse);
+      }
+    );
   }
 
 }

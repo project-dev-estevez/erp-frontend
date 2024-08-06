@@ -1,3 +1,5 @@
+import { Direction } from "../../directions/interfaces";
+
 export interface Department {
     id:        string;
     name:      string;

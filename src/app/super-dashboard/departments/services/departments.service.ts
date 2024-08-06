@@ -20,6 +20,10 @@ export class DepartmentsService {
     return this.http.get<GetAllDepartmentsResponseDto>(`${environment.apiUrl}/departments`);
   }
 
+  getDepartmentById( id: string ): Observable<ResponseGetDeparmentByIdDto> {
+    return this.http.get<ResponseGetDeparmentByIdDto>(`${environment.apiUrl}/departments/${id}`);
+  }
+
   createDeparment( createDepartmentDto: CreateDepartmentDto ): Observable<CreateDepartmentResponseDto> {
     return this.http.post<CreateDepartmentResponseDto>(`${environment.apiUrl}/departments`, createDepartmentDto);
   }
@@ -28,8 +32,8 @@ export class DepartmentsService {
     return this.http.patch<Department>(`${environment.apiUrl}/departments/${id}`, updateDepartmentDto );
   }
 
-  getDepartmentById( id: string ): Observable<ResponseGetDeparmentByIdDto> {
-    return this.http.get<ResponseGetDeparmentByIdDto>(`${environment.apiUrl}/departments/${id}`);
+  deleteDepartmentById( id: string ): Observable<void> {
+    return this.http.delete<void>(`${environment.apiUrl}/departments/${id}`);
   }
 
 }
