@@ -20,7 +20,7 @@ export class SidebarComponent implements OnInit{
     private route: ActivatedRoute,
     private router: Router,
     private authenticationService: AuthenticationService) {}
-  
+
   ngOnInit(): void {
     this.authenticationService.checkToken()
         .subscribe((userFullName) => {
@@ -36,6 +36,7 @@ export class SidebarComponent implements OnInit{
     { title: "Subs", icon: "store", submenus: [ { title: 'submenu1', route: '/ruta' }, { title: 'submmenu2', route: '/ruta2' }, { title: 'submmenu2', route: '/ruta2' }, { title: 'submmenu2', route: '/ruta2' }, { title: 'submmenu2', route: '/ruta2' } ] },
     { title: "Direcciones", icon: "layers", route: '/super-dashboard/directions' },
     { title: "Departamentos", icon: "layers", route: '/super-dashboard/departments' },
+    { title: "Empresas", icon: "business", route: '/super-dashboard/enterprises' },
   ];
 
   setOpen(){
@@ -49,5 +50,5 @@ export class SidebarComponent implements OnInit{
     const title = item.title;
     this.showSubmenu[title] = !this.showSubmenu[title];
   }
-  
+
 }
