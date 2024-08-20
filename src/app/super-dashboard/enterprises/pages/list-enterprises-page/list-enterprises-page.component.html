@@ -1,1 +1,9 @@
-<p>list-enterprises-page works!</p>
+<div class="mt-4">
+  <app-reusable-table-backend [showSearchWithCreate]="true"
+                              [buttonText]="'Nueva Empresa'"
+                              [data]="dataList"
+                              [columns]="tableColumns"
+                              [config]="tableConfig"
+                              (onClickInCreate)="onClickInCreate()"
+                              (onTableAction)="onTableAction($event)"/>
+</div>

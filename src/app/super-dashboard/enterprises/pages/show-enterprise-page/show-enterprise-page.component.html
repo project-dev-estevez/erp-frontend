@@ -1,1 +1,30 @@
-<p>show-enterprise-page works!</p>
+<div class="m-7 mt-6 mb-6">
+  <div class="flex justify-center">
+    <mat-card *ngIf="enterprise" class="w-6/12" appearance="outlined">
+      <mat-card-header>
+        <mat-card-title-group>
+          <mat-card-title>Empresa</mat-card-title>
+        </mat-card-title-group>
+      </mat-card-header>
+      <mat-card-content>
+        <table class="min-w-full divide-y divide-gray-200">
+          <tbody class="bg-white divide-y divide-gray-200">
+            <tr>
+              <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">Nombre</td>
+              <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                {{ enterprise.name }}
+              </td>
+            </tr>
+            <tr>
+              <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">Ceo</td>
+              <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+
+                {{ enterprise.ceo.fullName }}
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>

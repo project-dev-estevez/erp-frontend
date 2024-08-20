@@ -5,7 +5,9 @@ import { EnterprisesService } from '../../services/enterprises.service';
 import { CeosService } from '../../../ceos/services/ceos.service';
 import { Ceo } from 'src/app/super-dashboard/ceos/interfaces/ceo-entity';
 import { CreateEnterpriseDto } from '../../interfaces/create-enterprise.dto';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
+import { UpdateEnterpriseDto } from '../../interfaces/update-enterprise.dto';
+import { switchMap } from 'rxjs';
 
 @Component({
   selector: 'app-create-or-edit-enterprise-page',
@@ -14,36 +16,28 @@ import { Router } from '@angular/router';
 })
 export class CreateOrEditEnterprisePageComponent implements OnInit {
 
+  private enterpriseId: string = '';
+
   public ceos: Ceo[] = [];
 
   public enterpriseForm: FormGroup = this.fb.group({
-    name:         ['', [ Validators.required, Validators.minLength(3), Validators.maxLength(150) ]],
-    ceoId:  ['', [ Validators.required ]],
-    // managerId:    ['']
+    name: ['', [ Validators.required, Validators.minLength(3), Validators.maxLength(150) ]],
+    ceoId: ['', [ Validators.required ]],
   });
 
   constructor(
     private enterpriseService: EnterprisesService,
-    private CeosService: CeosService,
+    private ceosService: CeosService,
     private sweetAlert: SweetAlertService,
     private fb: FormBuilder,
     private router: Router,
+    private activatedRoute: ActivatedRoute
 
   ){}
 
-  private getAllCeos() {
-    this.CeosService.getAllCeos().subscribe(
-      response => {
-        this.ceos = response.results;
-      },
-      errorResponse => {
-        this.sweetAlert.presentError('Obteniendo los Ceos');
-      }
-    );
-  }
-
   ngOnInit(): void {
     this.getAllCeos();
+    this.checkIsUpdate();
 
   }
 
@@ -63,12 +57,64 @@ export class CreateOrEditEnterprisePageComponent implements OnInit {
     );
   }
 
+  private updateEnterprise(){
+    const UpdateEnterpriseDto: UpdateEnterpriseDto = this.enterpriseForm.value;
+
+    this.enterpriseService.updateEnterpriseById( this.enterpriseId, UpdateEnterpriseDto ).subscribe(
+      response => {
+        this.sweetAlert.presentSuccess(`Empresa ${response.name} actualizada con éxito`);
+        this.redirectToList();
+      },
+      errorResponse => {
+        this.sweetAlert.presentError('Actualizando la empresa');
+      }
+    );
+  }
+
+  private getAllCeos() {
+    this.ceosService.getAllCeos().subscribe(
+      response => {
+        this.ceos = response.results;
+      },
+      errorResponse => {
+        this.sweetAlert.presentError('Obteniendo los Ceos');
+      }
+    );
+  }
+
+  private checkIsUpdate(){
+
+    const route = this.router.url;
+    if( !route.includes('edit') ) return;
+
+    this.activatedRoute.params.pipe(
+      switchMap( ({id}) => {
+        this.enterpriseId = id;
+        return this.enterpriseService.getEnterpriseById( id );
+      } )
+    ).subscribe(
+      response => {
+        if(!response)return this.router.navigateByUrl('/');
+
+        this.enterpriseForm.reset({
+          name: response.name,
+          ceoId: response.ceo.id
+        });
+        return;
+      },
+      errorResponse => {
+        this.sweetAlert.presentError('Obteniendo la empresa por Id');
+        return this.router.navigateByUrl('/');
+      }
+    )
+  }
+
   onSubmit() {
 
-    //if( this.enterpriseId ) {
-      //this.updateEnterprise();
-      //return;
-    //}
+    if( this.enterpriseId ) {
+      this.updateEnterprise();
+      return;
+    }
 
     // Crear
     this.createEnterprise();
