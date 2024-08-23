@@ -23,6 +23,9 @@ export class CreateOrEditEnterprisePageComponent implements OnInit {
   public enterpriseForm: FormGroup = this.fb.group({
     name: ['', [ Validators.required, Validators.minLength(3), Validators.maxLength(150) ]],
     ceoId: ['', [ Validators.required ]],
+    address: ['',[Validators.required]],
+    phoneNumber: ['', [Validators.required]],
+    rfc: ['',[Validators.required]]
   });
 
   constructor(
@@ -98,7 +101,10 @@ export class CreateOrEditEnterprisePageComponent implements OnInit {
 
         this.enterpriseForm.reset({
           name: response.name,
-          ceoId: response.ceo.id
+          ceoId: response.ceo.id,
+          address: response.address,
+          phoneNumber: response.phoneNumber,
+          rfc: response.rfc
         });
         return;
       },

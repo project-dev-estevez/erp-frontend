@@ -1,35 +1,52 @@
 <div class="container mx-auto w-full m-5">
   <form [formGroup]="enterpriseForm" (ngSubmit)="onSubmit()">
-      <div class="flex flex-col p-4">
-          <!-- Nombre -->
-          <mat-form-field appearance="fill">
-              <mat-label>Nombre</mat-label>
-              <input type="text"
-                     matInput
-                     placeholder="Ingrese el nombre del empresa..."
-                     formControlName="name"/>
-          </mat-form-field>
-
-          <!-- Dirección a la que pertenece -->
-          <mat-form-field appearance="fill">
-              <mat-label>Ceo</mat-label>
-              <mat-select formControlName="ceoId">
-                  <ng-container *ngFor="let ceo of ceos">
-                      <mat-option [value]="ceo.id">
-                          {{ ceo.fullName }}
-                      </mat-option>
-                  </ng-container>
-              </mat-select>
-          </mat-form-field>
-
-          <!-- Boton -->
-          <button mat-raised-button
-                  color="primary"
-                  type="submit"
-                  [disabled]="enterpriseForm.invalid">
+    <div class="flex flex-col p-4">
+      <mat-form-field appearance="fill">
+        <mat-label>Nombre</mat-label>
+        <input type="text"
+                matInput
+                placeholder="Ingrese el nombre del empresa..."
+                formControlName="name"/>
+      </mat-form-field>
+      <!-- Dirección a la que pertenece -->
+      <mat-form-field appearance="fill">
+        <mat-label>Ceo</mat-label>
+        <mat-select formControlName="ceoId">
+          <ng-container *ngFor="let ceo of ceos">
+            <mat-option [value]="ceo.id">
+              {{ ceo.fullName }}
+            </mat-option>
+          </ng-container>
+        </mat-select>
+      </mat-form-field>
+      <mat-form-field appearance="fill">
+        <mat-label>Dirección</mat-label>
+        <input type="text"
+                matInput
+                placeholder="Ingrese la dirección..."
+                formControlName="address"/>
+      </mat-form-field>
+      <mat-form-field appearance="fill">
+        <mat-label>Teléfono</mat-label>
+        <input type="text"
+                matInput
+                placeholder="Ingrese el telefono..."
+                formControlName="phoneNumber"/>
+      </mat-form-field>
+      <mat-form-field appearance="fill">
+        <mat-label>RFC</mat-label>
+        <input type="text"
+                matInput
+                placeholder="Ingrese el RFC..."
+                formControlName="rfc"/>
+      </mat-form-field>
+      <!-- Boton -->
+      <button mat-raised-button
+                color="primary"
+                type="submit"
+                [disabled]="enterpriseForm.invalid">
               Guardar
-          </button>
-
-      </div>
-  </form>
+      </button>
+    </div>
+</form>
 </div>

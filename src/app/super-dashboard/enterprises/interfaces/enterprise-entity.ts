@@ -5,6 +5,9 @@ export interface Enterprise {
     createdAt: Date;
     updatedAt: Date;
     ceo:       Ceo;
+    address: string;
+    phoneNumber: string;
+    rfc: string;
 }
 
 interface Ceo {

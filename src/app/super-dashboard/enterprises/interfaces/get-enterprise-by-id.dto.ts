@@ -5,6 +5,9 @@ export interface ResponseGetEnterpriseByIdDto {
   updateAt: Date;
   deletedAt: Date;
   ceo: Ceo;
+  address:string;
+  phoneNumber: string;
+  rfc: string;
 }
 
 interface Ceo {

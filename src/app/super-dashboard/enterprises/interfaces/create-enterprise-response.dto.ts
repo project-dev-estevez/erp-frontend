@@ -5,6 +5,8 @@ export interface CreateEnterpriseResponseDto {
   createdAt: Date;
   updatedAt: Date;
   deletedAt: Date;
+  address: string;
+
 }
 
 interface Ceo {
