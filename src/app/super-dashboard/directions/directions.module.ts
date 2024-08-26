@@ -5,12 +5,14 @@ import { DirectionsRoutingModule } from './directions-routing.module';
 import { CreateOrEditDirectionPageComponent } from './pages/create-or-edit-direction-page/create-or-edit-direction-page.component';
 import { ListDirectionsPageComponent } from './pages/list-directions-page/list-directions-page.component';
 import { SharedModule } from '@shared/shared.module';
+import { ShowDirectionPageComponent } from './pages/show-direction-page/show-direction-page.component';
 
 
 @NgModule({
   declarations: [
     CreateOrEditDirectionPageComponent,
-    ListDirectionsPageComponent
+    ListDirectionsPageComponent,
+    ShowDirectionPageComponent
   ],
   imports: [
     CommonModule,

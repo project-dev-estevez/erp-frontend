@@ -3,6 +3,10 @@ import { Direction } from '../../interfaces';
 import { TableColumn } from '@shared/interfaces/table-column';
 import { TableConfig } from '@shared/interfaces/table-config';
 import { DirectionsService } from '../../services/directions.service';
+import { SweetAlertService } from '@shared/services/sweet-alert.service';
+import { Router } from '@angular/router';
+import { TableAction } from '@shared/interfaces/table-action';
+import { TABLE_ACTION } from '@shared/enums/table-action.enum';
 
 @Component({
   selector: 'app-list-directions-page',
@@ -23,14 +27,16 @@ export class ListDirectionsPageComponent implements OnInit {
   };
 
   constructor(
-    private directionsService: DirectionsService
+    private directionsService: DirectionsService,
+    private sweetAlert: SweetAlertService,
+    private router: Router
   ) { }
 
   ngOnInit(): void {
-    this.looadDataList();
+    this.loadDataList();
   }
 
-  looadDataList() {
+  loadDataList() {
     this.directionsService.getAllDirections().subscribe(
       response => {        
         this.dataList = response.results;
@@ -39,6 +45,48 @@ export class ListDirectionsPageComponent implements OnInit {
       },
       errorResponse => {
         console.error(errorResponse);
+      }
+    );
+  }
+
+  onClickInCreate() {
+    this.router.navigate(['/super-dashboard/directions/new-direction']);
+  }
+
+  onTableAction( tableAction: TableAction ) {
+
+    const id = tableAction.row.id;
+
+    switch ( tableAction.action ) {
+      case TABLE_ACTION.EDIT:
+        this.router.navigate([`/super-dashboard/directions/edit/${id}`]);
+      break;
+
+      case TABLE_ACTION.SHOW:
+        this.router.navigate([`/super-dashboard/directions/show/${id}`]);
+      break;
+
+      case TABLE_ACTION.DELETE:
+        this.deleteDirection( id );
+      break;
+
+      default:
+      break;
+    }
+  }
+
+  async deleteDirection( id: string ) {
+
+    const { isConfirmed } = await this.sweetAlert.presentDelete('El CEO');
+    if( !isConfirmed ) return;
+
+    this.directionsService.deleteDirectionById( id ).subscribe(
+      response => {
+        this.sweetAlert.presentSuccess('¡Dirección eliminada correctamente!');
+        this.loadDataList();
+      },
+      errorResponse => {
+        console.log(errorResponse);
       }
     );
   }

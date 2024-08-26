@@ -3,5 +3,7 @@
                                 [buttonText]="'Nueva Dirección'"
                                 [data]="dataList"
                                 [columns]="tableColumns"
-                                [config]="tableConfig"/>
+                                [config]="tableConfig"
+                                (onClickInCreate)="onClickInCreate()"
+                                (onTableAction)="onTableAction($event)"/>
 </div>
