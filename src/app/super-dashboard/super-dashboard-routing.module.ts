@@ -9,6 +9,7 @@ const routes: Routes = [
     component: SuperAdminLayoutComponent,
     children: [
       { path: '', component: SuperMainContentPageComponent },
+      { path: 'managers', loadChildren: () => import('./managers/managers.module').then( m => m.ManagersModule), data: { breadcrumb: 'Managers' } },
       { path: 'directions', loadChildren: () => import('./directions/directions.module').then(m => m.DirectionsModule), data: { breadcrumb: 'Direcciones' } },
       { path: 'departments', loadChildren: () => import('./departments/departments.module').then(m => m.DepartmentsModule), data: { breadcrumb: 'Departamentos' } },
       { path: 'enterprises', loadChildren: () => import('./enterprises/enterprises.module').then(m => m.EnterprisesModule), data: { breadcrumb: 'Empresas' } },

@@ -33,6 +33,7 @@ export class SidebarComponent implements OnInit{
 
   public menuItems: MenuItem[] = [
     { title: "Home", icon: "home", route: '/super-dashboard' },
+    { title: "Gerentes", icon: "people-roof", route: '/super-dashboard/managers' },
     { title: "Subs", icon: "store", submenus: [ { title: 'submenu1', route: '/ruta' }, { title: 'submmenu2', route: '/ruta2' }, { title: 'submmenu2', route: '/ruta2' }, { title: 'submmenu2', route: '/ruta2' }, { title: 'submmenu2', route: '/ruta2' } ] },
     { title: "Direcciones", icon: "location_on", route: '/super-dashboard/directions' },
     { title: "Departamentos", icon: "layers", route: '/super-dashboard/departments' },
