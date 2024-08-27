@@ -7,6 +7,7 @@ export interface Direction {
     updatedAt:          Date;
     enterprise:         Enterprise;
     director:           Director;
+    direction:          Direction;
 }
 
 interface Director {

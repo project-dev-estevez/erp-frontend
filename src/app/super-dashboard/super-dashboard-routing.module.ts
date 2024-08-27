@@ -13,6 +13,7 @@ const routes: Routes = [
       { path: 'directions', loadChildren: () => import('./directions/directions.module').then(m => m.DirectionsModule), data: { breadcrumb: 'Direcciones' } },
       { path: 'departments', loadChildren: () => import('./departments/departments.module').then(m => m.DepartmentsModule), data: { breadcrumb: 'Departamentos' } },
       { path: 'enterprises', loadChildren: () => import('./enterprises/enterprises.module').then(m => m.EnterprisesModule), data: { breadcrumb: 'Empresas' } },
+      { path: 'ceos', loadChildren: () => import('./ceos/ceos.module').then(m => m.CeosModule), data: { breadcrumb: 'CEOs' } },
       { path: '**', redirectTo: ''}
     ]
   }

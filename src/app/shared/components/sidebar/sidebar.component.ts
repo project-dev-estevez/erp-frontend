@@ -35,9 +35,10 @@ export class SidebarComponent implements OnInit{
     { title: "Home", icon: "home", route: '/super-dashboard' },
     { title: "Gerentes", icon: "people-roof", route: '/super-dashboard/managers' },
     { title: "Subs", icon: "store", submenus: [ { title: 'submenu1', route: '/ruta' }, { title: 'submmenu2', route: '/ruta2' }, { title: 'submmenu2', route: '/ruta2' }, { title: 'submmenu2', route: '/ruta2' }, { title: 'submmenu2', route: '/ruta2' } ] },
-    { title: "Direcciones", icon: "layers", route: '/super-dashboard/directions' },
+    { title: "Direcciones", icon: "location_on", route: '/super-dashboard/directions' },
     { title: "Departamentos", icon: "layers", route: '/super-dashboard/departments' },
     { title: "Empresas", icon: "business", route: '/super-dashboard/enterprises' },
+    { title: "CEOs", icon: "groups", route: '/super-dashboard/ceos' },
   ];
 
   setOpen(){

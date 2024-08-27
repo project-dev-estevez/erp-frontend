@@ -1,24 +1,24 @@
 import { Component, OnInit } from '@angular/core';
-import { Direction } from '../../interfaces';
+import { Ceo } from '../../interfaces/ceo-entity';
 import { TableColumn } from '@shared/interfaces/table-column';
 import { TableConfig } from '@shared/interfaces/table-config';
-import { DirectionsService } from '../../services/directions.service';
+import { CeosService } from '../../services/ceos.service';
 import { SweetAlertService } from '@shared/services/sweet-alert.service';
 import { Router } from '@angular/router';
 import { TableAction } from '@shared/interfaces/table-action';
 import { TABLE_ACTION } from '@shared/enums/table-action.enum';
 
 @Component({
-  selector: 'app-list-directions-page',
-  templateUrl: './list-directions-page.component.html',
-  styleUrl: './list-directions-page.component.scss'
+  selector: 'app-list-ceos-page',
+  templateUrl: './list-ceos-page.component.html',
+  styleUrl: './list-ceos-page.component.scss'
 })
-export class ListDirectionsPageComponent implements OnInit {
+export class ListCeosPageComponent implements OnInit {
 
-  public dataList: Direction[] = [];
+  public dataList: Ceo[] = [];
 
   public tableColumns: TableColumn[] = [
-    { label: 'Nombre', def: 'name', dataKey: 'name' },
+    { label: 'Nombre', def: 'fullName', dataKey: 'fullName' },
   ];
 
   public tableConfig: TableConfig = {
@@ -27,30 +27,29 @@ export class ListDirectionsPageComponent implements OnInit {
   };
 
   constructor(
-    private directionsService: DirectionsService,
+    private ceosService: CeosService,
     private sweetAlert: SweetAlertService,
     private router: Router
-  ) { }
+  ){}
 
   ngOnInit(): void {
     this.loadDataList();
   }
 
-  loadDataList() {
-    this.directionsService.getAllDirections().subscribe(
-      response => {        
+  private loadDataList() {
+    this.ceosService.getAllCeos().subscribe(
+      response => {
         this.dataList = response.results;
-        this.tableConfig = { ...this.tableConfig, totalItemsPagination: response.total };
-        console.log(this.dataList);
+        this.tableConfig.totalItemsPagination = response.total;
       },
       errorResponse => {
-        console.error(errorResponse);
+        console.log(errorResponse);
       }
     );
   }
 
   onClickInCreate() {
-    this.router.navigate(['/super-dashboard/directions/new-direction']);
+    this.router.navigate(['/super-dashboard/ceos/new-ceo']);
   }
 
   onTableAction( tableAction: TableAction ) {
@@ -59,15 +58,15 @@ export class ListDirectionsPageComponent implements OnInit {
 
     switch ( tableAction.action ) {
       case TABLE_ACTION.EDIT:
-        this.router.navigate([`/super-dashboard/directions/edit/${id}`]);
+        this.router.navigate([`/super-dashboard/ceos/edit/${id}`]);
       break;
 
       case TABLE_ACTION.SHOW:
-        this.router.navigate([`/super-dashboard/directions/show/${id}`]);
+        this.router.navigate([`/super-dashboard/ceos/show/${id}`]);
       break;
 
       case TABLE_ACTION.DELETE:
-        this.deleteDirection( id );
+        this.deleteCeo( id );
       break;
 
       default:
@@ -75,14 +74,14 @@ export class ListDirectionsPageComponent implements OnInit {
     }
   }
 
-  async deleteDirection( id: string ) {
+  async deleteCeo( id: string ) {
 
     const { isConfirmed } = await this.sweetAlert.presentDelete('El CEO');
     if( !isConfirmed ) return;
 
-    this.directionsService.deleteDirectionById( id ).subscribe(
+    this.ceosService.deleteCeoById( id ).subscribe(
       response => {
-        this.sweetAlert.presentSuccess('¡Dirección eliminada correctamente!');
+        this.sweetAlert.presentSuccess('¡CEO eliminado correctamente!');
         this.loadDataList();
       },
       errorResponse => {
