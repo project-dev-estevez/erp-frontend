@@ -1,0 +1,9 @@
+<div class="mt-4">
+    <app-reusable-table-backend [showSearchWithCreate]="true" 
+                                [buttonText]="'Nueva Área'"
+                                [data]="dataList"
+                                [columns]="tableColumns"
+                                [config]="tableConfig"
+                                (onClickInCreate)="onClickInCreate()"
+                                (onTableAction)="onTableAction($event)"/>
+</div>

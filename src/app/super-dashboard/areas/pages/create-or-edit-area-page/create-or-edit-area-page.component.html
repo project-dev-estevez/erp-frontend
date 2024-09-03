@@ -1,0 +1,55 @@
+<div class="container mx-auto w-full m-5">
+    <form [formGroup]="areaForm" (ngSubmit)="onSubmit()">
+        <div class="flex flex-col p-4">
+
+            <mat-form-field appearance="fill">
+                <mat-label>Nombre</mat-label>
+                <input type="text" 
+                    matInput 
+                    placeholder="Ingrese el nombre del Área" 
+                    formControlName="name"/>
+            </mat-form-field>
+
+            <mat-form-field appearance="fill">
+                <mat-label>Coordinador</mat-label>
+                <mat-select formControlName="coordinatorId">
+                    <ng-container *ngFor="let manager of managers">
+                        <mat-option [value]="manager.id">
+                            {{ manager.name }}
+                        </mat-option>
+                    </ng-container>
+                </mat-select>
+            </mat-form-field>
+
+            <mat-form-field appearance="fill">
+                <mat-label>Líder</mat-label>
+                <mat-select formControlName="leaderId">
+                    <ng-container *ngFor="let manager of managers">
+                        <mat-option [value]="manager.id">
+                            {{ manager.name }}
+                        </mat-option>
+                    </ng-container>
+                </mat-select>
+            </mat-form-field>
+
+            <mat-form-field appearance="fill">
+                <mat-label>Departamento</mat-label>
+                <mat-select formControlName="departmentId">
+                    <ng-container *ngFor="let department of departments">
+                        <mat-option [value]="department.id">
+                            {{ department.name }}
+                        </mat-option>
+                    </ng-container>
+                </mat-select>
+            </mat-form-field>
+
+            <button mat-raised-button 
+                    color="primary" 
+                    type="submit"
+                    [disabled]="areaForm.invalid">
+                Guardar
+            </button>
+
+        </div>
+    </form>
+</div>
