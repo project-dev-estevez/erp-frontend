@@ -1,0 +1,43 @@
+<div class="m-7 mt-6 mb-6">
+    <div class="flex justify-center">
+        <mat-card *ngIf="area" class="w-6/12" appearance="outlined">
+            <mat-card-header>
+                <mat-card-title-group>
+                    <mat-card-title>Área</mat-card-title>
+                </mat-card-title-group>
+            </mat-card-header>
+            <mat-card-content>
+                <table class="min-w-full divide-y divide-gray-200">
+                <tbody class="bg-white divide-y divide-gray-200">
+                    <tr>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">Nombre</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                            {{ area.name }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">Coordinador</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                            {{ area.coordinatorId }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">Líder</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                            {{ area.leaderId }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">Departamento</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                            {{ area.department.name }}
+                        </td>
+                    </tr>
+                </tbody>
+                </table>
+            </mat-card-content>
+        </mat-card>
+    </div>
+</div>
+
+//TODO Cargar datos del Coordinador y del Líder.
