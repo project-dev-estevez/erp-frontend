@@ -24,7 +24,7 @@ export class CreateOrEditManagerPageComponent implements OnInit{
   });
 
   constructor(
-    private ManagersService: ManagersService,
+    private managersService: ManagersService,
     private sweetAlert: SweetAlertService,
     private fb: FormBuilder,
     private router: Router,
@@ -39,7 +39,7 @@ export class CreateOrEditManagerPageComponent implements OnInit{
 
     const CreateManagerDto: CreateManagerDto = this.managerForm.value;
 
-    this.ManagersService.createManager( CreateManagerDto ).subscribe(
+    this.managersService.createManager( CreateManagerDto ).subscribe(
       response => {
         const name = response.name;
         this.sweetAlert.presentSuccess( `Gerente ${name} creado con éxito` );
@@ -54,7 +54,7 @@ export class CreateOrEditManagerPageComponent implements OnInit{
   private updateManager(){
     const UpdateManagerDto: UpdateManagerDto = this.managerForm.value;
 
-    this.ManagersService.updateManagerById(this.managerId, UpdateManagerDto).subscribe(
+    this.managersService.updateManagerById(this.managerId, UpdateManagerDto).subscribe(
       response =>{
         this.sweetAlert.presentSuccess(`Manager ${response.fullName} actualizado con éxito`);
         this.redirectToList();
@@ -72,7 +72,7 @@ export class CreateOrEditManagerPageComponent implements OnInit{
     this.activatedRoute.params.pipe(
       switchMap( ({id})=>{
         this.managerId = id;
-        return this.ManagersService.getManagerById( id );
+        return this.managersService.getManagerById( id );
       } )
     ).subscribe(
       response => {
