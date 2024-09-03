@@ -1,0 +1,25 @@
+<div class="m-7 mt-6 mb-6">
+  <div class="flex justify-center">
+    <mat-card *ngIf="manager" class="w-6/12" appareance="outlined">
+      <mat-card-header>
+        <mat-card-title-group>
+          <mat-card-title>Gerente</mat-card-title>
+        </mat-card-title-group>
+      </mat-card-header>
+      <mat-card-content>
+        <table class="min-w-full divide-y divide-gray-200">
+          <tbody class="bg-white divide-gray-200 divide-y">
+            <tr>
+              <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">Nombre</td>
+              <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500"> {{manager.fullName}} </td>
+            </tr>
+            <tr>
+              <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">Email</td>
+              <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500"> {{manager.email}} </td>
+            </tr>
+          </tbody>
+        </table>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>
