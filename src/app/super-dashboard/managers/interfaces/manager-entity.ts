@@ -1,6 +1,5 @@
 export interface Manager{
   id: string;
-  name: string;
+  fullName: string;
   email: string;
-  manager: Manager;
 }

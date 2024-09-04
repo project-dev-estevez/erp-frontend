@@ -6,11 +6,14 @@ import { ListManagersPageComponent } from './pages/list-managers-page/list-manag
 import { CreateOrEditManagerPageComponent } from './pages/create-or-edit-manager-page/create-or-edit-manager-page.component';
 import { SharedModule } from '@shared/shared.module';
 
+import { ShowManagerPageComponent } from './pages/show-manager-page/show-manager-page.component';
+
 
 @NgModule({
   declarations: [
     ListManagersPageComponent,
-    CreateOrEditManagerPageComponent
+    CreateOrEditManagerPageComponent,
+    ShowManagerPageComponent
   ],
   imports: [
     CommonModule,

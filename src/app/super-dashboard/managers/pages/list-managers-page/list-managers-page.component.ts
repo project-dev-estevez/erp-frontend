@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Manager } from '../../interfaces';
-import { TableColumn } from '../../../../shared/interfaces/table-column';
+import { Manager } from '../../interfaces/manager-entity';
+import { TableColumn } from '@shared/interfaces/table-column';
 import { TableConfig } from '@shared/interfaces/table-config';
 import { SweetAlertService } from '@shared/services/sweet-alert.service';
 import { Router } from '@angular/router';
@@ -18,7 +18,7 @@ export class ListManagersPageComponent implements OnInit {
   public dataList: Manager[] = [];
 
   public tableColumns: TableColumn[] = [
-    { label: 'Nombre', def:'name', dataKey:'name' },
+    { label: 'Nombre', def:'name', dataKey:'fullName' },
   ];
 
   public tableConfig: TableConfig = {
