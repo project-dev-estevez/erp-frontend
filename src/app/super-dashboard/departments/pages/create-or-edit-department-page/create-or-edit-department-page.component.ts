@@ -9,6 +9,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { switchMap } from 'rxjs';
 import { UpdateDepartmentDto } from '../../interfaces/update-department.dto';
 import { AuthenticationService } from 'src/app/authentication/services/authentication.service';
+import { ManagersService } from 'src/app/super-dashboard/managers/services/managers.service';
+import { Manager } from 'src/app/super-dashboard/managers/interfaces/manager-entity';
 
 @Component({
   selector: 'app-create-or-edit-department-page',
@@ -20,16 +22,18 @@ export class CreateOrEditDepartmentPageComponent implements OnInit {
   private deparmentId: string = '';
 
   public directions: Direction[] = [];
+  public managers: Manager[] = [];
 
   public deparmentForm: FormGroup = this.fb.group({
     name:         ['', [ Validators.required, Validators.minLength(3), Validators.maxLength(150) ]],
     directionId:  ['', [ Validators.required ]],
-    // managerId:    ['']
+    managerId:    ['', [ Validators.required ]],
   });
 
   constructor(
     private directionsService: DirectionsService,
     private departmentsService: DepartmentsService,
+    private managersService: ManagersService,
     private sweetAlert: SweetAlertService,
     private fb: FormBuilder,
     private router: Router,
@@ -38,6 +42,7 @@ export class CreateOrEditDepartmentPageComponent implements OnInit {
 
   ngOnInit(): void {
     this.getAllDirections();
+    this.getAllManagers();
     this.checkIsUpdate();
   }
 
@@ -79,6 +84,13 @@ export class CreateOrEditDepartmentPageComponent implements OnInit {
       errorResponse => {
         this.sweetAlert.presentError('Obteniendo las direcciones');
       }
+    );
+  }
+
+  private getAllManagers(): void {
+    this.managersService.getAllManagers().subscribe(
+      response => this.managers = response.results,
+      errorResponse => this.sweetAlert.presentError('Obteniendo Listado de Managers...')
     );
   }
 
