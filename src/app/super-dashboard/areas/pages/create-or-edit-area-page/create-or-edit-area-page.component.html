@@ -15,7 +15,7 @@
                 <mat-select formControlName="coordinatorId">
                     <ng-container *ngFor="let manager of managers">
                         <mat-option [value]="manager.id">
-                            {{ manager.name }}
+                            {{ manager.fullName }}
                         </mat-option>
                     </ng-container>
                 </mat-select>
@@ -26,7 +26,7 @@
                 <mat-select formControlName="leaderId">
                     <ng-container *ngFor="let manager of managers">
                         <mat-option [value]="manager.id">
-                            {{ manager.name }}
+                            {{ manager.fullName }}
                         </mat-option>
                     </ng-container>
                 </mat-select>
