@@ -1,0 +1,46 @@
+<div class="container mx-auto w-full m-5">
+    <form [formGroup]="customerForm" (ngSubmit)="onSubmit()">
+        <div class="flex flex-col p-4">
+
+            <mat-form-field appearance="fill">
+                <mat-label>Nombre</mat-label>
+                <input type="text" 
+                    matInput 
+                    placeholder="Ingrese el Nombre del Cliente" 
+                    formControlName="name"/>
+            </mat-form-field>
+
+            <mat-form-field appearance="fill">
+                <mat-label>RFC</mat-label>
+                <input type="text" 
+                    matInput 
+                    placeholder="Ingrese el RFC" 
+                    formControlName="rfc"/>
+            </mat-form-field>
+
+            <mat-form-field appearance="fill">
+                <mat-label>Email</mat-label>
+                <input type="email" 
+                    matInput 
+                    placeholder="Ingrese el Email" 
+                    formControlName="email"/>
+            </mat-form-field>
+
+            <mat-form-field appearance="fill">
+                <mat-label>Teléfono</mat-label>
+                <input type="tel" 
+                    matInput 
+                    placeholder="Ingrese el Número de Teléfono" 
+                    formControlName="phoneNumber"/>
+            </mat-form-field>
+
+            <button mat-raised-button 
+                    color="primary" 
+                    type="submit"
+                    [disabled]="customerForm.invalid">
+                Guardar
+            </button>
+
+        </div>
+    </form>
+</div>
