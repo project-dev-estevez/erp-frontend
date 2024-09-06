@@ -15,6 +15,7 @@ const routes: Routes = [
       { path: 'enterprises', loadChildren: () => import('./enterprises/enterprises.module').then(m => m.EnterprisesModule), data: { breadcrumb: 'Empresas' } },
       { path: 'ceos', loadChildren: () => import('./ceos/ceos.module').then(m => m.CeosModule), data: { breadcrumb: 'CEOs' } },
       { path: 'areas', loadChildren: () => import('./areas/areas.module').then(m => m.AreasModule), data: { breadcrumb: 'Areas' } },
+      { path: 'empoyees', loadChildren: () => import('./empoyees/empoyees.module').then(m => m.EmpoyeesModule), data: { breadcrumb: 'Puestos' } },
       { path: '**', redirectTo: ''}
     ]
   }

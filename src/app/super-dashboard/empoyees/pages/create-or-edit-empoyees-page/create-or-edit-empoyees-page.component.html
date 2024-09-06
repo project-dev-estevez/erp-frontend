@@ -1,0 +1,38 @@
+
+<div class="container mx-auto w-full m-5">
+  <form [formGroup]="empoyeesForm" (ngSubmit)="onSubmit()">
+    <div class="flex flex-col p-4">
+      <mat-form-field appearance="fill">
+        <mat-label>Nombre</mat-label>
+        <input type="text"
+                matInput
+                placeholder="Ingrese el nombre del puesto ..."
+                formControlName="name"/>
+      </mat-form-field>
+      <mat-form-field appearance="fill">
+        <mat-label>Posición</mat-label>
+        <input type="text"
+                matInput
+                placeholder="Ingrese la posición..."
+                formControlName="position"/>
+      </mat-form-field>
+      <mat-form-field appearance="fill">
+        <mat-label>Áreas</mat-label>
+        <mat-select formControlName="areaId">
+          <ng-container *ngFor="let area of areas">
+            <mat-option [value]="area.id">
+              {{ area.name }}
+            </mat-option>
+          </ng-container>
+        </mat-select>
+      </mat-form-field>
+      <!-- Boton -->
+      <button mat-raised-button
+                color="primary"
+                type="submit"
+                [disabled]="empoyeesForm.invalid">
+              Guardar
+      </button>
+    </div>
+</form>
+</div>

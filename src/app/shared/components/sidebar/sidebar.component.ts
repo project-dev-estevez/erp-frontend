@@ -39,7 +39,9 @@ export class SidebarComponent implements OnInit{
     { title: "Departamentos", icon: "layers", route: '/super-dashboard/departments' },
     { title: "Empresas", icon: "business", route: '/super-dashboard/enterprises' },
     { title: "CEOs", icon: "groups", route: '/super-dashboard/ceos' },
-    { title: "Áreas", icon: "corporate_fare", route: '/super-dashboard/areas'}
+    { title: "Áreas", icon: "corporate_fare", route: '/super-dashboard/areas'},
+    { title: "Puestos", icon: "person_search", route: '/super-dashboard/empoyees' },
+
   ];
 
   setOpen(){
