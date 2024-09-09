@@ -1,4 +1,5 @@
 export interface ResponseGetAreaByIdDto {
+    id: string;
     name: string;
     coordinatorId: string;
     leaderId: string;
@@ -7,6 +8,7 @@ export interface ResponseGetAreaByIdDto {
 }
 
 export interface Area{
+    id: string;
     name: string;
     coordinatorId: string;
     leaderId: string;
