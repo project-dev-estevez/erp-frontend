@@ -1,0 +1,9 @@
+<div>
+  <app-reusable-table-backend [showSearchWithCreate]="true"
+                              [buttonText]="'Nuevo Puesto'"
+                              [data]="dataList"
+                              [columns]="tableColumns"
+                              [config]="tableConfig"
+                              (onClickInCreate)="onClickInCreate()"
+                              (onTableAction)="onTableAction($event)" />
+</div>

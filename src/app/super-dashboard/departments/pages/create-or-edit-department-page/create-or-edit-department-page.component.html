@@ -22,6 +22,18 @@
                 </mat-select>
             </mat-form-field>
 
+            <!-- Manager -->
+            <mat-form-field appearance="fill">
+                <mat-label>Manager</mat-label>
+                <mat-select formControlName="managerId">
+                    <ng-container *ngFor="let manager of managers">
+                        <mat-option [value]="manager.id">
+                            {{ manager.fullName }}
+                        </mat-option>
+                    </ng-container>
+                </mat-select>
+            </mat-form-field>
+
             <!-- Boton -->
             <button mat-raised-button 
                     color="primary" 
