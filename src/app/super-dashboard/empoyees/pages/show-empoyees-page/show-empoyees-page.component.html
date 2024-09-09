@@ -1,0 +1,35 @@
+<div class="m-7 mt-6 mb-6">
+  <div class="flex justify-center">
+    <mat-card *ngIf="empoyees" class="w-6/12" appareance="outlined">
+      <mat-card-header>
+        <mat-card-title-group>
+          <mat-card-title>Puesto</mat-card-title>
+        </mat-card-title-group>
+      </mat-card-header>
+      <mat-card-content>
+        <table class="min-w-full divide-y divide-gray-200">
+          <tbody class="bg-white divide-gray-200 divide-y">
+            <tr>
+              <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">Nombre</td>
+              <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                {{ empoyees.name }}
+              </td>
+            </tr>
+            <tr>
+              <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">Posición</td>
+              <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                {{ empoyees.position }}
+              </td>
+            </tr>
+            <tr>
+              <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">Área</td>
+              <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                {{ empoyees.area.name }}
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>
