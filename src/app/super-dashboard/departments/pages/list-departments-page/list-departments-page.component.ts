@@ -7,6 +7,7 @@ import { DepartmentsService } from '../../services/departments.service';
 import { TableAction } from '@shared/interfaces/table-action';
 import { TABLE_ACTION } from '@shared/enums/table-action.enum';
 import { SweetAlertService } from '@shared/services/sweet-alert.service';
+import { PaginationDto } from '@shared/interfaces/pagination.dto';
 
 @Component({
   selector: 'app-list-departments-page',
@@ -15,6 +16,7 @@ import { SweetAlertService } from '@shared/services/sweet-alert.service';
 })
 export class ListDepartmentsPageComponent implements OnInit {
 
+  private query: PaginationDto = { limit: 8, offset: 0 };
   public dataList: Department[] = [];
 
   public tableColumns: TableColumn[] = [
@@ -37,10 +39,13 @@ export class ListDepartmentsPageComponent implements OnInit {
   }
 
   private loadDataList() {
-    this.departmentsService.getAllDepartments().subscribe(
+    this.departmentsService.getAllDepartments( this.query ).subscribe(
       response => {
         this.dataList = response.results;
-        this.tableConfig.totalItemsPagination = response.total;
+        this.tableConfig = {
+          ...this.tableConfig, 
+          totalItemsPagination: response.total
+        };
       },
       errorResponse => {
         console.log(errorResponse);
@@ -72,6 +77,14 @@ export class ListDepartmentsPageComponent implements OnInit {
       default:
       break;
     }
+  }
+
+  onPaginationChange( paginationData: PaginationDto )
+  {
+    this.query.limit = paginationData.limit;
+    this.query.offset = paginationData.offset;
+
+    this.loadDataList();
   }
 
   async deleteDepartment( id: string ) {
