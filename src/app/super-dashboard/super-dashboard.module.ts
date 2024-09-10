@@ -7,7 +7,7 @@ import { SuperMainContentPageComponent } from './pages/super-main-content-page/s
 
 @NgModule({
   declarations: [
-    SuperMainContentPageComponent
+    SuperMainContentPageComponent,
   ],
   imports: [
     CommonModule,

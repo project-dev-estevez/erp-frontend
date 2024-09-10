@@ -41,6 +41,7 @@ export class SidebarComponent implements OnInit{
     { title: "CEOs", icon: "groups", route: '/super-dashboard/ceos' },
     { title: "Áreas", icon: "corporate_fare", route: '/super-dashboard/areas'},
     { title: "Clientes", icon: "account_circle", route: '/super-dashboard/customers'},
+    { title: "Proyectos", icon: "work", route: '/super-dashboard/projects'},
   ];
 
   setOpen(){
