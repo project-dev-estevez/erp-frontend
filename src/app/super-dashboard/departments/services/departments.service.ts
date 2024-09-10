@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams, HttpParamsOptions } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { CreateDepartmentDto, CreateDepartmentResponseDto, Department } from '../interfaces';
@@ -6,6 +6,7 @@ import { environment } from 'src/environments/environment.development';
 import { ResponseGetDeparmentByIdDto } from '../interfaces';
 import { UpdateDepartmentDto } from '../interfaces/update-department.dto';
 import { GetAllDepartmentsResponseDto } from '../interfaces/get-all-departments-response.dto';
+import { PaginationDto } from '@shared/interfaces/pagination.dto';
 
 @Injectable({
   providedIn: 'root'
@@ -16,8 +17,16 @@ export class DepartmentsService {
     private http: HttpClient
   ) { }
 
-  getAllDepartments(): Observable<GetAllDepartmentsResponseDto> {
-    return this.http.get<GetAllDepartmentsResponseDto>(`${environment.apiUrl}/departments`);
+  getAllDepartments( paginationDto: PaginationDto ): Observable<GetAllDepartmentsResponseDto> {
+
+    const { limit, offset } = paginationDto;
+
+    const httpOptions = {
+      params: new HttpParams().set('limit', limit ?? 8)
+                              .set('offset', offset ?? 0)
+    };
+
+    return this.http.get<GetAllDepartmentsResponseDto>(`${environment.apiUrl}/departments`, httpOptions);
   }
 
   getDepartmentById( id: string ): Observable<ResponseGetDeparmentByIdDto> {

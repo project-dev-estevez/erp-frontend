@@ -87,7 +87,7 @@ export class CreateOrEditAreaPageComponent implements OnInit {
   }
   
   private getAllDepartments() {
-    this.departmentsService.getAllDepartments().subscribe(
+    this.departmentsService.getAllDepartments({ limit: 100, offset: 0 }).subscribe(
       response => {
         this.departments = response.results;
       },

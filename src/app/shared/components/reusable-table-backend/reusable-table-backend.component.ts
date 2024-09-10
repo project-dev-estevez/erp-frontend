@@ -2,7 +2,7 @@ import { Component, Input, output, ViewChild } from '@angular/core';
 import { MatPaginator, PageEvent } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { TABLE_ACTION } from '@shared/enums/table-action.enum';
-import { PaginationData } from '@shared/interfaces/pagination-data';
+import { PaginationDto } from '@shared/interfaces/pagination.dto';
 import { TableAction } from '@shared/interfaces/table-action';
 import { TableColumn } from '@shared/interfaces/table-column';
 import { TableConfig } from '@shared/interfaces/table-config';
@@ -21,7 +21,7 @@ export class ReusableTableBackendComponent {
   public onClickInCreate = output<void>();
   public onSearchFilter = output<string>();
   public onTableAction = output<TableAction>();
-  public onPaginationChange = output<PaginationData>();
+  public onPaginationChange = output<PaginationDto>();
 
   public dataSource: any = new MatTableDataSource<any>();
   public displayedColumns: string[] = [];
@@ -45,14 +45,22 @@ export class ReusableTableBackendComponent {
 
   @Input() set config(config: TableConfig)
   {
-    this.tableConfig = config;
-    if( this.tableConfig.showActions )
-    {
+    this.setConfig(config);
+  }
+
+  setConfig(config: TableConfig) {
+    this.tableConfig = config
+
+    if(this.tableConfig.isSelectable) {
+      this.displayedColumns.unshift('select');
+    }
+
+    if(this.tableConfig.showActions){
       if( !this.displayedColumns.includes('actions') )
       {
         this.displayedColumns.push('actions');
-      }      
-    }   
+      } 
+    }
 
     if( this.tableConfig.totalItemsPagination )
     {
@@ -96,7 +104,7 @@ export class ReusableTableBackendComponent {
 
     const takeFrom = pageIndex * pageSize;
     const itemsPerPage = pageSize;
-    const paginationData: PaginationData = { limit: itemsPerPage, from: takeFrom };
+    const paginationData: PaginationDto = { limit: itemsPerPage, offset: takeFrom };
 
     this.onPaginationChange.emit( paginationData );
   }

@@ -1,12 +1,13 @@
-import { AfterViewInit, Component, EventEmitter, Input, Output, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, EventEmitter, Input, output, Output, ViewChild } from '@angular/core';
 import { TableColumn } from '../../interfaces/table-column';
 import { SelectionModel } from '@angular/cdk/collections';
 import { TableConfig } from '../../interfaces/table-config';
 import { MatTableDataSource } from '@angular/material/table';
-import { MatPaginator } from '@angular/material/paginator';
+import { MatPaginator, PageEvent } from '@angular/material/paginator';
 import { TableAction } from '../../interfaces/table-action';
 import { TABLE_ACTION } from '../../enums/table-action.enum';
 import { MatSort } from '@angular/material/sort';
+import { PaginationDto } from '@shared/interfaces/pagination.dto';
 
 @Component({
   selector: 'app-reusable-table',
@@ -25,6 +26,7 @@ export class ReusableTableComponent implements AfterViewInit {
   currentFilterValue: string = '';
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
+  public totalItems: number = 0;
 
   @ViewChild(MatSort) sort!: MatSort;
 
@@ -42,8 +44,9 @@ export class ReusableTableComponent implements AfterViewInit {
     this.setConfig(config)
   }
 
-  @Output() select: EventEmitter<any> = new EventEmitter();
-  @Output() action: EventEmitter<TableAction> = new EventEmitter();
+  public onSelectRow = output<any>();
+  public onClickAction = output<TableAction>();
+  public onPaginationChange = output<PaginationDto>();
 
   constructor() {}
 
@@ -53,7 +56,7 @@ export class ReusableTableComponent implements AfterViewInit {
   }
 
   onSelect() {
-    this.select.emit(this.selection.selected);
+    this.onSelectRow.emit(this.selection.selected);
   }
 
   setConfig(config: TableConfig) {
@@ -64,7 +67,15 @@ export class ReusableTableComponent implements AfterViewInit {
     }
 
     if(this.tableConfig.showActions){
-      this.displayedColumns.push('actions');
+      if( !this.displayedColumns.includes('actions') )
+      {
+        this.displayedColumns.push('actions');
+      } 
+    }
+
+    if( this.tableConfig.totalItemsPagination )
+    {
+      this.totalItems = this.tableConfig.totalItemsPagination;
     }
   }
 
@@ -111,21 +122,37 @@ export class ReusableTableComponent implements AfterViewInit {
   }
 
   onShow(row: any) {
-    this.action.emit({ action: TABLE_ACTION.SHOW, row });
+    this.onClickAction.emit({ action: TABLE_ACTION.SHOW, row });
   }
 
   onEdit(row: any) {
-    this.action.emit({ action: TABLE_ACTION.EDIT, row });
+    this.onClickAction.emit({ action: TABLE_ACTION.EDIT, row });
   }
 
   onDelete(row: any) {
-    this.action.emit({ action: TABLE_ACTION.DELETE, row });
+    this.onClickAction.emit({ action: TABLE_ACTION.DELETE, row });
   }
 
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
     this.currentFilterValue = filterValue;
+  }
+
+  // Pagination
+  onPaginateChange( event: PageEvent )
+  {
+    const {
+      pageIndex,
+      pageSize, 
+      // length
+    } = event;
+
+    const takeFrom = pageIndex * pageSize;
+    const itemsPerPage = pageSize;
+    const paginationData: PaginationDto = { limit: itemsPerPage, offset: takeFrom };
+
+    this.onPaginationChange.emit( paginationData );
   }
 
 }
