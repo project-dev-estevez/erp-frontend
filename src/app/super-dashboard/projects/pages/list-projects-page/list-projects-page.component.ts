@@ -7,6 +7,7 @@ import { SweetAlertService } from '@shared/services/sweet-alert.service';
 import { Router } from '@angular/router';
 import { TableAction } from '@shared/interfaces/table-action';
 import { TABLE_ACTION } from '@shared/enums/table-action.enum';
+import { PaginationDto } from '@shared/interfaces/pagination.dto';
 
 @Component({
   selector: 'app-list-projects-page',
@@ -15,6 +16,7 @@ import { TABLE_ACTION } from '@shared/enums/table-action.enum';
 })
 export class ListProjectsPageComponent implements OnInit {
   
+  private query: PaginationDto = { limit: 8, offset: 0 };
   public dataList: Project[] = [];
   
   public tableColumns: TableColumn[] = [
@@ -37,10 +39,13 @@ export class ListProjectsPageComponent implements OnInit {
   }
 
   private loadDataList() {
-    this.projectsService.getAllProjects().subscribe(
+    this.projectsService.getAllProjects( this.query ).subscribe(
       response => {
         this.dataList = response.results;
-        this.tableConfig.totalItemsPagination = response.total;
+        this.tableConfig = {
+          ...this.tableConfig,
+          totalItemsPagination: response.total
+        }
       },
       errorResponse => {
         console.log(errorResponse);
@@ -72,6 +77,13 @@ export class ListProjectsPageComponent implements OnInit {
       default:
       break;
     }
+  }
+
+  onPaginationChange( paginationData: PaginationDto ){
+    this.query.limit = paginationData.limit;
+    this.query.offset = paginationData.offset;
+
+    this.loadDataList();
   }
 
   async deleteProject( id: string ) {
