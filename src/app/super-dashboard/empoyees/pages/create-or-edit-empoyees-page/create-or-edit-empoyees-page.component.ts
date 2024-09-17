@@ -58,7 +58,7 @@ export class CreateOrEditEmpoyeesPageComponent implements OnInit{
   }
 
   private getAllAreas() {
-    this.areasService.getAllAreas().subscribe(
+    this.areasService.getAllAreas({limit: 10, offset: 0}).subscribe(
       response => {
         this.areas = response.results;
       },
