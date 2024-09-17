@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment.development';
 import { catchError, map, Observable, of } from 'rxjs';
@@ -7,6 +7,7 @@ import {
   GetAllDirectionsResponseDto, QueryGetAllDirectionsDto,
   Direction, UpdateDirectionDto, UpdateDirectionResponseDto  
 } from '../interfaces';
+import { PaginationDto } from '@shared/interfaces/pagination.dto';
 
 @Injectable({
   providedIn: 'root'
@@ -21,8 +22,15 @@ export class DirectionsService {
     return this.http.post<CreateDirectionResponseDto>( `${environment.apiUrl}/directions`, createDirectionDto );
   }
 
-  getAllDirections( queyGetAllDirectionsDto?: QueryGetAllDirectionsDto ): Observable<GetAllDirectionsResponseDto> {
-    return this.http.get<GetAllDirectionsResponseDto>(`${environment.apiUrl}/directions`);
+  getAllDirections( paginationDto: PaginationDto ): Observable<GetAllDirectionsResponseDto> {
+
+    const { limit, offset } = paginationDto;
+
+    const httpOptions = {
+      params: new HttpParams().set('limit', limit ?? 8)
+       .set('offset', offset?? 0)
+    }
+    return this.http.get<GetAllDirectionsResponseDto>(`${environment.apiUrl}/directions`, httpOptions );
   }
 
   getDirectionById( id: string ): Observable<Direction> {
