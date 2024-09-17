@@ -89,7 +89,10 @@
 
   <!-- Paginador -->
   <ng-container *ngIf="tableConfig?.isPaginable">    
-    <mat-paginator [pageSizeOptions]="[10]"
+    <mat-paginator [length]="totalItems" 
+                   [pageSize]="8" 
+                   [pageSizeOptions]="[10]" 
+                   (page)="onPaginateChange( $event )"
                   showFirstLastButtons>
     </mat-paginator>
   </ng-container>
