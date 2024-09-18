@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams, HttpParamsOptions } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment.development';
@@ -9,6 +9,7 @@ import { CreateAreaDto } from '../interfaces/create-area.dto';
 import { CreateAreaResponseDto } from '../interfaces/create-area-response.dt';
 import { UpdateAreaDto } from '../interfaces/update-area.dto';
 import { GetAllDepartmentsResponseDto } from '../../departments/interfaces/get-all-departments-response.dto';
+import { PaginationDto } from '@shared/interfaces/pagination.dto';
 
 @Injectable({
   providedIn: 'root'
@@ -19,8 +20,16 @@ export class AreasService {
     private http: HttpClient
   ) { }
 
-  getAllAreas( queryGetAllAreasDto?: QueryGetAllAreasDto ): Observable<GetAllAreasResponseDto> {
-    return this.http.get<GetAllAreasResponseDto>(`${environment.apiUrl}/areas`);
+  getAllAreas( paginationDto: PaginationDto ): Observable<GetAllAreasResponseDto> {
+
+    const{ limit, offset } = paginationDto;
+
+    const httpOptions = {
+      params: new HttpParams().set('limit', limit ?? 8)
+                              .set('offset', offset ?? 0)
+    }
+    
+    return this.http.get<GetAllAreasResponseDto>(`${environment.apiUrl}/areas`, httpOptions);
   }
 
   getAllDepartments(): Observable<GetAllDepartmentsResponseDto> {
