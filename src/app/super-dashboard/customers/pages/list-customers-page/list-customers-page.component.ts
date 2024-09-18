@@ -7,6 +7,7 @@ import { SweetAlertService } from '@shared/services/sweet-alert.service';
 import { Router } from '@angular/router';
 import { TableAction } from '@shared/interfaces/table-action';
 import { TABLE_ACTION } from '@shared/enums/table-action.enum';
+import { PaginationDto } from '@shared/interfaces/pagination.dto';
 
 @Component({
   selector: 'app-list-customers-page',
@@ -14,6 +15,8 @@ import { TABLE_ACTION } from '@shared/enums/table-action.enum';
   styleUrl: './list-customers-page.component.scss'
 })
 export class ListCustomersPageComponent implements OnInit {
+
+  private query: PaginationDto = { limit: 8, offset: 0 }
   
   public dataList: Customer[] = [];
 
@@ -37,10 +40,13 @@ export class ListCustomersPageComponent implements OnInit {
   }
 
   private loadDataList() {
-    this.customersService.getAllCustomers().subscribe(
+    this.customersService.getAllCustomers( this.query ).subscribe(
       response => {
         this.dataList = response.results;
-        this.tableConfig.totalItemsPagination = response.total;
+        this.tableConfig = {
+        ...this.tableConfig,
+        totalItemsPagination: response.total
+        };
       },
       errorResponse => {
         console.log(errorResponse);
@@ -72,6 +78,14 @@ export class ListCustomersPageComponent implements OnInit {
       default:
       break;
     }
+  }
+
+  onPaginationChange( paginationData: PaginationDto )
+  {
+    this.query.limit = paginationData.limit;
+    this.query.offset = paginationData.offset;
+
+    this.loadDataList();
   }
 
   async deleteCustomer( id: string ) {

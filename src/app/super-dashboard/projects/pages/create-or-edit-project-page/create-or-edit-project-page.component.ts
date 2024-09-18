@@ -79,7 +79,7 @@ export class CreateOrEditProjectPageComponent implements OnInit {
   }
 
   private getAllCustomers(): void {
-    this.customersServices.getAllCustomers().subscribe(
+    this.customersServices.getAllCustomers({ limit: 8, offset: 0}).subscribe(
       response => this.customers = response.results,
       errorResponse => this.sweetAlert.presentError('Obteniendo Listado de Clientes...')
     );
