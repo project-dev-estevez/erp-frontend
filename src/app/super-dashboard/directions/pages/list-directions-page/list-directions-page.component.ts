@@ -7,6 +7,7 @@ import { SweetAlertService } from '@shared/services/sweet-alert.service';
 import { Router } from '@angular/router';
 import { TableAction } from '@shared/interfaces/table-action';
 import { TABLE_ACTION } from '@shared/enums/table-action.enum';
+import { PaginationDto } from '@shared/interfaces/pagination.dto';
 
 @Component({
   selector: 'app-list-directions-page',
@@ -15,6 +16,7 @@ import { TABLE_ACTION } from '@shared/enums/table-action.enum';
 })
 export class ListDirectionsPageComponent implements OnInit {
 
+  private query: PaginationDto = { limit: 8, offset: 0 };
   public dataList: Direction[] = [];
 
   public tableColumns: TableColumn[] = [
@@ -37,11 +39,10 @@ export class ListDirectionsPageComponent implements OnInit {
   }
 
   loadDataList() {
-    this.directionsService.getAllDirections().subscribe(
+    this.directionsService.getAllDirections( this.query ).subscribe(
       response => {        
         this.dataList = response.results;
         this.tableConfig = { ...this.tableConfig, totalItemsPagination: response.total };
-        console.log(this.dataList);
       },
       errorResponse => {
         console.error(errorResponse);
@@ -73,6 +74,13 @@ export class ListDirectionsPageComponent implements OnInit {
       default:
       break;
     }
+  }
+
+  onPaginationChange( paginationDto: PaginationDto ) {
+    this.query.limit = paginationDto.limit;
+    this.query.offset = paginationDto.offset;
+
+    this.loadDataList();
   }
 
   async deleteDirection( id: string ) {

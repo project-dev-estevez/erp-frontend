@@ -77,7 +77,7 @@ export class CreateOrEditDepartmentPageComponent implements OnInit {
   }
 
   private getAllDirections() {
-    this.directionsService.getAllDirections().subscribe(
+    this.directionsService.getAllDirections({ limit: 100, offset: 0 }).subscribe(
       response => {
         this.directions = response.results;
       },
