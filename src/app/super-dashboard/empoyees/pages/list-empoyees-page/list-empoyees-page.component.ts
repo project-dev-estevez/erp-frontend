@@ -7,6 +7,7 @@ import { Router } from '@angular/router';
 import { TableAction } from '@shared/interfaces/table-action';
 import { TABLE_ACTION } from '@shared/enums/table-action.enum';
 import { EmpoyeesService } from '../../services/empoyees.service';
+import { PaginationDto } from '@shared/interfaces/pagination.dto';
 
 @Component({
   selector: 'app-list-empoyees-page',
@@ -14,6 +15,7 @@ import { EmpoyeesService } from '../../services/empoyees.service';
   styleUrl: './list-empoyees-page.component.scss'
 })
 export class ListEmpoyeesPageComponent implements OnInit {
+  private query: PaginationDto = { limit: 8, offset: 0 }
 
   public dataList: Empoyees[] = [];
 
@@ -37,10 +39,13 @@ export class ListEmpoyeesPageComponent implements OnInit {
   }
 
   private loadDataList(){
-    this.empoyeesService.getAllEmpoyees().subscribe(
+    this.empoyeesService.getAllEmpoyees( this.query ).subscribe(
       response => {
         this.dataList = response.results;
-        this.tableConfig.totalItemsPagination = response.total;
+        this.tableConfig = {
+        ...this.tableConfig,
+        totalItemsPagination: response.total
+        };
       },
       errorResponse => {
         console.log(errorResponse);
@@ -71,6 +76,14 @@ export class ListEmpoyeesPageComponent implements OnInit {
             default:
               break;
     }
+  }
+
+  onPaginationChange( paginationData: PaginationDto )
+  {
+    this.query.limit = paginationData.limit;
+    this.query.offset = paginationData.offset;
+
+    this.loadDataList();
   }
 
   async deleteEmpoyees( id: string ){
