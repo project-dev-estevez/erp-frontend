@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { Error404PageComponent } from '@shared/pages/error404-page/error404-page.component';
+import { AuthGuard } from './authentication/guards/auth.guard';
 
 const routes: Routes = [
   {
@@ -11,13 +12,17 @@ const routes: Routes = [
   {
     path: 'super-dashboard',
     data: { breadcrumb: 'Inicio' },
-    loadChildren: () => import('./super-dashboard/super-dashboard.module').then( m => m.SuperDashboardModule )
+    loadChildren: () => import('./super-dashboard/super-dashboard.module').then( m => m.SuperDashboardModule ),
+    canActivate: [AuthGuard],
+    canLoad: [AuthGuard]
   },
   // Admin Dashboard
   {
     path: 'dashboard',
     data: { breadcrumb: 'Inicio' },
-    loadChildren: () => import('./dashboard/dashboard.module').then( m => m.DashboardModule )
+    loadChildren: () => import('./dashboard/dashboard.module').then( m => m.DashboardModule ),
+    canActivate: [AuthGuard],
+    canLoad: [AuthGuard]
   },
   {
     path: '404',

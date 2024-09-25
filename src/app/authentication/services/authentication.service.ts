@@ -14,6 +14,12 @@ export class AuthenticationService
     private http: HttpClient
   ) { }
 
+  isLoggedIn(): boolean{
+    const token = this.getToken();
+    if(token) return true;
+    return false;
+  }
+
   login(loginDataDto: LoginDataDto): Observable<LoginResponse> {
     return this.http.post<LoginResponse>(`${environment.apiUrl}/auth/login`, loginDataDto);
   }
