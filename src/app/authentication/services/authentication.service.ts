@@ -7,13 +7,16 @@ import { Observable, map, of } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
-export class AuthenticationService 
+export class AuthenticationService
 {
-
+private Url = 'http://localhost:4200/'
   constructor(
     private http: HttpClient
   ) { }
 
+  getUserRoles(role: string): Observable<string[]> {
+    return this.http.get<string[]>(`${this.Url}/users/${role}/roles`);
+  }
   login(loginDataDto: LoginDataDto): Observable<LoginResponse> {
     return this.http.post<LoginResponse>(`${environment.apiUrl}/auth/login`, loginDataDto);
   }
