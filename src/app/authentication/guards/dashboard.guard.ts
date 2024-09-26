@@ -7,7 +7,7 @@ import { AuthenticationService } from '../services/authentication.service';
 @Injectable({
   providedIn: 'root'
 })
-export class DashboardGuard implements CanActivate, CanLoad 
+export class DashboardGuard implements CanActivate, CanLoad
 {
 
   constructor(
@@ -37,13 +37,13 @@ export class DashboardGuard implements CanActivate, CanLoad
   ): Observable<boolean> | Promise<boolean> | boolean
   {
     return true;
-    // return this.authService.checkToken().pipe(
-    //   tap( isAuth => {
-    //     if(!isAuth)
-    //     {
-    //       this.router.navigate(['/auth']);
-    //     }
-    //   })
-    // );
+     //return this.authService.checkToken().pipe(
+       //tap( isAuth => {
+         //if(!isAuth)
+         //{
+          // this.router.navigate(['/auth']);
+         //}
+       //})
+     //);
   }
 }
