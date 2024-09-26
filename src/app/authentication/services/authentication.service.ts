@@ -17,6 +17,12 @@ private Url = 'http://localhost:4200/'
   getUserRoles(role: string): Observable<string[]> {
     return this.http.get<string[]>(`${this.Url}/users/${role}/roles`);
   }
+  isLoggedIn(): boolean{
+    const token = this.getToken();
+    if(token) return true;
+    return false;
+  }
+
   login(loginDataDto: LoginDataDto): Observable<LoginResponse> {
     return this.http.post<LoginResponse>(`${environment.apiUrl}/auth/login`, loginDataDto);
   }
