@@ -1,6 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 
-import { EnterprisesService } from './enterprises.service';
+import { EnterprisesService } from '../services/enterprises.service';
 
 describe('EnterprisesService', () => {
   let service: EnterprisesService;
@@ -12,5 +12,6 @@ describe('EnterprisesService', () => {
 
   it('should be created', () => {
     expect(service).toBeTruthy();
+
   });
 });
