@@ -1,8 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { Project } from '../../interfaces/project-entity';
 import { Customer } from 'src/app/super-dashboard/customers/interfaces/customer-entity';
 import { Enterprise } from 'src/app/super-dashboard/enterprises/interfaces/enterprise-entity';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ProjectsService } from '../../services/projects.service';
 import { CustomersService } from 'src/app/super-dashboard/customers/services/customers.service';
 import { EnterprisesService } from 'src/app/super-dashboard/enterprises/services/enterprises.service';
@@ -11,14 +11,31 @@ import { SweetAlertService } from '@shared/services/sweet-alert.service';
 import { CreateProjectDto } from '../../interfaces/create-project.dto';
 import { UpdateProjectDto } from '../../interfaces/update-project.dto';
 import { switchMap } from 'rxjs';
+import {MatInputModule} from '@angular/material/input';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import { MatStepperModule } from '@angular/material/stepper';
+import {MatButtonModule} from '@angular/material/button';
+import {MatBottomSheet, MatBottomSheetRef} from '@angular/material/bottom-sheet';
 
 @Component({
   selector: 'app-create-or-edit-project-page',
   templateUrl: './create-or-edit-project-page.component.html',
-  styleUrl: './create-or-edit-project-page.component.scss'
+  styleUrl: './create-or-edit-project-page.component.scss',
+
 })
 export class CreateOrEditProjectPageComponent implements OnInit {
-  
+  isLinear = false;
+
+  private _formBuilder = inject(FormBuilder);
+
+  firstFormGroup = this._formBuilder.group({
+    firstCtrl: ['', Validators.required],
+  });
+  secondFormGroup = this._formBuilder.group({
+    secondCtrl: ['', Validators.required],
+  });
+
+
   private projectId: string = '';
 
   public projects: Project[] = [];
@@ -38,9 +55,14 @@ export class CreateOrEditProjectPageComponent implements OnInit {
     private fb: FormBuilder,
     private router: Router,
     private activatedRoute: ActivatedRoute,
-    private sweetAlert: SweetAlertService
+    private sweetAlert: SweetAlertService,
+    private bottomSheet: MatBottomSheet
   ){}
-  
+
+  openBottomSheet(): void {
+    this.bottomSheet.open(BottomSheetOverviewExampleSheet);
+  }
+
   ngOnInit(): void {
     this.getAllCustomers();
     this.getAllEnterprises();
@@ -55,7 +77,7 @@ export class CreateOrEditProjectPageComponent implements OnInit {
       response => {
         const name = response.name;
         this.sweetAlert.presentSuccess(`El Proyecto ${name} se ha creado con éxito`);
-        this.redirectToList(); 
+        this.redirectToList();
       },
       errorResponse => {
         this.sweetAlert.presentError('Creando el Proyecto...');
@@ -64,7 +86,7 @@ export class CreateOrEditProjectPageComponent implements OnInit {
   }
 
   private updateProject() {
-    
+
     const updateProjectDto: UpdateProjectDto = this.projectForm.value;
 
     this.projectsServices.updateProjectById( this.projectId, updateProjectDto ).subscribe(
@@ -98,7 +120,7 @@ export class CreateOrEditProjectPageComponent implements OnInit {
     if( !route.includes('edit') ) return;
 
     this.activatedRoute.params.pipe(
-      switchMap( ({ id }) => { 
+      switchMap( ({ id }) => {
         this.projectId = id;
         return this.projectsServices.getProjectById( id );
       })
@@ -106,7 +128,7 @@ export class CreateOrEditProjectPageComponent implements OnInit {
       response => {
 
         if( !response ) return this.router.navigateByUrl('/');
-        
+
         this.projectForm.reset({
           name: response.name,
           customerId: response.customerId,
@@ -130,11 +152,24 @@ export class CreateOrEditProjectPageComponent implements OnInit {
     }
 
     // Crear
-    this.createProject();       
+    this.createProject();
   }
 
   redirectToList() {
     this.router.navigateByUrl('/super-dashboard/projects');
   }
 
+}
+
+@Component({
+  selector: 'bottom-sheet-overview-example-sheet',
+  templateUrl: 'bottom-sheet-overview-example-sheet.html',
+})
+export class BottomSheetOverviewExampleSheet {
+  constructor(private bottomSheetRef: MatBottomSheetRef<BottomSheetOverviewExampleSheet>) {}
+
+  openLink(event: MouseEvent): void {
+    this.bottomSheetRef.dismiss();
+    event.preventDefault();
+  }
 }

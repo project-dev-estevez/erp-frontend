@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import {Component} from '@angular/core';
 
 import { ProjectsRoutingModule } from './projects-routing.module';
 import { ListProjectsPageComponent } from './pages/list-projects-page/list-projects-page.component';
@@ -17,7 +18,8 @@ import { SharedModule } from '@shared/shared.module';
   imports: [
     CommonModule,
     ProjectsRoutingModule,
-    SharedModule
+    SharedModule,
   ]
 })
-export class ProjectsModule { }
+export class ProjectsModule {
+}
