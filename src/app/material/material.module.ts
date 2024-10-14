@@ -5,6 +5,7 @@ import { MatDividerModule } from '@angular/material/divider';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { MatToolbarModule } from '@angular/material/toolbar';
+import {MatDatepickerModule} from '@angular/material/datepicker';
 import { MatIconModule, MatIconRegistry } from '@angular/material/icon';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
@@ -15,6 +16,10 @@ import { DomSanitizer } from '@angular/platform-browser';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatSortModule } from '@angular/material/sort';
+import { MatStepperModule } from '@angular/material/stepper';
+import { provideNativeDateAdapter } from '@angular/material/core';
+import { MatBottomSheetModule } from '@angular/material/bottom-sheet';
+
 
 @NgModule({
   exports: [
@@ -32,10 +37,16 @@ import { MatSortModule } from '@angular/material/sort';
     MatCheckboxModule,
     MatExpansionModule,
     MatProgressBarModule,
-    MatSortModule
+    MatSortModule,
+    MatStepperModule,
+    MatDatepickerModule,
+    MatBottomSheetModule,
+  ],
+  providers: [
+    provideNativeDateAdapter(),
   ]
 })
-export class MaterialModule { 
+export class MaterialModule {
   constructor(private matIconRegistry: MatIconRegistry, private domSanitizer: DomSanitizer) {
     this.matIconRegistry.addSvgIcon(
       'excel',
