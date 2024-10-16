@@ -1,12 +1,209 @@
-<div class="container mx-auto w-full m-5">
+<div class="container mx-auto">
+  <mat-card>
+<mat-stepper [linear]="isLinear" #stepper>
+  <mat-step [stepControl]="firstFormGroup">
+    <form [formGroup]="firstFormGroup">
+      <ng-template matStepLabel>Generales</ng-template>
+        <h1>Definición del Proyecto</h1>
+        <div class="flex">
+          <div class="flex-none px-4 py-2 m-2">
+            <mat-form-field>
+              <mat-label>Nombre del proyecto</mat-label>
+              <input matInput placeholder="Last name, First name" formControlName="firstCtrl" required>
+            </mat-form-field>
+          </div>
+          <div class="flex-none px-4 py-2 m-2">
+            <mat-form-field>
+              <mat-label>Cliente</mat-label>
+              <input matInput placeholder="Last name, First name" formControlName="firstCtrl" required>
+            </mat-form-field>
+          </div>
+          <div class="flex-none px-4 py-2 m-2">
+            <mat-form-field>
+              <mat-select placeholder="Gerentes*" formControlName="gerentes">
+                <mat-option>
+                  Gerente1
+                </mat-option>
+                <mat-option>
+                  Gerente2
+                </mat-option>
+                <mat-option>
+                  Gerente3
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+        </div>
+        <div class="flex">
+          <div class="flex-none px-4 py-2 m-2">
+            <mat-form-field>
+              <input matInput [matDatepicker]="picker" placeholder="Fecha de inicio">
+              <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+              <mat-datepicker #picker></mat-datepicker>
+            </mat-form-field>
+          </div>
+          <div class="flex-none px-4 py-2 m-2">
+            <mat-form-field>
+              <input matInput [matDatepicker]="picker2" placeholder="Fecha de termino">
+              <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+              <mat-datepicker #picker2></mat-datepicker>
+            </mat-form-field>
+          </div>
+          <div class="flex-none px-4 py-2 m-2">
+            <mat-form-field>
+              <mat-label>KMS</mat-label>
+              <input matInput placeholder="Last name, First name" formControlName="firstCtrl" required>
+            </mat-form-field>
+          </div>
+        </div>
+        <div appearance="fill" class="flex">
+          <div class="flex-none px-4 py-2 m-2">
+            <mat-form-field >
+              <mat-select  placeholder="Area de negocio*" formControlName="negocio">
+                <mat-option>
+                  Area1
+                </mat-option>
+                <mat-option>
+                  Area2
+                </mat-option>
+                <mat-option>
+                  Area3
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+
+        </div>
+        <div class="flex">
+        <div class="flex-none px-4 py-2 m-2 ">
+          <mat-form-field>
+            <textarea matInput placeholder="Justificación"></textarea>
+          </mat-form-field>
+        </div>
+        <div class="flex-none px-4 py-2 m-2">
+          <mat-form-field>
+            <textarea matInput placeholder="Objetivo"></textarea>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="flex">
+        <div class="flex-none px-4 py-2 m-20">
+          <h1>Alcances</h1>
+        </div>
+        <mat-card>
+          <div class="flex-none px-4 py-10 m-2 space-x-10">
+            <button mat-raised-button color="primary">Entregables del proyecto</button>
+              <button class="flex-none px-4 py-2 m2" mat-raised-button color="accent">Consideraciones del proyecto</button>
+            </div>
+            <div class="flex-none px-4 py-3 space-x-10">
+              <button mat-raised-button color="warn">Skateholders</button>
+              <!--button mat-raised-button color="disabled">Analisis de Riesgos</!--button-->
+              <button mat-raised-button (click)="openBottomSheet()">Analisis de Riesgos</button>
+              </div>
+
+
+        </mat-card>
+      </div>
+
+        <button mat-raised-button matStepperNext>Siguiente</button>
+    </form>
+  </mat-step>
+
+  <mat-step [stepControl]="secondFormGroup" label="Equipo">
+    <form [formGroup]="secondFormGroup">
+      <mat-form-field>
+        <mat-label>Nombre</mat-label>
+        <input matInput formControlName="secondCtrl" placeholder="Ingresa nombre"
+               required>
+      </mat-form-field>
+      <div>
+        <button mat-raised-button matStepperPrevious>Regresar</button>
+        <button class="flex-none px-8 py-8 m-2" mat-raised-button matStepperNext>Guardar</button>
+      </div>
+    </form>
+  </mat-step>
+
+  <mat-step [stepControl]="secondFormGroup" label="Cronograma">
+    <form [formGroup]="secondFormGroup">
+      <mat-form-field>
+        <mat-label>Nombre</mat-label>
+        <input matInput formControlName="secondCtrl" placeholder="Ingresa nombre"
+               required>
+      </mat-form-field>
+      <div>
+        <button mat-raised-button matStepperPrevious>Regresar</button>
+        <button class="flex-none px-8 py-8 m-2" mat-raised-button matStepperNext>Guardar</button>
+      </div>
+    </form>
+  </mat-step>
+
+  <mat-step [stepControl]="secondFormGroup" label="Maquinaria y Herramienta">
+    <form [formGroup]="secondFormGroup">
+      <mat-form-field>
+        <mat-label>Nombre</mat-label>
+        <input matInput formControlName="secondCtrl" placeholder="Ingresa nombre"
+               required>
+      </mat-form-field>
+      <div>
+        <button mat-raised-button matStepperPrevious>Regresar</button>
+        <button class="flex-none px-8 py-8 m-2" mat-raised-button matStepperNext>Guardar</button>
+      </div>
+    </form>
+  </mat-step>
+
+  <mat-step [stepControl]="secondFormGroup" label="Materiales">
+    <form [formGroup]="secondFormGroup">
+      <mat-form-field>
+        <mat-label>Nombre</mat-label>
+        <input matInput formControlName="secondCtrl" placeholder="Ingresa nombre"
+               required>
+      </mat-form-field>
+      <div>
+        <button mat-raised-button matStepperPrevious>Regresar</button>
+        <button class="flex-none px-8 py-8 m-2" mat-raised-button matStepperNext>Guardar</button>
+      </div>
+    </form>
+  </mat-step>
+
+  <mat-step [stepControl]="secondFormGroup" label="Presupuesto">
+    <form [formGroup]="secondFormGroup">
+      <mat-form-field>
+        <mat-label>Nombre</mat-label>
+        <input matInput formControlName="secondCtrl" placeholder="Ingresa nombre"
+               required>
+      </mat-form-field>
+      <div>
+        <button mat-raised-button matStepperPrevious>Regresar</button>
+        <button class="flex-none px-8 py-8 m-2" mat-raised-button matStepperNext>Guardar</button>
+      </div>
+    </form>
+  </mat-step>
+
+  <mat-step [stepControl]="secondFormGroup" label="Infraestructura">
+    <form [formGroup]="secondFormGroup">
+      <mat-form-field>
+        <mat-label>Nombre</mat-label>
+        <input matInput formControlName="secondCtrl" placeholder="Ingresa nombre"
+               required>
+      </mat-form-field>
+      <div>
+        <button mat-raised-button matStepperPrevious>Regresar</button>
+        <button class="flex-none px-8 py-8 m-2" mat-raised-button matStepperNext>Guardar</button>
+      </div>
+    </form>
+  </mat-step>
+</mat-stepper>
+</mat-card>
+</div>
+<!--<div class="container mx-auto w-full m-5">
     <form [formGroup]="projectForm" (ngSubmit)="onSubmit()">
         <div class="flex flex-col p-4">
 
             <mat-form-field appearance="fill">
                 <mat-label>Nombre</mat-label>
-                <input type="text" 
-                    matInput 
-                    placeholder="Ingrese el Nombre del Proyecto" 
+                <input type="text"
+                    matInput
+                    placeholder="Ingrese el Nombre del Proyecto"
                     formControlName="name"/>
             </mat-form-field>
 
@@ -32,8 +229,8 @@
                 </mat-select>
             </mat-form-field>
 
-            <button mat-raised-button 
-                    color="primary" 
+            <button mat-raised-button
+                    color="primary"
                     type="submit"
                     [disabled]="projectForm.invalid">
                 Guardar
@@ -41,4 +238,4 @@
 
         </div>
     </form>
-</div>
+</div>-->
