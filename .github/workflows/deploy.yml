@@ -3,7 +3,7 @@ name: Deploy Angular App to GCP
 on:
   push:
     branches:
-      - main  # Adjust branch as needed
+      - dev
 
 jobs:
   build:
