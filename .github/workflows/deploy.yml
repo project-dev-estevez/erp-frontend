@@ -32,9 +32,11 @@ jobs:
       run: npm run build --dev
 
     - name: Authenticate to Google Cloud
+      id: auth
       uses: google-github-actions/auth@v2
       with:
-        workload_identity_provider: 'projects/613099445165/locations/global/workloadIdentityPools/githubs-auth/providers/github-action'
+        token_format: "access_token"
+        workload_identity_provider: 'projects/613099445165/locations/global/workloadIdentityPools/github-auth/providers/github-actions'
         service_account: github-action@estevez-jor-agile-dev.iam.gserviceaccount.com
         #credentials_json: ${{ secrets.GCP_KEY }}
 
