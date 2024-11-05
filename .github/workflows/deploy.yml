@@ -35,7 +35,7 @@ jobs:
       uses: google-github-actions/auth@v2
       with:
         workload_identity_provider: 'projects/613099445165/locations/global/workloadIdentityPools/githubs-auth/providers/github-action'
-        service_account: erp-frontend-dev@estevez-jor-agile-dev.iam.gserviceaccount.com
+        service_account: github-action@estevez-jor-agile-dev.iam.gserviceaccount.com
         #credentials_json: ${{ secrets.GCP_KEY }}
 
     - name: Set GCP Project
